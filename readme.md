@@ -1,16 +1,16 @@
 # 132 Final Project
 
-## topic
-student reading carnival
+## Topic
+Student reading carnival
 
-## team members 
+## Team Members 
 - Linxuan Yang
 - Ye Hong
 - Chenfeng Fan 
 - Limian Guo 
 
-## goal
-all purpose search on books
+## Goal
+All purpose search on books
 
-## due day 
+## Due day 
 5/12/2019
