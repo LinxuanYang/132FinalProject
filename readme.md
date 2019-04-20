@@ -26,5 +26,5 @@ All purpose search on books
 ```$ python crawler/goodreads_title_crawler.py```
 
 - Get literature book titles index html file @sparknotes  
-    1. Go to 'sparknotes/' directory
-    2. Run ```$ scrapy crawl titles```
+    1. ```$ cd sparknotes```
+    2. ```$ scrapy crawl titles -o ../shelve/sparknotes_titles.json```

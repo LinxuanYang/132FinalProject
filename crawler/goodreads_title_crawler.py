@@ -34,17 +34,16 @@ def get_title(crawler):
         try:
             for i in range(26):
                 print("Page: ", i)
-                # page_text = crawler.get_page(target + '?page=' + str(i)).text
                 page_text = crawler.get_page(f'{shelve_url + category}?page={i}').text
                 titles += crawler.match_all(r'<a class="bookTitle" href=".*">(.*?)</a>', page_text)
             shelve_dict[category] = titles
             time.sleep(1)
         except:
-            with open('good_read_shelve_except.json', 'a') as f:
+            with open('shelve/good_read_shelve_except.json', 'a') as f:
                 json.dump(shelve_dict, f)
         time.sleep(3)
 
-    with open('good_read_shelve.json', 'w') as f:
+    with open('shelve/good_read_title_2.json', 'w') as f:
         json.dump(shelve_dict, f)
 
 
