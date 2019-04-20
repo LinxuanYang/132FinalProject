@@ -40,7 +40,7 @@ def get_title(crawler):
             shelve_dict[category] = titles
             time.sleep(1)
         except:
-            with open('good_read_shelve_except.json', 'w') as f:
+            with open('good_read_shelve_except.json', 'a') as f:
                 json.dump(shelve_dict, f)
         time.sleep(3)
 
