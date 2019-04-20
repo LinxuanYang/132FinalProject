@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e91b2863-d41c-468e-b913-66ace8cb64c3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/crawler/goodreads_title_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/goodreads_title_crawler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawler/goodreads_title_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/goodreads/goodreads_title_crawler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sparknotes/sparknotes/html/sparknotes_lit.html" beforeDir="false" afterPath="$PROJECT_DIR$/sparknotes/sparknotes/html/sparknotes_lit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shelve/good_read_title.json" beforeDir="false" afterPath="$PROJECT_DIR$/goodreads/shelve/good_read_title.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shelve/sparknotes_titles.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sparknotes/sparknotes/spiders/titles_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparknotes/sparknotes/spiders/titles_spider.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,99 +23,41 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/spiders/titles_spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state relative-caret-position="304">
+              <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/spiders/details_spider.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="271">
+              <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_titles.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/readme.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="493">
-                <caret line="29" column="67" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
+              <first_editor relative-caret-position="417">
+                <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shelve/sparknotes_titles.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sparknotes/titles.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2389">
-              <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/html/sparknotes_lit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="5561" selection-start-line="5561" selection-end-line="5561" />
-              <folding>
-                <element signature="n#style#0;n#i#0;n#p#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#1;n#p#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#16272#16277#0" expanded="true" />
-                <element signature="e#30268#30273#0" expanded="true" />
-                <element signature="e#46137#46145#0" expanded="true" />
-                <element signature="e#49404#49412#0" expanded="true" />
-                <element signature="e#49415#49423#0" expanded="true" />
-                <element signature="e#55181#55189#0" expanded="true" />
-                <element signature="e#64840#64847#0" expanded="true" />
-                <element signature="e#68119#68124#0" expanded="true" />
-                <element signature="e#72279#72286#0" expanded="true" />
-                <element signature="e#79607#79613#0" expanded="true" />
-                <element signature="e#83873#83880#0" expanded="true" />
-                <element signature="e#86159#86166#0" expanded="true" />
-                <element signature="e#87110#87117#0" expanded="true" />
-                <element signature="e#91495#91502#0" expanded="true" />
-                <element signature="e#106571#106576#0" expanded="true" />
-                <element signature="e#110627#110633#0" expanded="true" />
-                <element signature="e#119592#119600#0" expanded="true" />
-                <element signature="e#122697#122705#0" expanded="true" />
-                <element signature="e#126427#126435#0" expanded="true" />
-                <element signature="e#126438#126446#0" expanded="true" />
-                <element signature="e#136162#136169#0" expanded="true" />
-                <element signature="e#136536#136543#0" expanded="true" />
-                <element signature="e#137624#137632#0" expanded="true" />
-                <element signature="e#139551#139558#0" expanded="true" />
-                <element signature="e#142266#142274#0" expanded="true" />
-                <element signature="e#142673#142678#0" expanded="true" />
-                <element signature="e#143246#143253#0" expanded="true" />
-                <element signature="e#153781#153788#0" expanded="true" />
-                <element signature="e#154277#154285#0" expanded="true" />
-                <element signature="e#154288#154296#0" expanded="true" />
-                <element signature="e#158946#158953#0" expanded="true" />
-                <element signature="e#162430#162437#0" expanded="true" />
-                <element signature="e#163041#163048#0" expanded="true" />
-                <element signature="e#165941#165949#0" expanded="true" />
-                <element signature="e#172645#172653#0" expanded="true" />
-                <element signature="e#176931#176939#0" expanded="true" />
-                <element signature="e#185735#185742#0" expanded="true" />
-                <element signature="e#193706#193713#0" expanded="true" />
-                <element signature="e#194912#194919#0" expanded="true" />
-                <element signature="e#195874#195879#0" expanded="true" />
-                <element signature="e#202301#202308#0" expanded="true" />
-                <element signature="e#202335#202342#0" expanded="true" />
-                <element signature="e#204599#204606#0" expanded="true" />
-                <element signature="e#206056#206064#0" expanded="true" />
-                <element signature="e#206067#206075#0" expanded="true" />
-                <element signature="e#209192#209199#0" expanded="true" />
-                <element signature="e#215878#215884#0" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -150,17 +94,19 @@
         <option value="$PROJECT_DIR$/good_read_shelve_except.json" />
         <option value="$PROJECT_DIR$/crawler/goodreads_title_crawler.py" />
         <option value="$PROJECT_DIR$/sparknotes/sparknotes/html/sparknotes_lit.html" />
-        <option value="$PROJECT_DIR$/sparknotes/sparknotes/spiders/titles_spider.py" />
         <option value="$PROJECT_DIR$/shelve/sparknotes_titles.json" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes/spiders/titles_spider.py" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes/spiders/detail_spider.py" />
+        <option value="$PROJECT_DIR$/sparknotes/shelve/sparknotes_titles.json" />
         <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes/spiders/details_spider.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1440" />
-    <option name="y" value="-157" />
-    <option name="width" value="1581" />
-    <option name="height" value="1057" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -180,12 +126,7 @@
             <path>
               <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="132FinalProject" type="462c0819:PsiDirectoryNode" />
-              <item name="crawler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="132FinalProject" type="462c0819:PsiDirectoryNode" />
-              <item name="shelve" type="462c0819:PsiDirectoryNode" />
+              <item name="goodreads" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
@@ -232,8 +173,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/crawler" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -288,17 +229,18 @@
       <option name="presentableId" value="Default" />
       <updated>1555709380934</updated>
       <workItem from="1555709383887" duration="3033000" />
-      <workItem from="1555789190678" duration="6526000" />
+      <workItem from="1555789190678" duration="10252000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9559000" />
+    <option name="totallyTimeSpent" value="13285000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-157" width="1889" height="1057" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11099079" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.18383405" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -312,7 +254,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.29948187" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.24585988" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -352,7 +294,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shelve/good_read_title.json">
+    <entry file="file://$PROJECT_DIR$/goodreads/shelve/good_read_title.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/tutorial/pipelines.py">
@@ -397,16 +339,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawler/goodreads_title_crawler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="25" column="67" lean-forward="true" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sparknotes/scrapy.cfg">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -416,65 +348,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/spiders/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/html/sparknotes_lit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="5561" selection-start-line="5561" selection-end-line="5561" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#p#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#p#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#16272#16277#0" expanded="true" />
-            <element signature="e#30268#30273#0" expanded="true" />
-            <element signature="e#46137#46145#0" expanded="true" />
-            <element signature="e#49404#49412#0" expanded="true" />
-            <element signature="e#49415#49423#0" expanded="true" />
-            <element signature="e#55181#55189#0" expanded="true" />
-            <element signature="e#64840#64847#0" expanded="true" />
-            <element signature="e#68119#68124#0" expanded="true" />
-            <element signature="e#72279#72286#0" expanded="true" />
-            <element signature="e#79607#79613#0" expanded="true" />
-            <element signature="e#83873#83880#0" expanded="true" />
-            <element signature="e#86159#86166#0" expanded="true" />
-            <element signature="e#87110#87117#0" expanded="true" />
-            <element signature="e#91495#91502#0" expanded="true" />
-            <element signature="e#106571#106576#0" expanded="true" />
-            <element signature="e#110627#110633#0" expanded="true" />
-            <element signature="e#119592#119600#0" expanded="true" />
-            <element signature="e#122697#122705#0" expanded="true" />
-            <element signature="e#126427#126435#0" expanded="true" />
-            <element signature="e#126438#126446#0" expanded="true" />
-            <element signature="e#136162#136169#0" expanded="true" />
-            <element signature="e#136536#136543#0" expanded="true" />
-            <element signature="e#137624#137632#0" expanded="true" />
-            <element signature="e#139551#139558#0" expanded="true" />
-            <element signature="e#142266#142274#0" expanded="true" />
-            <element signature="e#142673#142678#0" expanded="true" />
-            <element signature="e#143246#143253#0" expanded="true" />
-            <element signature="e#153781#153788#0" expanded="true" />
-            <element signature="e#154277#154285#0" expanded="true" />
-            <element signature="e#154288#154296#0" expanded="true" />
-            <element signature="e#158946#158953#0" expanded="true" />
-            <element signature="e#162430#162437#0" expanded="true" />
-            <element signature="e#163041#163048#0" expanded="true" />
-            <element signature="e#165941#165949#0" expanded="true" />
-            <element signature="e#172645#172653#0" expanded="true" />
-            <element signature="e#176931#176939#0" expanded="true" />
-            <element signature="e#185735#185742#0" expanded="true" />
-            <element signature="e#193706#193713#0" expanded="true" />
-            <element signature="e#194912#194919#0" expanded="true" />
-            <element signature="e#195874#195879#0" expanded="true" />
-            <element signature="e#202301#202308#0" expanded="true" />
-            <element signature="e#202335#202342#0" expanded="true" />
-            <element signature="e#204599#204606#0" expanded="true" />
-            <element signature="e#206056#206064#0" expanded="true" />
-            <element signature="e#206067#206075#0" expanded="true" />
-            <element signature="e#209192#209199#0" expanded="true" />
-            <element signature="e#215878#215884#0" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/items.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -486,34 +359,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/spiders/titles_spider.py">
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/html/sparknotes_lit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_titles.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="80" column="67" selection-start-line="80" selection-start-column="67" selection-end-line="80" selection-end-column="67" />
+        <state relative-caret-position="3171">
+          <caret line="5561" selection-start-line="5561" selection-end-line="5561" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#p#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#1;n#p#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shelve/sparknotes_titles.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+        <state relative-caret-position="91">
+          <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/goodreads/goodreads_title_crawler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="43" column="21" lean-forward="true" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="493">
-            <caret line="29" column="67" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
+          <first_editor relative-caret-position="417">
+            <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_titles.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/spiders/titles_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/spiders/details_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

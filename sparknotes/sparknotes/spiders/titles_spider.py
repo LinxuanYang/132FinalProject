@@ -20,7 +20,6 @@ class TitlesSpider(scrapy.Spider):
             }
 
     def get_html(self, response):
-        page = response.url
         filename = 'sparknotes_lit.html'
         with open('html/' + filename, 'wb') as f:
             f.write(response.body)

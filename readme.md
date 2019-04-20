@@ -22,9 +22,9 @@ All purpose search on books
 ```$ pip3 install Scrapy```
 
 ## Run Instructions
-- Get book titles classified by school year @goodreads  
-```$ python crawler/goodreads_title_crawler.py```
+- Get book titles json file with category @goodreads  
+```$ python goodreads/goodreads_title_crawler.py```
 
-- Get literature book titles index html file @sparknotes  
+- Get literature titles json file @sparknotes  
     1. ```$ cd sparknotes```
     2. ```$ scrapy crawl titles -o ../shelve/sparknotes_titles.json```
