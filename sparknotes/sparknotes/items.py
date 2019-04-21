@@ -8,7 +8,14 @@
 import scrapy
 
 
-class SparknotesItem(scrapy.Item):
+class BookLink(scrapy.Item):
+    title = scrapy.Field()
+    author = scrapy.Field()
+    link = scrapy.Field()
+
+
+class Book(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    title = scrapy.Field()
+    author = scrapy.Field()
+    picture = scrapy.Field()
