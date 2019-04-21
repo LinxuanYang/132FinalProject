@@ -34,18 +34,25 @@ class DetailsSpider(scrapy.Spider):
         self.book['title'] = response.xpath('normalize-space(/html/body/div[4]/div[1]/h1/a/text())').extract_first()
         self.book['author'] = response.xpath(
             'normalize-space(//*[@id="titlepage_author_link1"]/text())').extract_first()
-        self.book['picture'] = 'https:' + response.xpath('//*[@id="buynow_thumbnail1"]/@src').extract_first()
+        # self.book['picture'] = 'https:' + response.xpath('//*[@id="buynow_thumbnail1"]/@src').extract_first()
         self.book['summary_sentence'] = ''.strip().join(response.xpath(
             '/html/body/div[4]/p/descendant-or-self::*/text()').extract())
 
         self.summary['link'] = self.domain + response.xpath(
             '//*[@id="content-container--expander"]/div[1]/div/div[2]/div[1]/ul/li[1]/a/@href').extract_first()
-        self.characters['link'] = self.domain + response.xpath(
+        character_link = response.xpath(
             '//*[@id="content-container--expander"]/div[2]/div/div[2]/div/ul/li[1]/a/@href').extract_first()
-        self.main_ideas['link'] = self.domain + response.xpath(
+        if character_link is not None:
+            self.characters['link'] = self.domain + character_link
+        main_ideas_link = response.xpath(
             '//*[@id="content-container--expander"]/div[3]/div/div[2]/div/ul/li[1]/a/@href').extract_first()
-        self.quotes['link'] = self.domain + response.xpath(
+        if main_ideas_link is not None:
+            self.main_ideas['link'] = self.domain + main_ideas_link
+        quotes_link = response.xpath(
             '//*[@id="content-container--expander"]/div[4]/div/div[2]/ul/li/a/@href').extract_first()
+        if quotes_link is not None:
+            self.quotes['link'] = self.domain + quotes_link
+        # '//*[@id="content-container--expander"]/div[4]/div/div[2]/div/ul/li/a'
 
         yield scrapy.Request(url=self.summary['link'], callback=self.get_plot)
 
