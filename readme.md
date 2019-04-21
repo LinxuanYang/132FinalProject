@@ -29,3 +29,7 @@ All purpose search on books
     1. ```$ cd sparknotes```
     2. ```$ scrapy crawl titles```, this will get all book titles and links in literature tab
     3. ```$ scrapy crawl details```, this will get all data for each book
+
+## References
+- https://doc.scrapy.org/en/xpath-tutorial/intro/tutorial.html
+- https://jsonlines.readthedocs.io/en/latest/
