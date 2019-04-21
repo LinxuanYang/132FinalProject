@@ -65,11 +65,11 @@ class DetailsSpider(scrapy.Spider):
         self.book['character_list'] = self.characters
         yield self.book
         # TODO Ye: implement get_main_ideas, get_quotes
-        # yield scrapy.Request(url=self.main_ideas['link'], callback=self.get_plot)
+        # yield scrapy.Request(url=self.main_ideas['link'], callback=self.get_main_ideas)
 
     def get_main_ideas(self, response):
         # TODO
-        yield scrapy.Request(url=self.quotes['link'], callback=self.get_plot)
+        yield scrapy.Request(url=self.quotes['link'], callback=self.get_quotes)
 
     def get_quotes(self, response):
         # TODO
