@@ -19,3 +19,5 @@ class Book(scrapy.Item):
     title = scrapy.Field()
     author = scrapy.Field()
     picture = scrapy.Field()
+    summary_sentence = scrapy.Field()
+    summary = scrapy.Field()
