@@ -25,6 +25,7 @@ All purpose search on books
 - Get book titles json file with category @goodreads  
 ```$ python goodreads/goodreads_title_crawler.py```
 
-- Get literature titles json file @sparknotes  
+- Get literature json file @sparknotes  
     1. ```$ cd sparknotes```
-    2. ```$ scrapy crawl titles -o ../shelve/sparknotes_titles.json```
+    2. ```$ scrapy crawl titles```, this will get all book titles and links in literature tab
+    3. ```$ scrapy crawl details```, this will get all data for each book
