@@ -18,6 +18,9 @@ class DetailsSpider(scrapy.Spider):
         self.domain = 'https://www.sparknotes.com'
         self.book = Book()
         self.summary = {}
+        self.characters = {}
+        self.main_ideas = {}
+        self.quotes = {}
 
     def start_requests(self):
         domain = 'https://www.sparknotes.com'
@@ -34,12 +37,40 @@ class DetailsSpider(scrapy.Spider):
         self.book['picture'] = 'https:' + response.xpath('//*[@id="buynow_thumbnail1"]/@src').extract_first()
         self.book['summary_sentence'] = ''.strip().join(response.xpath(
             '/html/body/div[4]/p/descendant-or-self::*/text()').extract())
+
         self.summary['link'] = self.domain + response.xpath(
             '//*[@id="content-container--expander"]/div[1]/div/div[2]/div[1]/ul/li[1]/a/@href').extract_first()
+        self.characters['link'] = self.domain + response.xpath(
+            '//*[@id="content-container--expander"]/div[2]/div/div[2]/div/ul/li[1]/a/@href').extract_first()
+        self.main_ideas['link'] = self.domain + response.xpath(
+            '//*[@id="content-container--expander"]/div[3]/div/div[2]/div/ul/li[1]/a/@href').extract_first()
+        self.quotes['link'] = self.domain + response.xpath(
+            '//*[@id="content-container--expander"]/div[4]/div/div[2]/ul/li/a/@href').extract_first()
+
         yield scrapy.Request(url=self.summary['link'], callback=self.get_plot)
 
     def get_plot(self, response):
         text = response.xpath('//*[@id="plotoverview"]/descendant-or-self::*/text()').extract()
         self.summary['plot_overview'] = text
         self.book['summary'] = self.summary
+        # yield self.book
+        yield scrapy.Request(url=self.characters['link'], callback=self.get_character)
+
+    def get_character(self, response):
+        self.characters['character_list'] = {}
+        for character in response.xpath('//*[@id="characterlist"]/div[@class="content_txt"]'):
+            name = character.xpath('./@id').extract_first()
+            text = character.xpath('./text()').extract()
+            self.characters['character_list'][name] = text
+        self.book['character_list'] = self.characters
+        yield self.book
+        # TODO Ye: implement get_main_ideas, get_quotes
+        # yield scrapy.Request(url=self.main_ideas['link'], callback=self.get_plot)
+
+    def get_main_ideas(self, response):
+        # TODO
+        yield scrapy.Request(url=self.quotes['link'], callback=self.get_plot)
+
+    def get_quotes(self, response):
+        # TODO
         yield self.book
