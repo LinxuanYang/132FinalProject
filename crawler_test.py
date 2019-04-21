@@ -19,7 +19,8 @@ class Crawler:
 if __name__ == '__main__':
     HEADER = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
-        'cookie': 'csid=BAhJIhg4ODQtMDc5Njg4NS03MTQ2ODEyBjoGRVQ%3D--f61d1c499cb7adb1262fc792a099966bd0842957; locale=en; csm-sid=274-5029145-7704351; __utma=250562704.1831914308.1555643816.1555643816.1555643816.1; __utmc=250562704; __utmz=250562704.1555643816.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); __qca=P0-1653451374-1555643816529; __gads=ID=243f116325f3a7fb:T=1555643817:S=ALNI_MbwzHhy3XKh1sWim3f-5fvSWSvmTQ; never_show_interstitial=true; p=m20HCkzw2_Ht603f1CakRqrlMvSIxSUjs85PE378ThfcNPUm; u=-V8BLAxdnIhOxgiJiok18oyj5hSF0kukenkJbVf0gJtybA7S; _session_id2=7877422abf7cf24a8b8b358a4637811a; __utmb=250562704.30.10.1555643816'}
+        'cookie': 'csid=BAhJIhg4ODQtMDc5Njg4NS03MTQ2ODEyBjoGRVQ%3D--f61d1c499cb7adb1262fc792a099966bd0842957; locale=en; csm-sid=274-5029145-7704351; __utma=250562704.1831914308.1555643816.1555643816.1555643816.1; __utmc=250562704; __utmz=250562704.1555643816.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); __qca=P0-1653451374-1555643816529; __gads=ID=243f116325f3a7fb:T=1555643817:S=ALNI_MbwzHhy3XKh1sWim3f-5fvSWSvmTQ; never_show_interstitial=true; p=m20HCkzw2_Ht603f1CakRqrlMvSIxSUjs85PE378ThfcNPUm; u=-V8BLAxdnIhOxgiJiok18oyj5hSF0kukenkJbVf0gJtybA7S; _session_id2=7877422abf7cf24a8b8b358a4637811a; __utmb=250562704.30.10.1555643816'
+    }
 
     crawler = Crawler(HEADER)
 
