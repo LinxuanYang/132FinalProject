@@ -72,8 +72,6 @@ class DetailsSpider(scrapy.Spider):
             text = character.xpath('./text()').extract()
             self.characters['character_list'][name] = text
         self.book['character_list'] = self.characters
-        # yield self.book
-        # TODO Ye: implement get_main_ideas, get_quotes
         yield scrapy.Request(url=self.main_ideas['link'], callback=self.get_main_ideas)
 
     def get_main_ideas(self, response):
