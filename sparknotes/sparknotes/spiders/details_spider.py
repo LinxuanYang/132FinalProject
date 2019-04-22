@@ -80,13 +80,13 @@ class DetailsSpider(scrapy.Spider):
             self.index = 0 if self.pagination_links == [] or len(self.pagination_links) == 1 else 1
         if self.index > 0 and self.index < len(self.pagination_links):
             page = response.xpath('//*[@class="studyGuideText"]/descendant-or-self::*/text()').extract()
-            self.main_ideas['themes'][self.index] = ' '.join(page)
+            self.main_ideas['themes'][self.index] = page
             next_page = self.main_ideas['link'] + self.pagination_links[self.index]
             yield scrapy.Request(url=next_page, callback=self.get_main_ideas)
             self.index += 1
         else:
             page = response.xpath('//*[@class="studyGuideText"]/descendant-or-self::*/text()').extract()
-            self.main_ideas['themes'][self.index] = ' '.join(page)
+            self.main_ideas['themes'][self.index] = page
             self.book['main_ideas'] = self.main_ideas
             self.index = 0
             yield scrapy.Request(url=self.quotes['link'], callback=self.get_quotes)
@@ -97,13 +97,13 @@ class DetailsSpider(scrapy.Spider):
             self.index = 0 if self.pagination_links == [] or len(self.pagination_links) == 1 else 1
         if self.index > 0 and self.index < len(self.pagination_links):
             page = response.xpath('//*[@id="importantquotations"]/descendant-or-self::*/text()').extract()
-            self.quotes['important_quotations_explained'][self.index] = ' '.join(page)
+            self.quotes['important_quotations_explained'][self.index] = page
             next_page = self.quotes['link'] + self.pagination_links[self.index]
             yield scrapy.Request(url=next_page, callback=self.get_quotes)
             self.index += 1
         else:
             page = response.xpath('//*[@id="importantquotations"]/descendant-or-self::*/text()').extract()
-            self.quotes['important_quotations_explained'][self.index] = ' '.join(page)
+            self.quotes['important_quotations_explained'][self.index] = page
             self.book['quotes'] = self.quotes
             yield self.book
         
