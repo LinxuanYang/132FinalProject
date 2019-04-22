@@ -21,6 +21,8 @@ class DetailsSpider(scrapy.Spider):
         self.characters = {}
         self.main_ideas = {}
         self.quotes = {}
+        self.pagination_links = []
+        self.index = 0
 
     def start_requests(self):
         domain = 'https://www.sparknotes.com'
@@ -37,7 +39,6 @@ class DetailsSpider(scrapy.Spider):
         # self.book['picture'] = 'https:' + response.xpath('//*[@id="buynow_thumbnail1"]/@src').extract_first()
         self.book['summary_sentence'] = ''.strip().join(response.xpath(
             '/html/body/div[4]/p/descendant-or-self::*/text()').extract())
-
         self.summary['link'] = self.domain + response.xpath(
             '//*[@id="content-container--expander"]/div[1]/div/div[2]/div[1]/ul/li[1]/a/@href').extract_first()
         character_link = response.xpath(
@@ -48,12 +49,13 @@ class DetailsSpider(scrapy.Spider):
             '//*[@id="content-container--expander"]/div[3]/div/div[2]/div/ul/li[1]/a/@href').extract_first()
         if main_ideas_link is not None:
             self.main_ideas['link'] = self.domain + main_ideas_link
+            self.main_ideas['themes'] = {}
         quotes_link = response.xpath(
             '//*[@id="content-container--expander"]/div[4]/div/div[2]/ul/li/a/@href').extract_first()
         if quotes_link is not None:
             self.quotes['link'] = self.domain + quotes_link
+            self.quotes['important_quotations_explained'] = {}
         # '//*[@id="content-container--expander"]/div[4]/div/div[2]/div/ul/li/a'
-
         yield scrapy.Request(url=self.summary['link'], callback=self.get_plot)
 
     def get_plot(self, response):
@@ -70,14 +72,40 @@ class DetailsSpider(scrapy.Spider):
             text = character.xpath('./text()').extract()
             self.characters['character_list'][name] = text
         self.book['character_list'] = self.characters
-        yield self.book
+        # yield self.book
         # TODO Ye: implement get_main_ideas, get_quotes
-        # yield scrapy.Request(url=self.main_ideas['link'], callback=self.get_main_ideas)
+        yield scrapy.Request(url=self.main_ideas['link'], callback=self.get_main_ideas)
 
     def get_main_ideas(self, response):
-        # TODO
-        yield scrapy.Request(url=self.quotes['link'], callback=self.get_quotes)
+        if self.index == 0:
+            self.pagination_links = response.xpath('//*[@class="pagination-links"][1]/a/@href').extract()
+            self.index = 0 if self.pagination_links == [] or len(self.pagination_links) == 1 else 1
+        if self.index > 0 and self.index < len(self.pagination_links):
+            page = response.xpath('//*[@class="studyGuideText"]/descendant-or-self::*/text()').extract()
+            self.main_ideas['themes'][self.index] = ' '.join(page)
+            next_page = self.main_ideas['link'] + self.pagination_links[self.index]
+            yield scrapy.Request(url=next_page, callback=self.get_main_ideas)
+            self.index += 1
+        else:
+            page = response.xpath('//*[@class="studyGuideText"]/descendant-or-self::*/text()').extract()
+            self.main_ideas['themes'][self.index] = ' '.join(page)
+            self.book['main_ideas'] = self.main_ideas
+            self.index = 0
+            yield scrapy.Request(url=self.quotes['link'], callback=self.get_quotes)
 
     def get_quotes(self, response):
-        # TODO
-        yield self.book
+        if self.index == 0:
+            self.pagination_links = response.xpath('//*[@class="pagination-links"][1]/a/@href').extract()
+            self.index = 0 if self.pagination_links == [] or len(self.pagination_links) == 1 else 1
+        if self.index > 0 and self.index < len(self.pagination_links):
+            page = response.xpath('//*[@id="importantquotations"]/descendant-or-self::*/text()').extract()
+            self.quotes['important_quotations_explained'][self.index] = ' '.join(page)
+            next_page = self.quotes['link'] + self.pagination_links[self.index]
+            yield scrapy.Request(url=next_page, callback=self.get_quotes)
+            self.index += 1
+        else:
+            page = response.xpath('//*[@id="importantquotations"]/descendant-or-self::*/text()').extract()
+            self.quotes['important_quotations_explained'][self.index] = ' '.join(page)
+            self.book['quotes'] = self.quotes
+            yield self.book
+        
