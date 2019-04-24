@@ -32,8 +32,8 @@ class DetailsSpider(scrapy.Spider):
         #         yield scrapy.Request(url=url, callback=self.parse)
 
         yield scrapy.Request(url='https://www.sparknotes.com/lit/absalom/', callback=self.parse)
-        # yield scrapy.Request(url='https://www.sparknotes.com/lit/1984/', callback=self.parse)
-        # yield scrapy.Request(url='https://www.sparknotes.com/lit/the-absolutely-true-diary-of-a-part-time-indian/', callback=self.parse)
+        yield scrapy.Request(url='https://www.sparknotes.com/lit/1984/', callback=self.parse)
+        yield scrapy.Request(url='https://www.sparknotes.com/lit/the-absolutely-true-diary-of-a-part-time-indian/', callback=self.parse)
 
     def parse(self, response):
         root_url = response.url
@@ -89,7 +89,6 @@ class DetailsSpider(scrapy.Spider):
         yield scrapy.Request(url=self.characters['link'], callback=self.get_character)
 
     def get_character(self, response):
-        print('!!!!!!!!', response.status)
         if response.status == 200:
             for character in response.xpath('//*[@id="characterlist"]/div[@class="content_txt"]'):
                 name = character.xpath('./@id').extract_first()
@@ -105,25 +104,17 @@ class DetailsSpider(scrapy.Spider):
                 self.index = 0 if self.pagination_links == [] or len(self.pagination_links) == 1 else 1
 
             for index, theme in enumerate(response.xpath('//*[@id="section"]/h3')):
-                print("!!!!!!!!!!!!!!!!", index)
                 name = theme.xpath('./text()').extract_first()
                 # 终于写出来了(´；ω；`)
-                text = theme.xpath(
-                    './following-sibling::p[count(preceding::h3)=%d]/descendant-or-self::*/text()' % (
-                                index + 1)).extract()
+                text = theme.xpath('./following-sibling::p[count(preceding::h3)=%d]/descendant-or-self::*/text()' % (
+                        index + 1)).extract()
                 self.main_ideas['themes'][name] = text
 
             if 0 < self.index < len(self.pagination_links):
-                # for theme in response.xpath('//*[@id="section"]/h3'):
-                #     name = theme.xpath('./text()').extract_first()
-                #     text = theme.xpath('./following-sibling::p/text()')
-                #     self.main_ideas['themes'][name] = text
                 next_page = self.main_ideas['link'] + self.pagination_links[self.index]
                 yield scrapy.Request(url=next_page, callback=self.get_main_ideas)
                 self.index += 1
             else:
-                # page = response.xpath('//*[@class="studyGuideText"]/descendant-or-self::*/text()').extract()
-                # self.main_ideas['themes'][self.index] = page
                 self.book['main_ideas'] = self.main_ideas
                 self.index = 0
                 yield scrapy.Request(url=self.quotes['link'], callback=self.get_quotes)
