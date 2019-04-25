@@ -18,10 +18,10 @@ class DetailsSpider(scrapy.Spider):
 
     def start_requests(self):
         # yield scrapy.Request(url='https://www.sparknotes.com/lit/1984/', callback=self.parse)
+        print('start')
         with jsonlines.open('shelve/sparknotes_book_link.jl') as reader:
             for index, obj in enumerate(reader):
-                if index == 5:
-                    break
+                print(obj)
                 url = self.domain + obj['link']
                 yield scrapy.Request(url=url, callback=self.parse)
 
