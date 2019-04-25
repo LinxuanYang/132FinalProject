@@ -7,88 +7,57 @@
     " is a  novel by ",
     "William  Faulkner",
     "  that was first publishedin 1936. "
+  ]
+}
+{
+  "title": "1984",
+  "author": "George Orwell",
+  "summary_sentence": [
+    "\n            ",
+    "1984",
+    ", George Orwell\u2019s bleakly dystopian novel about  the dangers of totalitarianism, warns against a world governed by propaganda,  surveillance, and censorship. Today, Orwellian phrases like \u201cBig Brother\u201d and  \u201cdoublespeak\u201d have become common expressions. Read a character analysis of     ",
+    "Winston Smith",
+    ", ",
+    "plot summary,",
+    "  and ",
+    "important quotes",
+    ". "
   ],
+  "picture": "https://www.sparknotes.com//prodimage.images-bn.com/pimages/9780451524935_p0_v3_s192x300.jpg"
+}
+{
+  "title": "The Absolutely True Diary of a Part-Time Indian",
+  "author": "Sherman Alexie",
+  "summary_sentence": [
+    "\n            ",
+    "The Absolutely True  Diary of a Part-Time Indian",
+    " is a novel by Sherman Alexie that was first  published in 2007. "
+  ],
+  "picture": "https://www.sparknotes.com//prodimage.images-bn.com/pimages/9780451524935_p0_v3_s192x300.jpg",
   "summary": {
-    "link": "https://www.sparknotes.com/lit/absalom/summary/",
+    "link": "https://www.sparknotes.com/lit/the-absolutely-true-diary-of-a-part-time-indian/summary/",
     "plot_overview": [
       "\n",
-      "Summary",
+      "Plot Overview",
       "\n",
-      "In 1833, a wild, imposing man named Thomas Sutpen comes to Jefferson, Mississippi, with a group of slaves and a French architect in tow. He buys a hundred square miles of land from an Indian tribe, raises a manor house, plants cotton, and marries the daughter of a local merchant, and within a few years is entrenched among the local aristocracy. Sutpen has a son and a daughter, Henry and Judith, who grow up in a life of uncultivated ease in the northern Mississippi countryside. Henry goes to college at the University of Mississippi in 1859, and meets a sophisticated fellow student named Charles Bon, whom he befriends and brings home for Christmas. Charles meets Judith, and over time, an engagement between them is assumed. But Sutpen realizes that Bon is actually his own son—Henry and Judith's half-brother—from a previous marriage which he abandoned when he discovered that his wife had negro blood. He tells Henry that the engagement cannot be, and that Bon is Henry's own brother; Henry reacts with outrage, refusing to believe that Bon knew all along and willingly became engaged to his own sister. Henry repudiates his birthright, and he and Bon flee to New Orleans. When war breaks out, they enlist, and spend four hard years fighting for the Confederacy as the South crumbles around them. At the end of the war, Sutpen (a colonel) finds his son and reveals to him that not only is Bon his and Judith's half-brother, he is also, in part, a black man.",
+      "Winston Smith is a low-ranking\nmember of the ruling Party in London, in the nation\nof Oceania. Everywhere Winston goes, even his own home, the Party\nwatches him through telescreens; everywhere he looks he sees the\nface of the Party\u2019s seemingly omniscient leader, a figure known\nonly as Big Brother. The Party controls everything in Oceania, even\nthe people\u2019s history and language. Currently, the Party is forcing\nthe implementation of an invented language called Newspeak, which\nattempts to prevent political rebellion by eliminating all words\nrelated to it. Even thinking rebellious thoughts is illegal. Such\nthoughtcrime is, in fact, the worst of all crimes.",
       "\n",
-      "That knowledge makes Henry revolt against Bon in a way that even the idea of incest did not, and on the day Bon arrives to marry Judith, Henry murders him in front of the gates of the Sutpen plantation. Sutpen returns to a broken house, and becomes a broken—though still forceful—man; he slides slowly into alcoholism, begins an affair with a fifteen-year-old white girl named Milly, and continues in that vein until, following the birth of his and Milly's daughter, he is murdered by Milly's grandfather Wash Jones in 1869.",
+      "As the novel opens, Winston feels frustrated by the oppression and\nrigid control of the Party, which prohibits free thought, sex, and any\nexpression of individuality. Winston dislikes the party and has illegally\npurchased a diary in which to write his criminal thoughts. He has\nalso become fixated on a powerful Party member named O\u2019Brien, whom\nWinston believes is a secret member of the Brotherhood\u2014the mysterious,\nlegendary group that works to overthrow the Party.",
       "\n",
-      "Decades later, in 1909, Quentin Compson is a twenty-year-old man, the grandson of Sutpen's first friend in the country (General Compson), who is preparing to leave Jefferson to attend Harvard. He is summoned by Miss Rosa Coldfield, the sister of Sutpen's wife Ellen (and briefly Sutpen's fiancee herself), to hear the story of how Sutpen destroyed her family and his own. Over the following weeks and months, Quentin is drawn deeper and deeper into the Sutpen story, discussing it with his father, thinking about it, and later telling it in detail to his Harvard roommate Shreve. The story is burned into his brain the night he goes with Miss Rosa to the Sutpen plantation, where they find Henry Sutpen— now an old man—waiting to die. Months later, Rosa attempts to return for Henry with an ambulance, but Clytie, Thomas Sutpen's daughter with a slave woman and now a withered old woman herself, sets fire to the manor house, killing herself and Henry, and bringing the Sutpen dynasty to a fiery end.",
+      "Winston works in the Ministry of Truth, where he alters\nhistorical records to fit the needs of the Party. He notices a coworker,\na beautiful dark-haired girl, staring at him, and worries that she\nis an informant who will turn him in for his thoughtcrime. He is\ntroubled by the Party\u2019s control of history: the Party claims that\nOceania has always been allied with Eastasia in a war against Eurasia,\nbut Winston seems to recall a time when this was not true. The Party\nalso claims that Emmanuel Goldstein, the alleged leader of the Brotherhood,\nis the most dangerous man alive, but this does not seem plausible\nto Winston. Winston spends his evenings wandering through the poorest\nneighborhoods in London, where the proletarians, or proles, live\nsqualid lives, relatively free of Party monitoring.",
+      "\n",
+      "One day, Winston receives a note from the dark-haired\ngirl that reads \u201cI love you.\u201d She tells him her name, Julia, and\nthey begin a covert affair, always on the lookout for signs of Party\nmonitoring. Eventually they rent a room above the secondhand store\nin the prole district where Winston bought the diary. This relationship\nlasts for some time. Winston is sure that they will be caught and\npunished sooner or later (the fatalistic Winston knows that he has\nbeen doomed since he wrote his first diary entry), while Julia is\nmore pragmatic and optimistic. As Winston\u2019s affair with Julia progresses, his\nhatred for the Party grows more and more intense. At last, he receives\nthe message that he has been waiting for: O\u2019Brien wants to see him.",
+      "\n",
+      "Winston and Julia travel to O\u2019Brien\u2019s luxurious apartment.\nAs a member of the powerful Inner Party (Winston belongs to the\nOuter Party), O\u2019Brien leads a life of luxury that Winston can only\nimagine. O\u2019Brien confirms to Winston and Julia that, like them,\nhe hates the Party, and says that he works against it as a member\nof the Brotherhood. He indoctrinates Winston and Julia into the\nBrotherhood, and gives Winston a copy of Emmanuel Goldstein\u2019s book,\nthe manifesto of the Brotherhood. Winston reads the book\u2014an amalgam\nof several forms of class-based twentieth-century social theory\u2014to Julia\nin the room above the store. Suddenly, soldiers barge in and seize\nthem. Mr. Charrington, the proprietor of the store, is revealed as\nhaving been a member of the Thought Police all along.",
+      "\n",
+      "Torn away from Julia and taken to a place called the Ministry\nof Love, Winston finds that O\u2019Brien, too, is a Party spy who simply pretended\nto be a member of the Brotherhood in order to trap Winston into\ncommitting an open act of rebellion against the Party. O\u2019Brien spends\nmonths torturing and brainwashing Winston, who struggles to resist.\nAt last, O\u2019Brien sends him to the dreaded Room 101,\nthe final destination for anyone who opposes the Party. Here, O\u2019Brien\ntells Winston that he will be forced to confront his worst fear.\nThroughout the novel, Winston has had recurring nightmares about\nrats; O\u2019Brien now straps a cage full of rats onto Winston\u2019s head\nand prepares to allow the rats to eat his face. Winston snaps, pleading\nwith O\u2019Brien to do it to Julia, not to him.",
+      "\n",
+      "Giving up Julia is what O\u2019Brien wanted from Winston all\nalong. His spirit broken, Winston is released to the outside world.\nHe meets Julia but no longer feels anything for her. He has accepted\nthe Party entirely and has learned to love Big Brother.",
       "\n"
     ]
   },
   "character_list": {
-    "link": "https://www.sparknotes.com/lit/absalom/characters/",
-    "character_list": {
-      "Thomas Sutpen": [
-        "\n",
-        " - Owner and founder of the plantation Sutpen's Hundred, in Yoknapatawpha County, near Jefferson, Mississippi. Married to Ellen Coldfield; father of Henry, Judith, and Clytemnestra Sutpen, also of Charles Bon. An indomitable, willful, powerful man, who achieves his ends through shrewdness and daring, but who lacks compassion. Murdered by Wash Jones in 1869.\n      "
-      ],
-      "Charles Bon": [
-        "\n",
-        " - Son of Thomas Sutpen and Eulalia Bon, the part- black daughter of the owner of the Haitian plantation on which the young Thomas Sutpen was overseer. After Sutpen renounced his wife and son upon learning of Eulalia's negro blood, Bon and his mother moved to New Orleans, where Bon lived until deciding to attend the University of Mississippi in 1859. A laconic, sophisticated, and ironical young man.\n      "
-      ],
-      "Ellen Coldfield Sutpen": [
-        "\n",
-        " - Thomas Sutpen's second wife, mother of Henry and Judith Sutpen. A flighty and excitable woman.\n      "
-      ],
-      "Rosa Coldfield": [
-        "\n",
-        " - Ellen Coldfield’s much-younger sister, younger aunt of Henry and Judith Sutpen. Briefly engaged to Thomas Sutpen following Ellen's death, but left him after he insulted her. Spent the rest of her life as a bitter spinster, obsessed with her anger and hatred of Thomas Sutpen.\n      "
-      ],
-      "Mr. Coldfield": [
-        "\n",
-        " - A middle-class Methodist merchant and father of Ellen and Rosa.\n      "
-      ],
-      "Henry Sutpen": [
-        "\n",
-        " - Thomas Sutpen's son with Ellen. Grew up on Sutpen's Hundred, then attended the University of Mississippi beginning in 1859. There he befriended Charles Bon, whom he later murdered. A well- meaning and romantic young man, with his father's strength of purpose but lacking his father's shrewdness.\n      "
-      ],
-      "Judith Sutpen": [
-        "\n",
-        " - Thomas Sutpen's daughter with Ellen. Grew up on Sutpen's Hundred, where she was engaged to Charles Bon in 1860. Strong, indomitable, and, like her father, swift to action.\n      "
-      ],
-      "Clytemnestra Sutpen (\"Clytie\")": [
-        "\n",
-        " - Daughter of Thomas Sutpen and a slave woman. Grew up on Sutpen's Hundred as subservient to Judith and Henry; remained at the plantation until burning the manor house down in 1910, an event which caused her death.\n      "
-      ],
-      "Wash Jones": [
-        "\n",
-        " - A low-class squatter living in the abandoned fishing camp at Sutpen's Hundred. Performed odd jobs for and drinks whiskey with Thomas Sutpen. Milly's grandfather; murdered Sutpen with a rusted scythe in 1869.\n      "
-      ],
-      "Milly Jones": [
-        "\n",
-        " - Wash Jones' young granddaughter, who at fifteen gave birth to Thomas Sutpen's child. Murdered, along with Sutpen and the baby, by her grandfather shortly after the birth.\n      "
-      ],
-      "Charles Etienne de St. Valery Bon": [
-        "\n",
-        " - Son of Charles Bon and his octoroon mistress- wife. Taken by Clytie to Sutpen's Hundred in 1871. Married a negro woman in 1879. A tormented, violent man.\n      "
-      ],
-      "Jim Bond": [
-        "\n",
-        " - Son of Charles Etienne de St. Valery Bon and his negro wife. Raised by Clytie on Sutpen's Hundred, from which he disappears following the fire in 1910. A slack-jawed, oafish man.\n      "
-      ],
-      "Quentin Compson": [
-        "\n",
-        " - A young man from Jefferson, Mississippi, who is preparing to attend (and later does attend) Harvard in the first part of the 20th century.\n      "
-      ],
-      "General Compson": [
-        "\n",
-        " - Quentin's grandfather and Thomas Sutpen's first friend in Yoknapatawpha County. A Brigadier General for the Confederacy during the Civil War, and a distinguished citizen of Jefferson, Mississippi.\n      "
-      ],
-      "Mr. Compson": [
-        "\n",
-        " - Quentin's father and General Compson's son, a man who believes in the power of fate to destroy human lives. Relays to Quentin many of the stories he heard from his father about Thomas Sutpen.\n      "
-      ],
-      "Shreve": [
-        "\n",
-        " - Quentin's roommate at Harvard, a young man from Edmonton in Alberta, Canada.\n      "
-      ]
-    }
+    "link": "https://www.sparknotes.com/lit/the-absolutely-true-diary-of-a-part-time-indian/characters/",
+    "character_list": {}
   }
 }
