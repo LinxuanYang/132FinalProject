@@ -1,5 +1,3 @@
-import json
-import jsonlines
 import scrapy
 from sparknotes.items import Book
 
@@ -16,14 +14,6 @@ class DetailsSpider(scrapy.Spider):
         super().__init__(**kwargs)
         self.file_name = 'shelve/sparknotes_book_detail.jl'
         self.domain = 'https://www.sparknotes.com'
-        self.book = Book()
-        self.summary = {}
-        self.characters = {}
-        self.main_ideas = {}
-        self.quotes = {}
-        self.further_study = {}
-        self.pagination_links = []
-        self.index = 0
 
     def start_requests(self):
         # with jsonlines.open('shelve/sparknotes_book_link.jl') as reader:
@@ -37,87 +27,130 @@ class DetailsSpider(scrapy.Spider):
 
     def parse(self, response):
         root_url = response.url
-        self.summary['link'] = root_url + 'summary/'
-        self.characters['link'] = root_url + 'characters/'
-        self.characters['character_list'] = {}
-        self.main_ideas['link'] = root_url + 'themes/'
-        self.main_ideas['themes'] = {}
-        self.quotes['link'] = root_url + 'quotes/'
-        self.quotes['important_quotations_explained'] = {}
-        self.further_study['context_link'] = root_url + 'context/'
-        self.further_study['study-questions_link'] = root_url + 'study-questions/'
-        self.further_study['study-questions'] = {}
+        book = Book()
+        summary = {}
+        characters = {}
+        main_ideas = {}
+        quotes = {}
+        further_study = {}
+        pagination_links = []
+        index = 0
 
-        self.book['title'] = response.xpath('normalize-space(/html/body/div[4]/div[1]/h1/a/text())').extract_first()
-        self.book['author'] = response.xpath(
+        summary['link'] = root_url + 'summary/'
+        characters['link'] = root_url + 'characters/'
+        characters['character_list'] = {}
+        main_ideas['link'] = root_url + 'themes/'
+        main_ideas['themes'] = {}
+        quotes['link'] = root_url + 'quotes/'
+        quotes['important_quotations_explained'] = {}
+        further_study['context_link'] = root_url + 'context/'
+        further_study['study-questions_link'] = root_url + 'study-questions/'
+        further_study['study-questions'] = {}
+
+        book['title'] = response.xpath('normalize-space(/html/body/div[4]/div[1]/h1/a/text())').extract_first()
+        book['author'] = response.xpath(
             'normalize-space(//*[@id="titlepage_author_link1"]/text())').extract_first()
-        self.book['summary_sentence'] = response.xpath('/html/body/div[4]/p/descendant-or-self::*/text()').extract()
+        book['summary_sentence'] = response.xpath('/html/body/div[4]/p/descendant-or-self::*/text()').extract()
 
         picture_link = response.xpath('//*[@id="buynow_thumbnail1"]/@src').extract_first()
         if picture_link is not None:
-            self.book['picture'] = self.domain + picture_link
+            book['picture'] = self.domain + picture_link
 
-        yield scrapy.Request(url=self.summary['link'], callback=self.get_plot)
-        yield self.book
+        request = scrapy.Request(url=summary['link'], callback=self.get_plot)
+        request.meta['payload'] = {
+            'book': book,
+            'summary': summary,
+            'characters': characters,
+            'main_ideas': main_ideas,
+            'quotes': quotes,
+            'further_study': further_study,
+            'pagination_links': pagination_links,
+            'index': index,
+        }
+        yield request
 
     def get_plot(self, response):
+        payload = response.meta['payload']
+
         text = response.xpath('//*[@id="plotoverview"]/descendant-or-self::*/text()').extract()
-        self.summary['plot_overview'] = text
-        self.book['summary'] = self.summary
-        yield scrapy.Request(url=self.characters['link'], callback=self.get_character)
-        yield self.book
+        payload['summary']['plot_overview'] = text
+        payload['book']['summary'] = payload['summary']
+
+        request = scrapy.Request(url=payload['characters']['link'], callback=self.get_character)
+        request.meta['payload'] = payload
+        yield request
 
     def get_character(self, response):
+        payload = response.meta['payload']
+
         if response.status == 200:
             for character in response.xpath('//*[@id="characterlist"]/div[@class="content_txt"]'):
                 name = character.xpath('./@id').extract_first()
                 text = character.xpath('./text()').extract()
-                self.characters['character_list'][name] = text
-            self.book['character_list'] = self.characters
-        yield scrapy.Request(url=self.main_ideas['link'], callback=self.get_main_ideas)
-        yield self.book
+                payload['characters']['character_list'][name] = text
+            payload['book']['character_list'] = payload['characters']
+
+        request = scrapy.Request(url=payload['main_ideas']['link'], callback=self.get_main_ideas)
+        request.meta['payload'] = payload
+        yield request
 
     def get_main_ideas(self, response):
+        payload = response.meta['payload']
+
         if response.status == 200:
-            if self.index == 0:
-                self.pagination_links = response.xpath('//*[@class="pagination-links"][1]/a/@href').extract()
-                self.index = 0 if self.pagination_links == [] or len(self.pagination_links) == 1 else 1
+            if payload['index'] == 0:
+                payload['pagination_links'] = response.xpath('//*[@class="pagination-links"][1]/a/@href').extract()
+                payload['index'] = 0 if payload['pagination_links'] == [] or len(
+                    payload['pagination_links']) == 1 else 1
 
             for index, theme in enumerate(response.xpath('//*[@id="section"]/h3')):
                 name = theme.xpath('./text()').extract_first()
                 # 终于写出来了(´；ω；`)
                 text = theme.xpath('./following-sibling::p[count(preceding::h3)=%d]/descendant-or-self::*/text()' % (
                         index + 1)).extract()
-                self.main_ideas['themes'][name] = text
+                payload['main_ideas']['themes'][name] = text
 
-            if 0 < self.index < len(self.pagination_links):
-                next_page = self.main_ideas['link'] + self.pagination_links[self.index]
-                yield scrapy.Request(url=next_page, callback=self.get_main_ideas)
-                self.index += 1
+            if 0 < payload['index'] < len(payload['pagination_links']):
+                next_page = payload['main_ideas']['link'] + payload['pagination_links'][payload['index']]
+                payload['index'] += 1
+
+                request = scrapy.Request(url=next_page, callback=self.get_main_ideas)
+                request.meta['payload'] = payload
+                yield request
             else:
-                self.book['main_ideas'] = self.main_ideas
-                self.index = 0
-                yield scrapy.Request(url=self.quotes['link'], callback=self.get_quotes)
-                yield self.book
+                payload['book']['main_ideas'] = payload['main_ideas']
+                payload['index'] = 0
+
+                request = scrapy.Request(url=payload['quotes']['link'], callback=self.get_quotes)
+                request.meta['payload'] = payload
+                yield request
 
         else:
-            yield scrapy.Request(url=self.quotes['link'], callback=self.get_quotes)
+            request = scrapy.Request(url=payload['quotes']['link'], callback=self.get_quotes)
+            request.meta['payload'] = payload
+            yield request
 
     def get_quotes(self, response):
+        payload = response.meta['payload']
+
         if response.status == 200:
-            if self.index == 0:
-                self.pagination_links = response.xpath('//*[@class="pagination-links"][1]/a/@href').extract()
-                self.index = 0 if self.pagination_links == [] or len(self.pagination_links) == 1 else 1
-            if 0 < self.index < len(self.pagination_links):
+            if payload['index'] == 0:
+                payload['pagination_links'] = response.xpath('//*[@class="pagination-links"][1]/a/@href').extract()
+                payload['index'] = 0 if payload['pagination_links'] == [] or len(
+                    payload['pagination_links']) == 1 else 1
+            if 0 < payload['index'] < len(payload['pagination_links']):
                 page = response.xpath('//*[@id="importantquotations"]/descendant-or-self::*/text()').extract()
-                self.quotes['important_quotations_explained'][self.index] = page
-                next_page = self.quotes['link'] + self.pagination_links[self.index]
-                yield scrapy.Request(url=next_page, callback=self.get_quotes)
-                self.index += 1
+                payload['quotes']['important_quotations_explained'][payload['index']] = page
+                next_page = payload['quotes']['link'] + payload['pagination_links'][payload['index']]
+                payload['index'] += 1
+
+                request = scrapy.Request(url=next_page, callback=self.get_quotes)
+                request.meta['payload'] = payload
+                yield request
             else:
                 page = response.xpath('//*[@id="importantquotations"]/descendant-or-self::*/text()').extract()
-                self.quotes['important_quotations_explained'][self.index] = page
-                self.book['quotes'] = self.quotes
-                yield self.book
+                payload['quotes']['important_quotations_explained'][payload['index']] = page
+                payload['book']['quotes'] = payload['quotes']
+                yield payload['book']
         else:
-            yield self.book
+            yield payload['book']

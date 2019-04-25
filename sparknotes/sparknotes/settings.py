@@ -21,7 +21,7 @@ NEWSPIDER_MODULE = 'sparknotes.spiders'
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 1
+CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -87,4 +87,4 @@ DOWNLOAD_DELAY = 3
 # HTTPCACHE_DIR = 'httpcache'
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-HTTPERROR_ALLOWED_CODES = [404]
+HTTPERROR_ALLOWED_CODES = [404, 500]
