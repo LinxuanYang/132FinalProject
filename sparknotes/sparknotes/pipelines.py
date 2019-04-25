@@ -30,9 +30,6 @@ class JsonWriterPipeline(object):
     def process_item(self, item, spider):
         self.exporter.export_item(item)
         return item
-        # line = json.dumps(dict(item)) + "\n"
-        # self.file.write(line)
-        # return item
 
     @classmethod
     def from_crawler(cls, crawler):

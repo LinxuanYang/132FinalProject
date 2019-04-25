@@ -1,3 +1,4 @@
+import jsonlines
 import scrapy
 from sparknotes.items import Book
 
@@ -16,14 +17,13 @@ class DetailsSpider(scrapy.Spider):
         self.domain = 'https://www.sparknotes.com'
 
     def start_requests(self):
-        # with jsonlines.open('shelve/sparknotes_book_link.jl') as reader:
-        #     for obj in reader:
-        #         url = self.domain + obj['link']
-        #         yield scrapy.Request(url=url, callback=self.parse)
-        urls = ['https://www.sparknotes.com/lit/absalom/', 'https://www.sparknotes.com/lit/1984/',
-                'https://www.sparknotes.com/lit/the-absolutely-true-diary-of-a-part-time-indian/']
-        for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
+        # yield scrapy.Request(url='https://www.sparknotes.com/lit/1984/', callback=self.parse)
+        with jsonlines.open('shelve/sparknotes_book_link.jl') as reader:
+            for index, obj in enumerate(reader):
+                if index == 5:
+                    break
+                url = self.domain + obj['link']
+                yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
         root_url = response.url
@@ -138,9 +138,14 @@ class DetailsSpider(scrapy.Spider):
                 payload['pagination_links'] = response.xpath('//*[@class="pagination-links"][1]/a/@href').extract()
                 payload['index'] = 0 if payload['pagination_links'] == [] or len(
                     payload['pagination_links']) == 1 else 1
+
+            quote = response.xpath(
+                '//*[@id="importantquotations"]/div/div/div/blockquote/descendant-or-self::*/text()').extract()
+            quote = ' '.join(list(map(str.strip, quote)))
+            text = response.xpath('//*[@id="importantquotations"]/div/p/descendant-or-self::*/text()').extract()
+            payload['quotes']['important_quotations_explained'][quote] = text
+
             if 0 < payload['index'] < len(payload['pagination_links']):
-                page = response.xpath('//*[@id="importantquotations"]/descendant-or-self::*/text()').extract()
-                payload['quotes']['important_quotations_explained'][payload['index']] = page
                 next_page = payload['quotes']['link'] + payload['pagination_links'][payload['index']]
                 payload['index'] += 1
 
@@ -148,8 +153,6 @@ class DetailsSpider(scrapy.Spider):
                 request.meta['payload'] = payload
                 yield request
             else:
-                page = response.xpath('//*[@id="importantquotations"]/descendant-or-self::*/text()').extract()
-                payload['quotes']['important_quotations_explained'][payload['index']] = page
                 payload['book']['quotes'] = payload['quotes']
                 yield payload['book']
         else:
