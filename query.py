@@ -94,7 +94,7 @@ def results(page):
 
     # store query values to display in search boxes in UI
     shows = {}
-    shows['text'] = all_query
+    shows['query'] = all_query
 
 
     # Create a search object to query our index 
@@ -108,7 +108,12 @@ def results(page):
     if len(all_query)>0:
         q = Q('match', country={'query': all_query,'operator': 'or'})
         s = search.query(q)
-
+    #  q = Q('multi_match',
+    #         query=text_query,
+    #         type='cross_fields',
+    #         fields=['title^3', 'text'],
+    #         operator='and',
+    #     )
     # highlight
     s = s.highlight_options(pre_tags='<mark>', post_tags='</mark>')
     s = s.highlight('text', fragment_size=999999999, number_of_fragments=1)
