@@ -1,0 +1,43 @@
+<!doctype html>
+
+<body bgcolor="white">
+<title>My search page!</title>
+<style>
+dd {
+    width:100%
+}
+</style>
+<div style="width:100%">
+<h3 style="background-color:black;color:lightgrey"> Wikipedia Film Search </h3>
+
+<h1>Wikipedia film search page</h1>
+
+
+<form action="/results" name="search" method="post">
+    <dl>
+        <p>Free text search:</p>
+        <dd><textarea rows="4" cols="100" name="query"></textarea>
+        <dd>Language: <input type="text" name="language">
+        <dd>Country:
+
+
+        <select name="country" method="GET" action="/">
+            {% for country in country_list %}
+            <option value="{{country}}" SELECTED>{{country}}</option>
+            {% endfor %}
+        </select>
+
+
+        <dd>Director: <input type="text" name="director">
+        <dd>Location: <input type="text" name="location">
+        <dd>Search in starring: <input type="text" style="width:300px" name="starring">
+        <dd>Time: <input type="text" name="time">
+        <dd>Runtime(numbers only): min <input type="text" name="mintime"> max <input type="text" name="maxtime">
+        <dd>Categories: <input type="text" name="categories">
+        <dd><input type="submit" value="Search">
+
+        <p>Notes: conjunction search(starring, categories) disjunction search(language, country, director, location, time) </p>
+    </dl>
+</form>
+</div>
+</body>
