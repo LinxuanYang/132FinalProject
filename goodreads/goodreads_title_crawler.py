@@ -30,12 +30,18 @@ def get_title(crawler):
     for category in shelve:
         print("Processing: ", category)
         # target = shelve_url + category
+        book = {}
         titles = []
         try:
             for i in range(26):
                 print("Page: ", i)
                 page_text = crawler.get_page(f'{shelve_url + category}?page={i}').text
-                titles += crawler.match_all(r'<a class="bookTitle" href=".*">(.*?)</a>', page_text)
+
+                titles = crawler.match_all(r'<a class="bookTitle" href=".*">(.*?)</a>', page_text)
+                for title in titles:
+                    book[title] =
+
+                book['author']
             shelve_dict[category] = titles
             time.sleep(1)
         except:
