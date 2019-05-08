@@ -6,7 +6,8 @@ def hashtag_filter(query):
     :param query
     :return: str - the field name
     """
-    pass
+    raw = re.findall("#.+", query)
+    return raw[0][1:]
 
 def phrase_filter(query):
     """
@@ -14,7 +15,13 @@ def phrase_filter(query):
     :param query
     :return: list of str - phrases
     """
-    return re.findall("\".*?\"", query)
+    raw=re.findall("\".*?\"", query)
+    phrase_list=[]
+    for phrase in raw:
+        if phrase=="\"\"":continue
+        phrase_list.append(phrase[1:-1])
+
+    return phrase_list
 
 def difference_filter(query):
     """
@@ -22,7 +29,9 @@ def difference_filter(query):
     :param query
     :return: str - word
     """
-    pass
+
+    raw = re.findall("-\w+", query)
+    return raw[0][1:]
 
 def conjunction_filter(query):
     """
@@ -30,4 +39,16 @@ def conjunction_filter(query):
     :param query
     :return: str - word
     """
-    pass
+    raw = re.findall("\+\w+", query)
+    return raw[0][1:]
+
+query="this\"haha\"a\"this\" gaga \"\""
+print(phrase_filter(query))
+query="book title #plot summary"
+print(hashtag_filter(query))
+query="this is cool-bad great"
+print(difference_filter(query))
+query="this is cool +must and"
+print(conjunction_filter(query))
+
+
