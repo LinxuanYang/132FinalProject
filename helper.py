@@ -1,14 +1,16 @@
 import re
 
+index_name = 'book_index'
+
 def hashtag_filter(query):
     """
     title #field: display the content of a field
     :param query
     :return: str - the field name, str - otherwords
     """
-    field_name = re.findall("#.+", query)
+    raw = re.findall("#.+", query)
     other_words = re.sub("#.+", "", query)
-    return field_name[0][1:], other_words
+    return raw[0][1:] if len(raw) > 0 else "", other_words
 
 def phrase_filter(query):
     """
@@ -29,7 +31,7 @@ def difference_filter(query):
 
     raw = re.findall("-\w+", query)
     other_words = re.sub("-\w+", "", query)
-    return raw[0][1:], other_words
+    return raw[0][1:] if len(raw) > 0 else "", other_words
 
 def conjunction_filter(query):
     """
@@ -39,7 +41,7 @@ def conjunction_filter(query):
     """
     raw = re.findall("\+\w+", query)
     other_words = re.sub("\+\w+", "", query)
-    return raw[0][1:], other_words
+    return raw[0][1:] if len(raw) > 0 else "", other_words
 
 query="this\"haha\" a\" this\" gaga \"\""
 print(phrase_filter(query))
@@ -47,6 +49,7 @@ query="book title #plot summary"
 print(hashtag_filter(query))
 query="this is cool-bad great"
 print(difference_filter(query))
+print(phrase_filter(query))
 query="this is cool +must and"
 print(conjunction_filter(query))
 
