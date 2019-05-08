@@ -94,7 +94,7 @@ def results(page):
 
     # store query values to display in search boxes in UI
     shows = {}
-    shows['text'] = all_query
+    shows['query'] = all_query
 
 
     # Create a search object to query our index 
