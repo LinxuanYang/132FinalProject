@@ -20,17 +20,10 @@ from elasticsearch_dsl import Q
 from elasticsearch_dsl.utils import AttrList
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
+import helper
 
 
 app = Flask(__name__)
-
-def get_phrase(text_query):
-    """
-    this method separate phrase from other words
-    :param text_query: a string of query  "phrase one" normal "phrase two" second word
-    :return: phrase_list and other words string. ex: return ["phrase one","phrase two"], "normal word second"
-    """
-    pass
 
 # display query page
 @app.route("/")
