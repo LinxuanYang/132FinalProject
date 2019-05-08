@@ -31,18 +31,22 @@ def get_title(crawler):
         print("Processing: ", category)
         # target = shelve_url + category
         book = {}
-        titles = []
         try:
-            for i in range(26):
+            for i in range(1, 26):
                 print("Page: ", i)
                 page_text = crawler.get_page(f'{shelve_url + category}?page={i}').text
 
-                titles = crawler.match_all(r'<a class="bookTitle" href=".*">(.*?)</a>', page_text)
-                for title in titles:
-                    book[title] =
+                # titles = crawler.match_all(r'<a class="bookTitle" href=".*">(.*?)</a>', page_text)
+                titles = re.findall(
+                    r'<div class="elementList" style="padding-top: 10px;">(.*?)<div class="clear"></div>', page_text, re.S)
+                for text in titles:
+                    title = re.findall(r'<a class="bookTitle" href=".*">(.*?)</a>', text)[0].split(' (')[0]
+                    author = re.findall(
+                        r'<a class="authorName" itemprop="url" href=".*"><span itemprop="name">(.*?)</span></a>', text)[0]
+                    rate = list(map(str.strip, re.findall(r'<span class="greyText smallText">(.*?)</span>', text, re.S)[0].strip().split('\n')))
+                    book[title] = {'title': title, 'author': author, 'rate': rate}
 
-                book['author']
-            shelve_dict[category] = titles
+            shelve_dict[category] = book
             time.sleep(1)
         except:
             with open('shelve/good_read_shelve_except.json', 'a') as f:

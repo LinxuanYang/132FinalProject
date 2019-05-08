@@ -1,0 +1,906 @@
+{
+  "kindergarten": {
+    "Chicka Chicka Boom Boom": {
+      "title": "Chicka Chicka Boom Boom",
+      "author": "Bill Martin Jr.",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "131,637 ratings  \u2014",
+        "published 1989"
+      ]
+    },
+    "The Very Hungry Caterpillar": {
+      "title": "The Very Hungry Caterpillar",
+      "author": "Eric Carle",
+      "rate": [
+        "avg rating 4.29 \u2014",
+        "343,395 ratings  \u2014",
+        "published 1969"
+      ]
+    },
+    "Where the Wild Things Are": {
+      "title": "Where the Wild Things Are",
+      "author": "Maurice Sendak",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "726,350 ratings  \u2014",
+        "published 1963"
+      ]
+    },
+    "Brown Bear, Brown Bear, What Do You See?": {
+      "title": "Brown Bear, Brown Bear, What Do You See?",
+      "author": "Bill Martin Jr.",
+      "rate": [
+        "avg rating 4.20 \u2014",
+        "136,115 ratings  \u2014",
+        "published 1967"
+      ]
+    },
+    "The Kissing Hand": {
+      "title": "The Kissing Hand",
+      "author": "Audrey Penn",
+      "rate": [
+        "avg rating 4.42 \u2014",
+        "56,468 ratings  \u2014",
+        "published 1993"
+      ]
+    },
+    "Green Eggs and Ham": {
+      "title": "Green Eggs and Ham",
+      "author": "Dr. Seuss",
+      "rate": [
+        "avg rating 4.30 \u2014",
+        "540,285 ratings  \u2014",
+        "published 1960"
+      ]
+    },
+    "Corduroy": {
+      "title": "Corduroy",
+      "author": "Don Freeman",
+      "rate": [
+        "avg rating 4.29 \u2014",
+        "173,328 ratings  \u2014",
+        "published 1968"
+      ]
+    },
+    "If You Give a Mouse a Cookie": {
+      "title": "If You Give a Mouse a Cookie",
+      "author": "Laura Joffe Numeroff",
+      "rate": [
+        "avg rating 4.25 \u2014",
+        "229,039 ratings  \u2014",
+        "published 1985"
+      ]
+    },
+    "Miss Bindergarten Gets Ready for Kindergarten": {
+      "title": "Miss Bindergarten Gets Ready for Kindergarten",
+      "author": "Joseph Slate",
+      "rate": [
+        "avg rating 4.12 \u2014",
+        "1,962 ratings  \u2014",
+        "published 1996"
+      ]
+    },
+    "Madeline": {
+      "title": "Madeline",
+      "author": "Ludwig Bemelmans",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "179,600 ratings  \u2014",
+        "published 1939"
+      ]
+    },
+    "Stellaluna": {
+      "title": "Stellaluna",
+      "author": "Janell Cannon",
+      "rate": [
+        "avg rating 4.23 \u2014",
+        "100,964 ratings  \u2014",
+        "published 1993"
+      ]
+    },
+    "Don't Let the Pigeon Drive the Bus!": {
+      "title": "Don't Let the Pigeon Drive the Bus!",
+      "author": "Mo Willems",
+      "rate": [
+        "avg rating 4.29 \u2014",
+        "69,421 ratings  \u2014",
+        "published 2003"
+      ]
+    },
+    "Click, Clack, Moo: Cows That Type": {
+      "title": "Click, Clack, Moo: Cows That Type",
+      "author": "Doreen Cronin",
+      "rate": [
+        "avg rating 4.24 \u2014",
+        "75,022 ratings  \u2014",
+        "published 1999"
+      ]
+    },
+    "The Cat in the Hat": {
+      "title": "The Cat in the Hat",
+      "author": "Dr. Seuss",
+      "rate": [
+        "avg rating 4.16 \u2014",
+        "360,720 ratings  \u2014",
+        "published 1957"
+      ]
+    },
+    "Alexander and the Terrible, Horrible, No Good, Very Bad Day": {
+      "title": "Alexander and the Terrible, Horrible, No Good, Very Bad Day",
+      "author": "Judith Viorst",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "160,624 ratings  \u2014",
+        "published 1972"
+      ]
+    },
+    "The Snowy Day": {
+      "title": "The Snowy Day",
+      "author": "Ezra Jack Keats",
+      "rate": [
+        "avg rating 4.14 \u2014",
+        "90,323 ratings  \u2014",
+        "published 1962"
+      ]
+    },
+    "Cloudy With a Chance of Meatballs": {
+      "title": "Cloudy With a Chance of Meatballs",
+      "author": "Judi Barrett",
+      "rate": [
+        "avg rating 4.16 \u2014",
+        "115,158 ratings  \u2014",
+        "published 1978"
+      ]
+    },
+    "Make Way for Ducklings": {
+      "title": "Make Way for Ducklings",
+      "author": "Robert McCloskey",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "76,548 ratings  \u2014",
+        "published 1941"
+      ]
+    },
+    "Kindergarten Rocks!": {
+      "title": "Kindergarten Rocks!",
+      "author": "Katie Davis",
+      "rate": [
+        "avg rating 3.89 \u2014",
+        "411 ratings  \u2014",
+        "published 2005"
+      ]
+    },
+    "The Story of Ferdinand": {
+      "title": "The Story of Ferdinand",
+      "author": "Munro Leaf",
+      "rate": [
+        "avg rating 4.36 \u2014",
+        "81,428 ratings  \u2014",
+        "published 1936"
+      ]
+    },
+    "The Giving Tree": {
+      "title": "The Giving Tree",
+      "author": "Shel Silverstein",
+      "rate": [
+        "avg rating 4.37 \u2014",
+        "813,318 ratings  \u2014",
+        "published 1964"
+      ]
+    },
+    "The Day the Crayons Quit": {
+      "title": "The Day the Crayons Quit",
+      "author": "Drew Daywalt",
+      "rate": [
+        "avg rating 4.42 \u2014",
+        "37,492 ratings  \u2014",
+        "published 2014"
+      ]
+    },
+    "Are You My Mother?": {
+      "title": "Are You My Mother?",
+      "author": "P.D. Eastman",
+      "rate": [
+        "avg rating 4.18 \u2014",
+        "195,521 ratings  \u2014",
+        "published 1960"
+      ]
+    },
+    "One Fish, Two Fish, Red Fish, Blue Fish": {
+      "title": "One Fish, Two Fish, Red Fish, Blue Fish",
+      "author": "Dr. Seuss",
+      "rate": [
+        "avg rating 4.13 \u2014",
+        "144,525 ratings  \u2014",
+        "published 1960"
+      ]
+    },
+    "Chrysanthemum": {
+      "title": "Chrysanthemum",
+      "author": "Kevin Henkes",
+      "rate": [
+        "avg rating 4.32 \u2014",
+        "48,114 ratings  \u2014",
+        "published 1991"
+      ]
+    },
+    "The Night Before Kindergarten": {
+      "title": "The Night Before Kindergarten",
+      "author": "Natasha Wing",
+      "rate": [
+        "avg rating 4.17 \u2014",
+        "1,398 ratings  \u2014",
+        "published 2001"
+      ]
+    },
+    "Blueberries for Sal": {
+      "title": "Blueberries for Sal",
+      "author": "Robert McCloskey",
+      "rate": [
+        "avg rating 4.19 \u2014",
+        "64,491 ratings  \u2014",
+        "published 1948"
+      ]
+    },
+    "Planet Kindergarten": {
+      "title": "Planet Kindergarten",
+      "author": "Sue Ganz-Schmitt",
+      "rate": [
+        "avg rating 3.71 \u2014",
+        "505 ratings  \u2014",
+        "published 2014"
+      ]
+    },
+    "Press Here": {
+      "title": "Press Here",
+      "author": "Herv\u00e9 Tullet",
+      "rate": [
+        "avg rating 4.44 \u2014",
+        "19,039 ratings  \u2014",
+        "published 2010"
+      ]
+    },
+    "Ox-Cart Man": {
+      "title": "Ox-Cart Man",
+      "author": "Donald Hall",
+      "rate": [
+        "avg rating 4.04 \u2014",
+        "13,402 ratings  \u2014",
+        "published 1979"
+      ]
+    },
+    "Knuffle Bunny: A Cautionary Tale": {
+      "title": "Knuffle Bunny: A Cautionary Tale",
+      "author": "Mo Willems",
+      "rate": [
+        "avg rating 4.27 \u2014",
+        "41,931 ratings  \u2014",
+        "published 2004"
+      ]
+    },
+    "Harold and the Purple Crayon": {
+      "title": "Harold and the Purple Crayon",
+      "author": "Crockett Johnson",
+      "rate": [
+        "avg rating 4.25 \u2014",
+        "116,133 ratings  \u2014",
+        "published 1955"
+      ]
+    },
+    "Pete the Cat: I Love My White Shoes": {
+      "title": "Pete the Cat: I Love My White Shoes",
+      "author": "Eric Litwin",
+      "rate": [
+        "avg rating 4.41 \u2014",
+        "22,444 ratings  \u2014",
+        "published 2010"
+      ]
+    },
+    "The Book with No Pictures": {
+      "title": "The Book with No Pictures",
+      "author": "B.J. Novak",
+      "rate": [
+        "avg rating 4.35 \u2014",
+        "18,181 ratings  \u2014",
+        "published 2014"
+      ]
+    },
+    "Kitten's First Full Moon": {
+      "title": "Kitten's First Full Moon",
+      "author": "Kevin Henkes",
+      "rate": [
+        "avg rating 4.09 \u2014",
+        "20,824 ratings  \u2014",
+        "published 2004"
+      ]
+    },
+    "The Lorax": {
+      "title": "The Lorax",
+      "author": "Dr. Seuss",
+      "rate": [
+        "avg rating 4.35 \u2014",
+        "249,593 ratings  \u2014",
+        "published 1971"
+      ]
+    },
+    "Owl Moon": {
+      "title": "Owl Moon",
+      "author": "Jane Yolen",
+      "rate": [
+        "avg rating 4.21 \u2014",
+        "37,804 ratings  \u2014",
+        "published 1987"
+      ]
+    },
+    "The True Story of the 3 Little Pigs": {
+      "title": "The True Story of the 3 Little Pigs",
+      "author": "Jon Scieszka",
+      "rate": [
+        "avg rating 4.30 \u2014",
+        "155,194 ratings  \u2014",
+        "published 1989"
+      ]
+    },
+    "Strega Nona": {
+      "title": "Strega Nona",
+      "author": "Tomie dePaola",
+      "rate": [
+        "avg rating 4.24 \u2014",
+        "77,704 ratings  \u2014",
+        "published 1975"
+      ]
+    },
+    "Llama Llama Red Pajama": {
+      "title": "Llama Llama Red Pajama",
+      "author": "Anna Dewdney",
+      "rate": [
+        "avg rating 4.29 \u2014",
+        "35,575 ratings  \u2014",
+        "published 2005"
+      ]
+    },
+    "Mom, It's My First Day of Kindergarten!": {
+      "title": "Mom, It's My First Day of Kindergarten!",
+      "author": "Hyewon Yum",
+      "rate": [
+        "avg rating 3.63 \u2014",
+        "388 ratings  \u2014",
+        "published 2012"
+      ]
+    },
+    "Wemberly Worried": {
+      "title": "Wemberly Worried",
+      "author": "Kevin Henkes",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "16,363 ratings  \u2014",
+        "published 2000"
+      ]
+    },
+    "Is Your Buffalo Ready for Kindergarten?": {
+      "title": "Is Your Buffalo Ready for Kindergarten?",
+      "author": "Audrey Vernick",
+      "rate": [
+        "avg rating 3.97 \u2014",
+        "415 ratings  \u2014",
+        "published 2010"
+      ]
+    },
+    "Oh, The Places You'll Go!": {
+      "title": "Oh, The Places You'll Go!",
+      "author": "Dr. Seuss",
+      "rate": [
+        "avg rating 4.35 \u2014",
+        "289,441 ratings  \u2014",
+        "published 1990"
+      ]
+    },
+    "No, David!": {
+      "title": "No, David!",
+      "author": "David Shannon",
+      "rate": [
+        "avg rating 4.13 \u2014",
+        "40,666 ratings  \u2014",
+        "published 1998"
+      ]
+    },
+    "The Mitten": {
+      "title": "The Mitten",
+      "author": "Jan Brett",
+      "rate": [
+        "avg rating 4.25 \u2014",
+        "75,834 ratings  \u2014",
+        "published 1989"
+      ]
+    },
+    "Look Out Kindergarten, Here I Come": {
+      "title": "Look Out Kindergarten, Here I Come",
+      "author": "Nancy Carlson",
+      "rate": [
+        "avg rating 3.69 \u2014",
+        "501 ratings  \u2014",
+        "published 1999"
+      ]
+    },
+    "The Dot": {
+      "title": "The Dot",
+      "author": "Peter H. Reynolds",
+      "rate": [
+        "avg rating 4.17 \u2014",
+        "24,760 ratings  \u2014",
+        "published 2003"
+      ]
+    },
+    "Caps for Sale: A Tale of a Peddler, Some Monkeys and Their Monkey Business": {
+      "title": "Caps for Sale: A Tale of a Peddler, Some Monkeys and Their Monkey Business",
+      "author": "Esphyr Slobodkina",
+      "rate": [
+        "avg rating 4.14 \u2014",
+        "79,250 ratings  \u2014",
+        "published 1940"
+      ]
+    },
+    "Pete the Cat and His Four Groovy Buttons": {
+      "title": "Pete the Cat and His Four Groovy Buttons",
+      "author": "Eric Litwin",
+      "rate": [
+        "avg rating 4.39 \u2014",
+        "10,297 ratings  \u2014",
+        "published 2012"
+      ]
+    }
+  },
+  "elementary-school": {
+    "Charlotte's Web": {
+      "title": "Charlotte's Web",
+      "author": "E.B. White",
+      "rate": [
+        "avg rating 4.16 \u2014",
+        "1,246,273 ratings  \u2014",
+        "published 1952"
+      ]
+    },
+    "Harry Potter and the Sorcerer's Stone": {
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.47 \u2014",
+        "5,893,920 ratings  \u2014",
+        "published 1997"
+      ]
+    },
+    "Where the Sidewalk Ends": {
+      "title": "Where the Sidewalk Ends",
+      "author": "Shel Silverstein",
+      "rate": [
+        "avg rating 4.30 \u2014",
+        "1,099,437 ratings  \u2014",
+        "published 1974"
+      ]
+    },
+    "Holes": {
+      "title": "Holes",
+      "author": "Louis Sachar",
+      "rate": [
+        "avg rating 3.95 \u2014",
+        "862,297 ratings  \u2014",
+        "published 1998"
+      ]
+    },
+    "The Lion, the Witch and the Wardrobe": {
+      "title": "The Lion, the Witch and the Wardrobe",
+      "author": "C.S. Lewis",
+      "rate": [
+        "avg rating 4.21 \u2014",
+        "1,874,806 ratings  \u2014",
+        "published 1950"
+      ]
+    },
+    "Matilda": {
+      "title": "Matilda",
+      "author": "Roald Dahl",
+      "rate": [
+        "avg rating 4.30 \u2014",
+        "520,795 ratings  \u2014",
+        "published 1988"
+      ]
+    },
+    "Number the Stars": {
+      "title": "Number the Stars",
+      "author": "Lois Lowry",
+      "rate": [
+        "avg rating 4.13 \u2014",
+        "389,239 ratings  \u2014",
+        "published 1989"
+      ]
+    },
+    "Charlie and the Chocolate Factory": {
+      "title": "Charlie and the Chocolate Factory",
+      "author": "Roald Dahl",
+      "rate": [
+        "avg rating 4.12 \u2014",
+        "572,284 ratings  \u2014",
+        "published 1964"
+      ]
+    },
+    "Bridge to Terabithia": {
+      "title": "Bridge to Terabithia",
+      "author": "Katherine Paterson",
+      "rate": [
+        "avg rating 3.99 \u2014",
+        "394,102 ratings  \u2014",
+        "published 1977"
+      ]
+    },
+    "The Giving Tree": {
+      "title": "The Giving Tree",
+      "author": "Shel Silverstein",
+      "rate": [
+        "avg rating 4.37 \u2014",
+        "813,318 ratings  \u2014",
+        "published 1964"
+      ]
+    },
+    "Harry Potter and the Chamber of Secrets": {
+      "title": "Harry Potter and the Chamber of Secrets",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.41 \u2014",
+        "2,283,335 ratings  \u2014",
+        "published 1998"
+      ]
+    },
+    "The BFG": {
+      "title": "The BFG",
+      "author": "Roald Dahl",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "313,110 ratings  \u2014",
+        "published 1982"
+      ]
+    },
+    "A Wrinkle in Time": {
+      "title": "A Wrinkle in Time",
+      "author": "Madeleine L&#39;Engle",
+      "rate": [
+        "avg rating 4.01 \u2014",
+        "884,359 ratings  \u2014",
+        "published 1962"
+      ]
+    },
+    "Harry Potter and the Prisoner of Azkaban": {
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.55 \u2014",
+        "2,330,777 ratings  \u2014",
+        "published 1999"
+      ]
+    },
+    "The Giver": {
+      "title": "The Giver",
+      "author": "Lois Lowry",
+      "rate": [
+        "avg rating 4.12 \u2014",
+        "1,521,291 ratings  \u2014",
+        "published 1993"
+      ]
+    },
+    "Island of the Blue Dolphins": {
+      "title": "Island of the Blue Dolphins",
+      "author": "Scott O&#39;Dell",
+      "rate": [
+        "avg rating 3.82 \u2014",
+        "265,425 ratings  \u2014",
+        "published 1960"
+      ]
+    },
+    "James and the Giant Peach": {
+      "title": "James and the Giant Peach",
+      "author": "Roald Dahl",
+      "rate": [
+        "avg rating 4.00 \u2014",
+        "330,426 ratings  \u2014",
+        "published 1961"
+      ]
+    },
+    "The Bad Beginning": {
+      "title": "The Bad Beginning",
+      "author": "Lemony Snicket",
+      "rate": [
+        "avg rating 3.93 \u2014",
+        "345,017 ratings  \u2014",
+        "published 1999"
+      ]
+    },
+    "Little House in the Big Woods": {
+      "title": "Little House in the Big Woods",
+      "author": "Laura Ingalls Wilder",
+      "rate": [
+        "avg rating 4.18 \u2014",
+        "209,448 ratings  \u2014",
+        "published 1932"
+      ]
+    },
+    "Hatchet": {
+      "title": "Hatchet",
+      "author": "Gary Paulsen",
+      "rate": [
+        "avg rating 3.70 \u2014",
+        "267,291 ratings  \u2014",
+        "published 1986"
+      ]
+    },
+    "Green Eggs and Ham": {
+      "title": "Green Eggs and Ham",
+      "author": "Dr. Seuss",
+      "rate": [
+        "avg rating 4.30 \u2014",
+        "540,285 ratings  \u2014",
+        "published 1960"
+      ]
+    },
+    "Because of Winn-Dixie": {
+      "title": "Because of Winn-Dixie",
+      "author": "Kate DiCamillo",
+      "rate": [
+        "avg rating 4.03 \u2014",
+        "178,934 ratings  \u2014",
+        "published 2000"
+      ]
+    },
+    "Where the Red Fern Grows": {
+      "title": "Where the Red Fern Grows",
+      "author": "Wilson Rawls",
+      "rate": [
+        "avg rating 4.06 \u2014",
+        "308,909 ratings  \u2014",
+        "published 1961"
+      ]
+    },
+    "Harry Potter and the Goblet of Fire": {
+      "title": "Harry Potter and the Goblet of Fire",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.55 \u2014",
+        "2,182,102 ratings  \u2014",
+        "published 2000"
+      ]
+    },
+    "Where the Wild Things Are": {
+      "title": "Where the Wild Things Are",
+      "author": "Maurice Sendak",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "726,350 ratings  \u2014",
+        "published 1963"
+      ]
+    },
+    "From the Mixed-Up Files of Mrs. Basil E. Frankweiler": {
+      "title": "From the Mixed-Up Files of Mrs. Basil E. Frankweiler",
+      "author": "E.L. Konigsburg",
+      "rate": [
+        "avg rating 4.15 \u2014",
+        "165,129 ratings  \u2014",
+        "published 1967"
+      ]
+    },
+    "Tales of a Fourth Grade Nothing": {
+      "title": "Tales of a Fourth Grade Nothing",
+      "author": "Judy Blume",
+      "rate": [
+        "avg rating 4.10 \u2014",
+        "125,374 ratings  \u2014",
+        "published 1972"
+      ]
+    },
+    "Tuck Everlasting": {
+      "title": "Tuck Everlasting",
+      "author": "Natalie Babbitt",
+      "rate": [
+        "avg rating 3.87 \u2014",
+        "202,827 ratings  \u2014",
+        "published 1975"
+      ]
+    },
+    "A Light in the Attic": {
+      "title": "A Light in the Attic",
+      "author": "Shel Silverstein",
+      "rate": [
+        "avg rating 4.34 \u2014",
+        "342,892 ratings  \u2014",
+        "published 1981"
+      ]
+    },
+    "The Witches": {
+      "title": "The Witches",
+      "author": "Roald Dahl",
+      "rate": [
+        "avg rating 4.17 \u2014",
+        "270,987 ratings  \u2014",
+        "published 1983"
+      ]
+    },
+    "Little House on the Prairie": {
+      "title": "Little House on the Prairie",
+      "author": "Laura Ingalls Wilder",
+      "rate": [
+        "avg rating 4.19 \u2014",
+        "233,164 ratings  \u2014",
+        "published 1935"
+      ]
+    },
+    "Sideways Stories from Wayside School": {
+      "title": "Sideways Stories from Wayside School",
+      "author": "Louis Sachar",
+      "rate": [
+        "avg rating 4.15 \u2014",
+        "83,777 ratings  \u2014",
+        "published 1978"
+      ]
+    },
+    "Harry Potter and the Order of the Phoenix": {
+      "title": "Harry Potter and the Order of the Phoenix",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.49 \u2014",
+        "2,135,122 ratings  \u2014",
+        "published 2003"
+      ]
+    },
+    "The Tale of Despereaux": {
+      "title": "The Tale of Despereaux",
+      "author": "Kate DiCamillo",
+      "rate": [
+        "avg rating 4.03 \u2014",
+        "142,721 ratings  \u2014",
+        "published 2003"
+      ]
+    },
+    "The Secret Garden": {
+      "title": "The Secret Garden",
+      "author": "Frances Hodgson Burnett",
+      "rate": [
+        "avg rating 4.13 \u2014",
+        "788,243 ratings  \u2014",
+        "published 1911"
+      ]
+    },
+    "The Reptile Room": {
+      "title": "The Reptile Room",
+      "author": "Lemony Snicket",
+      "rate": [
+        "avg rating 3.98 \u2014",
+        "162,663 ratings  \u2014",
+        "published 1999"
+      ]
+    },
+    "Frindle": {
+      "title": "Frindle",
+      "author": "Andrew Clements",
+      "rate": [
+        "avg rating 3.80 \u2014",
+        "95,636 ratings  \u2014",
+        "published 1996"
+      ]
+    },
+    "Anne of Green Gables": {
+      "title": "Anne of Green Gables",
+      "author": "L.M. Montgomery",
+      "rate": [
+        "avg rating 4.24 \u2014",
+        "624,024 ratings  \u2014",
+        "published 1908"
+      ]
+    },
+    "The Phantom Tollbooth": {
+      "title": "The Phantom Tollbooth",
+      "author": "Norton Juster",
+      "rate": [
+        "avg rating 4.21 \u2014",
+        "214,304 ratings  \u2014",
+        "published 1961"
+      ]
+    },
+    "Oh, The Places You'll Go!": {
+      "title": "Oh, The Places You'll Go!",
+      "author": "Dr. Seuss",
+      "rate": [
+        "avg rating 4.35 \u2014",
+        "289,441 ratings  \u2014",
+        "published 1990"
+      ]
+    },
+    "The Cat in the Hat": {
+      "title": "The Cat in the Hat",
+      "author": "Dr. Seuss",
+      "rate": [
+        "avg rating 4.16 \u2014",
+        "360,720 ratings  \u2014",
+        "published 1957"
+      ]
+    },
+    "The Magician's Nephew": {
+      "title": "The Magician's Nephew",
+      "author": "C.S. Lewis",
+      "rate": [
+        "avg rating 4.03 \u2014",
+        "352,541 ratings  \u2014",
+        "published 1955"
+      ]
+    },
+    "Harry Potter and the Half-Blood Prince": {
+      "title": "Harry Potter and the Half-Blood Prince",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.56 \u2014",
+        "2,083,057 ratings  \u2014",
+        "published 2005"
+      ]
+    },
+    "Harry Potter and the Deathly Hallows": {
+      "title": "Harry Potter and the Deathly Hallows",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.62 \u2014",
+        "2,243,716 ratings  \u2014",
+        "published 2007"
+      ]
+    },
+    "The Wide Window": {
+      "title": "The Wide Window",
+      "author": "Lemony Snicket",
+      "rate": [
+        "avg rating 3.93 \u2014",
+        "142,764 ratings  \u2014",
+        "published 2000"
+      ]
+    },
+    "Sarah, Plain and Tall": {
+      "title": "Sarah, Plain and Tall",
+      "author": "Patricia MacLachlan",
+      "rate": [
+        "avg rating 3.75 \u2014",
+        "65,391 ratings  \u2014",
+        "published 1985"
+      ]
+    },
+    "Ella Enchanted": {
+      "title": "Ella Enchanted",
+      "author": "Gail Carson Levine",
+      "rate": [
+        "avg rating 3.98 \u2014",
+        "365,582 ratings  \u2014",
+        "published 1997"
+      ]
+    },
+    "The Mouse and the Motorcycle": {
+      "title": "The Mouse and the Motorcycle",
+      "author": "Beverly Cleary",
+      "rate": [
+        "avg rating 3.92 \u2014",
+        "71,572 ratings  \u2014",
+        "published 1965"
+      ]
+    },
+    "On the Banks of Plum Creek ": {
+      "title": "On the Banks of Plum Creek ",
+      "author": "Laura Ingalls Wilder",
+      "rate": [
+        "avg rating 4.20 \u2014",
+        "85,345 ratings  \u2014",
+        "published 1937"
+      ]
+    },
+    "Beezus and Ramona": {
+      "title": "Beezus and Ramona",
+      "author": "Beverly Cleary",
+      "rate": [
+        "avg rating 3.99 \u2014",
+        "87,960 ratings  \u2014",
+        "published 1955"
+      ]
+    }
+  }
+}
