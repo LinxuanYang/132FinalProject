@@ -34,6 +34,7 @@ def search():
 @app.route("/results", defaults={'page': 1}, methods=['GET','POST'])
 @app.route("/results/<page>", methods=['GET','POST'])
 def results(page):
+
     pass
 
 # display a particular document given a result number
