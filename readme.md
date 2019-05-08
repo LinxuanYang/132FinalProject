@@ -30,6 +30,20 @@ All purpose search on books
     2. ```$ scrapy crawl titles```, this will get all book titles and links in literature tab
     3. ```$ scrapy crawl details```, this will get all data for each book
 
+
+## Index
+- Clean and organize raw data from @sparknotes
+```$ index.py```
+- For each book, each key/field associate with a string of related text
+
+## Query
+- Words in ```""```: phrase search
+- ```title``` +  ```field```: displays the content of this field
+- ```-word```: difference search only
+- ```+word```: conjunctive search only
+- "Highest Rated Book" button
+- Synonym search
+
 ## References
 - https://doc.scrapy.org/en/xpath-tutorial/intro/tutorial.html
 - https://jsonlines.readthedocs.io/en/latest/
