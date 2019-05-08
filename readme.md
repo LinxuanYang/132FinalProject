@@ -33,6 +33,15 @@ All purpose search on books
 - Clean and organize raw data from @sparknotes
 ```$ index.py```
 - For each book, each key/field associate with a string of related text
+
+## Query
+- Words in ```""```: phrase search
+- ```title``` +  ```field```: displays the content of this field
+- ```-word```: difference search only
+- ```+word```: conjunctive search only
+- "Highest Rated Book" button
+- Synonym search
+
 ## References
 - https://doc.scrapy.org/en/xpath-tutorial/intro/tutorial.html
 - https://jsonlines.readthedocs.io/en/latest/
