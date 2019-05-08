@@ -13,15 +13,21 @@ class DetailsSpider(scrapy.Spider):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.file_name = 'shelve/sparknotes_book_detail.jl'
+        self.file_name = 'shelve/sparknotes_book_detail2.jl'
         self.domain = 'https://www.sparknotes.com'
+        saved = {}
+        self.saved = saved
+        with jsonlines.open('shelve/sparknotes_book_detail.jl') as reader:
+            for obj in reader:
+                saved[obj['title']] = True
 
     def start_requests(self):
         # yield scrapy.Request(url='https://www.sparknotes.com/lit/1984/', callback=self.parse)
+        print('start')
         with jsonlines.open('shelve/sparknotes_book_link.jl') as reader:
             for index, obj in enumerate(reader):
-                if index == 5:
-                    break
+                if obj['title'] in self.saved:
+                    continue
                 url = self.domain + obj['link']
                 yield scrapy.Request(url=url, callback=self.parse)
 
