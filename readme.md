@@ -29,6 +29,8 @@ All purpose search on books
     1. ```$ cd sparknotes```
     2. ```$ scrapy crawl titles```, this will get all book titles and links in literature tab
     3. ```$ scrapy crawl details```, this will get all data for each book
+
+
 ## Index
 - Clean and organize raw data from @sparknotes
 ```$ index.py```
