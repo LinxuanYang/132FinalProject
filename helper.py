@@ -43,6 +43,29 @@ def conjunction_filter(query):
     other_words = re.sub("\+\w+", "", query)
     return raw[0][1:] if len(raw) > 0 else "", other_words
 
+
+def highlight(search_object, field_list):
+    search_object = search_object.highlight_options(pre_tags='<mark>', post_tags='</mark>')
+    for field in field_list:
+        search_object = search_object.highlight(field, fragment_size=999999999, number_of_fragments=1)
+
+def parse_result(response_object):
+    result_list = {}
+    for hit in response_object.hits:
+        result = {}
+        result['score'] = hit.meta.score
+
+        for field in hit:
+            if field != 'meta':
+                result[field] = getattr(hit, field)
+        result['title'] = ' | '.join(result['title'])
+        if 'hightlight' in hit.meta:
+            for field in hit.meta.highlight:
+                result[field] = getattr(hit.meta.highlight, field)[0]
+        result_list[hit.meta.id] = result
+    return result_list
+
+
 query="this\"haha\" a\" this\" gaga \"\""
 print(phrase_filter(query))
 query="book title #plot summary"
