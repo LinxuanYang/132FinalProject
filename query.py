@@ -1,3 +1,4 @@
+
 """
 This module implements a (partial, sample) query interface for elasticsearch movie search. 
 You will need to rewrite and expand sections to support the types of queries over the fields in your UI.
@@ -29,8 +30,8 @@ index_name='book_index'
 @app.route("/")
 def search():
    return render_template('page_query.html')
-
 @app.route("/query_completion", methods=['GET'])
+
 def search_query():
     search = Search(index='query_index')
     keyword = request.get_json['keyword']
@@ -157,7 +158,7 @@ def results(page):
 def documents(res):
     global gresults
     id = gresults[res]
-    filmtitle = film['title']
+    #filmtitle = film['title']
     for term in film:
         if type(film[term]) is AttrList:
             s = "\n"

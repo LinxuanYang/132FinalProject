@@ -37,23 +37,67 @@ class Book(Document):
     summary = Text(analyzer=my_analyzer)
     character_list = Text(analyzer=my_analyzer)
     main_ideas = Text(analyzer=my_analyzer)
-
-    # quotes = Text(analyzer=my_analyzer)
-
-    # --- Add more fields here ---
-    # What data type for your field? List?
-    # Which analyzer makes sense for each field?
+    quotes = Text(analyzer=my_analyzer)
 
     # override the Document save method to include subclass field definitions
     def save(self, *args, **kwargs):
         return super(Book, self).save(*args, **kwargs)
+
+# define class Summary
+class Summary(Document):
+    title = Text(analyzer=my_analyzer)
+    summary = Text(analyzer=my_analyzer)
+
+    def save(self, *args, **kwargs):
+        return super(Summary, self).save(*args, **kwargs)
+
+# define class Summary_Sentence
+class Summary_Sentence(Document):
+    title = Text(analyzer=my_analyzer)
+    summary_sentence = Text(analyzer=my_analyzer)
+
+    def save(self, *args, **kwargs):
+        return super(Summary_Sentence, self).save(*args, **kwargs)
+
+# main ideas
+class Main_Ideas(Document):
+    title = Text(analyzer=my_analyzer)
+    main_ideas = Text(analyzer=my_analyzer)
+    def save(self, *args, **kwargs):
+        return super(Main_Ideas, self).save(*args, **kwargs)
+
+#Character_List
+class Character_List(Document):
+    title = Text(analyzer=my_analyzer)
+    character_list = Text(analyzer=my_analyzer)
+    def save(self, *args, **kwargs):
+        return super(Character_List, self).save(*args, **kwargs)
+
+#Quotes
+class Quotes(Document):
+    title = Text(analyzer=my_analyzer)
+    quotes = Text(analyzer=my_analyzer)
+    def save(self, *args, **kwargs):
+        return super(Quotes, self).save(*args, **kwargs)
+
+#author
+class Author(Document):
+    title = Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
+    def save(self, *args, **kwargs):
+        return super(Author, self).save(*args, **kwargs)
+
+# title
+class Title(Document):
+    title = Text(analyzer=my_analyzer)
+    def save(self, *args, **kwargs):
+        return super(Title, self).save(*args, **kwargs)
 
 
 def makeup_fields(dict):
     #print("--------------------------------------------a new article-----------------------------------------------")
     keys = list(dict.keys())
     # summary_sentence done
-    #print("summary_sentence done!")
     if "summary_sentence" in keys and dict["summary_sentence"]:
         summary_sent = dict["summary_sentence"]
         if summary_sent[0] == "\n            ":
@@ -65,7 +109,6 @@ def makeup_fields(dict):
         dict["summary_sentence"] = ""
 
     # character list done
-    #print("character list done!")
     character_string = ""
     if "character_list" in keys:
         character_string += "link:" + dict["character_list"]["link"] + "\n"
@@ -81,7 +124,6 @@ def makeup_fields(dict):
         dict["character_list"] = "link: None\nCharacter List: None"
 
     # summary done
-    #print("summary done!")
     summary_sent = ""
     summary_sent += "link:" + dict["summary"]["link"] + "\n"
     plot_sent = dict["summary"]["plot_overview"]
@@ -95,7 +137,6 @@ def makeup_fields(dict):
     dict["summary"] = summary_sent
 
     # quotes done
-    #print("quotes done!")
     quotes_sent = ""
     if "quotes" in keys:
         quotes_sent += "link:" + dict["quotes"]["link"] + "\n"
@@ -108,7 +149,6 @@ def makeup_fields(dict):
     dict["quotes"] = quotes_sent
 
     # main ideas
-    #print("main ideas done!")
     main_ideas_sent=""
     if "main_ideas" in keys:
 
@@ -127,17 +167,13 @@ def makeup_fields(dict):
 
 # Populate the index
 def buildIndex():
-    """
-    buildIndex creates a new film index, deleting any existing index of
-    the same name.
-    It loads a json file containing the book corpus and does bulk loading
-    using a generator function.
-    """
-    film_index = Index('sample_film_index')
+
+    film_index = Index('book_index')
     film_index.document(Book)
 
+    # Overwrite any previous version
     if film_index.exists():
-        film_index.delete()  # Overwrite any previous version
+        film_index.delete()
     film_index.create()
 
     # Open the json film corpus
@@ -157,7 +193,7 @@ def buildIndex():
 
         for mid in range(1, size + 1):
             yield {
-                "_index": "sample_film_index",
+                "_index": "book_index",
                 "_type": 'doc',
                 "_id": mid,
                 "title": books[str(mid)]['title'],
@@ -167,19 +203,292 @@ def buildIndex():
                 "character_list" : books[str(mid)]['character_list'],
                 "main_ideas" : books[str(mid)]['main_ideas'],
                 "quotes" : books[str(mid)]['quotes'],
-                "picture": books[str(mid)]['picture'],
-                'text':books[str(mid)]['title']+books[str(mid)]['author']+books[str(mid)]['summary_sentence']+books[str(mid)]['summary']
+                "picture": books[str(mid)]['picture']
+            }
+
+    helpers.bulk(es, actions())
+
+def build_summary_Index():
+
+    #filds_class = [("title", Title), ("author", Author), ("summary", Summary), ("summary_sentence", Summary_Sentence),
+                   #("main_ideas", Main_Ideas), ("character_list", Character_List), ("quotes", Quotes)]
+
+    # # build index for all fields
+    # title_index=Index("title_index")
+    # title_index.document(Title)
+    #
+    # author_index=Index("author_index")
+    # author_index.document(Author)
+
+    summary_index = Index("summary_index")
+    summary_index.document(Summary)
+
+    # summary_sentence_index=Index("summary_sentence_index")
+    # summary_sentence_index.document(Summary_Sentence)
+    #
+    # main_ideas_index=Index("main_ideas_index")
+    # main_ideas_index.document(Main_Ideas)
+    #
+    # character_list_index=Index("character_list_index")
+    # character_list_index.document(Character_List)
+    #
+    # quotes_index=Index("quotes_index")
+    # quotes_index.document(Quotes)
+
+
+    # # overwrite to the previous file
+    # if title_index.exists(): title_index.delete()
+    # title_index.create()
+    #
+    # if author_index.exists():author_index.delete()
+    # author_index.create()
+    #
+    if summary_index.exists(): summary_index.delete()
+    summary_index.create()
+
+    # if summary_sentence_index.exists():summary_sentence_index.delete()
+    # summary_sentence_index.create()
+    #
+    # if main_ideas_index.exists():main_ideas_index.delete()
+    # main_ideas_index.create()
+    #
+    # if character_list_index.exists():character_list_index.delete()
+    # character_list_index.create()
+    #
+    # if quotes_index.exists():quotes_index.delete()
+    # quotes_index.create()
+    #
+
+    books = {}
+    mid = 1
+    with open('sparknotes_book_detail.jl') as data_file:
+        for line in data_file:
+            books[str(mid)] = json.loads(line)
+            books[str(mid)] = makeup_fields(books[str(mid)])
+            mid += 1
+        size = len(books)
+
+    def actions():
+
+        for mid in range(1, size + 1):
+            yield {
+                "_index": "summary_index",
+                "_type": 'doc',
+                "_id": mid,
+                "title":books[str(mid)]['title'],
+                "summary": books[str(mid)]['summary']
             }
 
     helpers.bulk(es, actions())
 
 
+def build_summary_sentence_Index():
+
+    summary_sentence_index = Index('summary_sentence_index')
+    summary_sentence_index.document(Summary_Sentence)
+
+    if summary_sentence_index.exists():
+        summary_sentence_index.delete()
+    summary_sentence_index.create()
+
+    books = {}
+    mid = 1
+    with open('sparknotes_book_detail.jl') as data_file:
+
+        for line in data_file:
+            books[str(mid)] = json.loads(line)
+            books[str(mid)] = makeup_fields(books[str(mid)])
+            mid += 1
+        size = len(books)
+
+    def actions():
+
+        for mid in range(1, size + 1):
+            yield {
+                "_index": "summary_sentence_index",
+                "_type": 'doc',
+                "_id": mid,
+                "title": books[str(mid)]['title'],
+                "summary_sentence": books[str(mid)]['summary_sentence']
+            }
+
+    helpers.bulk(es, actions())
+
+
+def build_main_ideas_Index():
+    main_ideas_index = Index('main_ideas_index')
+    main_ideas_index.document(Main_Ideas)
+
+    if main_ideas_index.exists():
+        main_ideas_index.delete()
+    main_ideas_index.create()
+
+    books = {}
+    mid = 1
+    with open('sparknotes_book_detail.jl') as data_file:
+
+        for line in data_file:
+            books[str(mid)] = json.loads(line)
+            books[str(mid)] = makeup_fields(books[str(mid)])
+            mid += 1
+        size = len(books)
+
+    def actions():
+
+        for mid in range(1, size + 1):
+            yield {
+
+                "_index": "main_ideas_index",
+                "_type": 'doc',
+                "_id": mid,
+                "title": books[str(mid)]['title'],
+                "main_ideas": books[str(mid)]['main_ideas']
+            }
+
+    helpers.bulk(es, actions())
+
+
+#character_list
+def build_character_list_Index():
+    cl_index = Index('character_list_index')
+    cl_index.document(Character_List)
+
+    if cl_index.exists():
+        cl_index.delete()
+    cl_index.create()
+
+    books = {}
+    mid = 1
+    with open('sparknotes_book_detail.jl') as data_file:
+
+        for line in data_file:
+            books[str(mid)] = json.loads(line)
+            books[str(mid)] = makeup_fields(books[str(mid)])
+            mid += 1
+        size = len(books)
+
+    def actions():
+
+        for mid in range(1, size + 1):
+            yield {
+                "_index": "character_list_index",
+                "_type": 'doc',
+                "_id": mid,
+                "title": books[str(mid)]['title'],
+                "character_list": books[str(mid)]['character_list']
+            }
+
+    helpers.bulk(es, actions())
+
+#quotes
+def build_quotes_Index():
+    quotes_index = Index('quotes_index')
+    quotes_index.document(Quotes)
+
+    if quotes_index.exists():
+        quotes_index.delete()
+    quotes_index.create()
+
+    books = {}
+    mid = 1
+    with open('sparknotes_book_detail.jl') as data_file:
+
+        for line in data_file:
+            books[str(mid)] = json.loads(line)
+            books[str(mid)] = makeup_fields(books[str(mid)])
+            mid += 1
+        size = len(books)
+
+    def actions():
+
+        for mid in range(1, size + 1):
+            yield {
+                "_index": "quotes_index",
+                "_type": 'doc',
+                "_id": mid,
+                "title": books[str(mid)]['title'],
+                "quotes": books[str(mid)]['quotes']
+            }
+
+    helpers.bulk(es, actions())
+
+#author
+def build_author_Index():
+    author_index = Index('author_index')
+    author_index.document(Author)
+
+    if author_index.exists():
+        author_index.delete()
+    author_index.create()
+
+    books = {}
+    mid = 1
+    with open('sparknotes_book_detail.jl') as data_file:
+
+        for line in data_file:
+            books[str(mid)] = json.loads(line)
+            books[str(mid)] = makeup_fields(books[str(mid)])
+            mid += 1
+        size = len(books)
+
+    def actions():
+
+        for mid in range(1, size + 1):
+            yield {
+                "_index": "author_index",
+                "_type": 'doc',
+                "_id": mid,
+                "title": books[str(mid)]['title'],
+                "author": books[str(mid)]['author']
+            }
+
+    helpers.bulk(es, actions())
+
+
+#title
+def build_title_Index():
+    title_index = Index('title_index')
+    title_index.document(Title)
+
+    if title_index.exists():
+        title_index.delete()
+    title_index.create()
+
+    books = {}
+    mid = 1
+    with open('sparknotes_book_detail.jl') as data_file:
+
+        for line in data_file:
+            books[str(mid)] = json.loads(line)
+            books[str(mid)] = makeup_fields(books[str(mid)])
+            mid += 1
+        size = len(books)
+
+    def actions():
+
+        for mid in range(1, size + 1):
+            yield {
+                "_index": "title_index",
+                "_type": 'doc',
+                "_id": mid,
+                "title": books[str(mid)]['title']
+            }
+
+    helpers.bulk(es, actions())
 # command line invocation builds index and prints the running time.
 def main():
     start_time = time.time()
     doc = Document()
     buildIndex()
+    build_title_Index()
+    build_author_Index()
+    build_summary_sentence_Index()
+    build_summary_Index()
+    build_main_ideas_Index()
+    build_character_list_Index()
+    build_quotes_Index()
     print("=== Built index in %s seconds ===" % (time.time() - start_time))
+
 
 
 if __name__ == '__main__':
