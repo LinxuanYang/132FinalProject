@@ -1,6 +1,10 @@
 import re
+import json
+import jsonlines
+from nltk.stem.snowball import SnowballStemmer
 
 index_name = 'book_index'
+
 
 def hashtag_filter(query):
     """
@@ -12,6 +16,7 @@ def hashtag_filter(query):
     other_words = re.sub("#.+", "", query)
     return raw[0][1:] if len(raw) > 0 else "", other_words
 
+
 def phrase_filter(query):
     """
     “”: phrase search
@@ -21,6 +26,7 @@ def phrase_filter(query):
     phrase_list = [r[1: -1] for r in re.findall('\\".*?\\"', query) if r != '""']
     other_words = re.sub('\\".*?\\"', "", query)
     return phrase_list, other_words
+
 
 def difference_filter(query):
     """
@@ -32,6 +38,7 @@ def difference_filter(query):
     raw = re.findall("-\w+", query)
     other_words = re.sub("-\w+", "", query)
     return raw[0][1:] if len(raw) > 0 else "", other_words
+
 
 def conjunction_filter(query):
     """
@@ -48,6 +55,7 @@ def highlight(search_object, field_list):
     search_object = search_object.highlight_options(pre_tags='<mark>', post_tags='</mark>')
     for field in field_list:
         search_object = search_object.highlight(field, fragment_size=999999999, number_of_fragments=1)
+
 
 def parse_result(response_object):
     result_list = {}
@@ -66,14 +74,34 @@ def parse_result(response_object):
     return result_list
 
 
-query="this\"haha\" a\" this\" gaga \"\""
-print(phrase_filter(query))
-query="book title #plot summary"
-print(hashtag_filter(query))
-query="this is cool-bad great"
-print(difference_filter(query))
-print(phrase_filter(query))
-query="this is cool +must and"
-print(conjunction_filter(query))
+def merge_good_spark(jl_file, json_file):
+    stemmer = SnowballStemmer("english")
+    file1_temp = {}
+    file2_temp = {}
+
+    with jsonlines.open(jl_file) as reader:
+        for obj in reader:
+            file1_temp[obj['name']] = obj
+    with json.load(json_file) as f:
+        file2_temp = f
+
+    with jsonlines.open('merged_sparknote.jl', mode='w') as writer:
+        merger_file = {}
+        for book in file1_temp:
+            book_name1 = set([stemmer.stem(word) for word in book['name'].split('')])
+            book_name2 = set([stemmer.stem(word) for word in file2_temp.split('')])
+            # if book_name1 == book_name2:
+            #     merger_file[book['name']] =
+        writer.write()
 
 
+if __name__ == '__main__':
+    query = "this\"haha\" a\" this\" gaga \"\""
+    print(phrase_filter(query))
+    query = "book title #plot summary"
+    print(hashtag_filter(query))
+    query = "this is cool-bad great"
+    print(difference_filter(query))
+    print(phrase_filter(query))
+    query = "this is cool +must and"
+    print(conjunction_filter(query))
