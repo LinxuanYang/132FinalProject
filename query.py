@@ -157,7 +157,13 @@ def hint():
         return
     else:
         user_input = user_input.lower()
-        last_word = user_input[user_input.rindex(' ')+1:]
+        last_word = user_input[user_input.rindex(' ') + 1:]
+    return jsonify([
+        "Google Cloud Platform",
+        "Amazon AWS",
+        "Docker",
+        "Digital Ocean"
+    ])
 
 
 if __name__ == "__main__":
