@@ -133,7 +133,7 @@ def buildIndex():
     It loads a json file containing the book corpus and does bulk loading
     using a generator function.
     """
-    film_index = Index('sample_film_index')
+    film_index = Index('book_index')
     film_index.document(Book)
 
     if film_index.exists():
@@ -157,7 +157,7 @@ def buildIndex():
 
         for mid in range(1, size + 1):
             yield {
-                "_index": "sample_film_index",
+                "_index": "book_index",
                 "_type": 'doc',
                 "_id": mid,
                 "title": books[str(mid)]['title'],
@@ -167,8 +167,7 @@ def buildIndex():
                 "character_list" : books[str(mid)]['character_list'],
                 "main_ideas" : books[str(mid)]['main_ideas'],
                 "quotes" : books[str(mid)]['quotes'],
-                "picture": books[str(mid)]['picture'],
-                'text':books[str(mid)]['title']+books[str(mid)]['author']+books[str(mid)]['summary_sentence']+books[str(mid)]['summary']
+                "picture": books[str(mid)]['picture']
             }
 
     helpers.bulk(es, actions())
