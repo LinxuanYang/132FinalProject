@@ -40,38 +40,19 @@ def results(page):
     if type(page_number) is not int:
         page_number = int(page_number.encode('utf-8'))
 
-    # if the method of request is post (for initial query), store query in local global variables
-    # if the method of request is get (for "next" results), extract query contents from client's global variables
-    # if request.method == 'POST':
     query = request.form['query']
 
     search = Search(index=index_name)
 
-    # hastag=helper.hashtag_filter(query)
-    # tag,others=hastag
-
     phrase=helper.phrase_filter(query)
     phrase_list, others = phrase
 
-    difference=helper.difference_filter(others)
-    diff_word,others=difference
-
-    conjunction=helper.conjunction_filter(others)
-    wanted_word,others=conjunction
-
     fields_list=['title', 'author', 'summary_sentence','summary','character_list','main_ideas','quotes','picture']
 
-    if phrase_list:
-        # use disjunctive search and searh over all fields
-        for phrase in phrase_list:
-            s = search.query('multi_match', query=phrase, type=['phrase', 'cross_fields'], fields=fields_list, operator='or')
-
-    #if diff_word:
-    if wanted_word:
-        s=s.query('match',query=wanted_word)
-
-    if others:
-        s = s.query('match', query=others,operator='and')
+    # + AND -
+    # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
+    # SIMPLE QUERY STRING supports '|', '+', '-', "" phrase search， '*'， etc.
+    s=search.query('simple_query_string', fields=fields_list, query=others, default_operator='and')
 
     # highlight
     s = s.highlight_options(pre_tags='<mark>', post_tags='</mark>')
