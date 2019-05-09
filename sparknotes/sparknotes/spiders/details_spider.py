@@ -13,7 +13,7 @@ class DetailsSpider(scrapy.Spider):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.file_name = 'sparknotes_book_detail_sample.json'
+        self.file_name = 'sparknotes_book_detail_2.jl'
         self.domain = 'https://www.sparknotes.com'
         saved = {}
         self.saved = saved
