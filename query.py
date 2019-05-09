@@ -104,7 +104,7 @@ def documents(res):
             for item in book[term]:
                 s += item + ",\n "
             book[term] = s
-    return json.dump(book.to_dict())
+    return json.dumps(book.to_dict())
 
 
 @app.route('/hover', methods=['POST'])
