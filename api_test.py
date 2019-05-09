@@ -1,3 +1,6 @@
 import query
+import index
 
-def 
+def testIndex():
+    index.main()
+

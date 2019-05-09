@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 """
 This module implements a (partial, sample) query interface for elasticsearch movie search. 
 You will need to rewrite and expand sections to support the types of queries over the fields in your UI.
@@ -106,6 +106,7 @@ def documents(res):
                 s += item + ",\n "
             book[term] = s
     return json.dumps(book.to_dict())
+
 
 @app.route('/hover', methods=['POST'])
 def hover_data_collect():
