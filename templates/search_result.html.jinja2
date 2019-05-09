@@ -14,13 +14,13 @@
     </div>
     <div>
         {% for result in results %}
-            <div class="card search_result">
+            <div class="card search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}" data-queryId="{{ query_id }}">
                 <div class="card-body">
                     <a href="/movie/{{ result['id'] }}" class="card-title">{{ result['title'] }}</a>
                     <p>score:{{ result['score'] }}</p>
                     <p class="card-text">{{ result['text'] }}</p>
 
-                    <a href="/movie/{{ result['id'] }}" class="card-link">detail</a>
+                    <a data-click data-id="{{ result.id }}" data-queryId="{{ query_id }}" href="/movie/{{ result['id'] }}" class="card-link">detail</a>
                 </div>
             </div>
         {% endfor %}

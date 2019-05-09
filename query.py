@@ -108,6 +108,7 @@ def documents(res):
     return json.dumps(book.to_dict())
 
 
+# this api should return json
 @app.route('/hover', methods=['POST'])
 def hover_data_collect():
     form = request.form
@@ -116,6 +117,7 @@ def hover_data_collect():
     time = form.get('time', 3000)
 
 
+# this api should return json
 @app.route('/click', methods=['POST'])
 def click_through():
     form = request.form
@@ -123,6 +125,7 @@ def click_through():
     document_id = form.get('id', '')
 
 
+# this api should return json
 @app.route('/page_stay', methods=['POST'])
 def page_stay():
     form = request.form
@@ -131,11 +134,24 @@ def page_stay():
     time = form.get('time', 3000)
 
 
+# this api should return json
 @app.route('/drag', methods=['POST'])
 def drag_over_item():
     form = request.form
     query_id = form.get('queryId', '')
     document_id = form.get('id', '')
+
+
+# this api should return json
+@app.route('/hint', methods=['GET'])
+def hint():
+    form = request.form
+    user_input = form.get('userInput', '')
+    if len(user_input) == 0:
+        return
+    else:
+        user_input = user_input.lower()
+        last_word = user_input[user_input.rindex(' ')+1:]
 
 
 if __name__ == "__main__":

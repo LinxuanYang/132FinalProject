@@ -65,7 +65,10 @@ class Summary_Sentence(Document):
 # main ideas
 class Main_Ideas(Document):
     title = Text(analyzer=my_analyzer)
-    main_ideas = Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
+    book_id = Text(analyzer=my_analyzer)
+    theme = Text(analyzer=my_analyzer)
+    theme_explaination = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
         return super(Main_Ideas, self).save(*args, **kwargs)
@@ -85,12 +88,11 @@ class Character(Document):
 
 # Quotes
 class Quotes(Document):
-
     book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
     quotes = Text(analyzer=my_analyzer)
-    quote=Text(analyzer=my_analyzer)
-    quote_explianation=Text(analyzer=my_analyzer)
+    quote = Text(analyzer=my_analyzer)
+    quote_explianation = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
         return super(Quotes, self).save(*args, **kwargs)
@@ -144,7 +146,6 @@ def makeup_fields(dict):
         dict['character_list'] = {}
         dict["character_list_str"] = "link: None\nCharacter List: None"
 
-
     # summary done
     summary_sent = ""
     summary_sent += "link:" + dict["summary"]["link"] + "\n"
@@ -165,19 +166,18 @@ def makeup_fields(dict):
 
         quotes_dict = dict["quotes"]["important_quotations_explained"]
         for quote in quotes_dict:
-
             quote_explain = quotes_dict[quote]
             quote = quote.replace("\n", " ")
             quote_explain = [i.replace("\n", " ") for i in quote_explain]
             quote_explain = " ".join(quote_explain)
-            quotes_dict2[quote]=quote_explain
+            quotes_dict2[quote] = quote_explain
             quotes_sent += "Quote " + quote.replace("\n", " ") + "\nExplain: " + quote_explain + "\n\n"
     dict["quotes_str"] = quotes_sent
-    dict["quotes"]=quotes_dict2
-
+    dict["quotes"] = quotes_dict2
 
     # main ideas
     main_ideas_sent = ""
+    main_ideas_dict = {}
     if "main_ideas" in keys:
 
         theme_dict = dict["main_ideas"]["themes"]
@@ -185,8 +185,11 @@ def makeup_fields(dict):
         for theme in theme_dict:
             theme_sent = theme_dict[theme]
             theme_sent = [i.replace("\n", " ") for i in theme_sent]
-            main_ideas_sent += theme + "\n" + " ".join(theme_sent) + "\n\n"
-    dict["main_ideas"] = main_ideas_sent
+            theme_sent = " ".join(theme_sent)
+            main_ideas_dict[theme] = theme_sent
+            main_ideas_sent += theme + "\n" + theme_sent + "\n\n"
+    dict["main_ideas_str"] = main_ideas_sent
+    dict['main_ideas'] = main_ideas_dict
     if "picture" not in keys:
         dict["picture"] = ""
 
@@ -223,12 +226,13 @@ def buildIndex():
                 "_index": "book_index",
                 "_type": 'doc',
                 "_id": mid,
+                "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
                 "summary_sentence": books[str(mid)]['summary_sentence'],
                 "summary": books[str(mid)]['summary'],
                 "character_list": books[str(mid)]['character_list_str'],
-                "main_ideas": books[str(mid)]['main_ideas'],
+                "main_ideas": books[str(mid)]['main_ideas_str'],
                 "quotes": books[str(mid)]['quotes_str'],
                 "picture": books[str(mid)]['picture']
             }
@@ -259,6 +263,7 @@ def build_summary_Index():
                 "_index": "summary_index",
                 "_type": 'doc',
                 "_id": mid,
+                "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
                 "summary": books[str(mid)]['summary']
@@ -292,6 +297,7 @@ def build_summary_sentence_Index():
                 "_index": "summary_sentence_index",
                 "_type": 'doc',
                 "_id": mid,
+                "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
                 "summary_sentence": books[str(mid)]['summary_sentence']
@@ -321,15 +327,19 @@ def build_main_ideas_Index():
     def actions():
 
         for mid in range(1, size + 1):
-            yield {
+            main_ideas_dict = books[str(mid)]["main_ideas"]
+            for theme in main_ideas_dict:
+                yield {
 
-                "_index": "main_ideas_index",
-                "_type": 'doc',
-                "_id": mid,
-                "title": books[str(mid)]['title'],
-                "author": books[str(mid)]['author'],
-                "main_ideas": books[str(mid)]['main_ideas']
-            }
+                    "_index": "main_ideas_index",
+                    "_type": 'doc',
+                    "_id": str(mid) + theme[:20],
+                    "book_id": mid,
+                    "title": books[str(mid)]['title'],
+                    "author": books[str(mid)]['author'],
+                    "theme": theme,
+                    "theme_explaination": main_ideas_dict[theme]
+                }
 
     helpers.bulk(es, actions())
 
@@ -401,18 +411,16 @@ def build_quotes_Index():
         for mid in range(1, size + 1):
             quote_dict = books[str(mid)]["quotes"]
             for q in quote_dict:
-
                 yield {
                     "_index": "quotes_index",
                     "_type": 'doc',
-                    "_id": str(mid)+q[:20],
-                    "book_id":mid,
+                    "_id": str(mid) + q[:20],
+                    "book_id": mid,
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
                     "quote": q,
-                    "quote_explianation":quote_dict[q]
+                    "quote_explianation": quote_dict[q]
                 }
-
 
     helpers.bulk(es, actions())
 
