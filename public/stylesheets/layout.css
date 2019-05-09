@@ -1,0 +1,13 @@
+body {
+    padding: 15px;
+}
+
+
+.search_result {
+    width: 500px;
+    margin: 20px;
+}
+
+.form-control{
+    margin-bottom: 10px;
+}
