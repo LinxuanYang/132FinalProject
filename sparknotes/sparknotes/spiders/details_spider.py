@@ -13,7 +13,7 @@ class DetailsSpider(scrapy.Spider):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.file_name = 'sparknotes_book_detail_2.jl'
+        self.file_name = 'shelve/sparknotes_book_detail_2.jl'
         self.domain = 'https://www.sparknotes.com'
         saved = {}
         self.saved = saved
@@ -26,8 +26,8 @@ class DetailsSpider(scrapy.Spider):
         # yield scrapy.Request(url='https://www.sparknotes.com/lit/1984/', callback=self.parse)
         with jsonlines.open('shelve/sparknotes_book_link.jl') as reader:
             for index, obj in enumerate(reader):
-                if obj['title'] in self.saved:
-                    continue
+                # if obj['title'] in self.saved:
+                #     continue
                 url = self.domain + obj['link']
                 yield scrapy.Request(url=url, callback=self.parse)
 
