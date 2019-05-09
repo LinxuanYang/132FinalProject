@@ -141,7 +141,7 @@ def results(page):
 def documents(res):
     global gresults
     id = gresults[res]
-    filmtitle = film['title']
+    #filmtitle = film['title']
     for term in film:
         if type(film[term]) is AttrList:
             s = "\n"
