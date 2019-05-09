@@ -52,19 +52,39 @@
         sendPageStayTime()
     }, 100000)
 
-    function sendHoverTime(id, queryId) {
-
+    function sendHoverTime(id, queryId, time) {
+        $.ajax('/hover', {
+            method: 'post',
+            data: {
+                id, queryId, time
+            }
+        })
     }
 
     function sendClick(id, queryId) {
-
+        $.ajax('/click', {
+            method: 'post',
+            data: {
+                id, queryId
+            }
+        })
     }
 
     function sendDrag(id, queryId) {
-
+        $.ajax('/drag', {
+            method: 'post',
+            data: {
+                id, queryId
+            }
+        })
     }
 
     function sendPageStayTime() {
-
+        $.ajax('/page_stay', {
+            method: 'post',
+            data: {
+                queryId: window.queryId, time: new Date().getTime() - time
+            }
+        })
     }
 }());
