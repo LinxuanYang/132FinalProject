@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 This module implements a (partial, sample) query interface for elasticsearch movie search. 
 You will need to rewrite and expand sections to support the types of queries over the fields in your UI.
