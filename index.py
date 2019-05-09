@@ -85,12 +85,11 @@ class Character(Document):
 
 # Quotes
 class Quotes(Document):
-
     book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
     quotes = Text(analyzer=my_analyzer)
-    quote=Text(analyzer=my_analyzer)
-    quote_explianation=Text(analyzer=my_analyzer)
+    quote = Text(analyzer=my_analyzer)
+    quote_explianation = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
         return super(Quotes, self).save(*args, **kwargs)
@@ -144,7 +143,6 @@ def makeup_fields(dict):
         dict['character_list'] = {}
         dict["character_list_str"] = "link: None\nCharacter List: None"
 
-
     # summary done
     summary_sent = ""
     summary_sent += "link:" + dict["summary"]["link"] + "\n"
@@ -165,16 +163,14 @@ def makeup_fields(dict):
 
         quotes_dict = dict["quotes"]["important_quotations_explained"]
         for quote in quotes_dict:
-
             quote_explain = quotes_dict[quote]
             quote = quote.replace("\n", " ")
             quote_explain = [i.replace("\n", " ") for i in quote_explain]
             quote_explain = " ".join(quote_explain)
-            quotes_dict2[quote]=quote_explain
+            quotes_dict2[quote] = quote_explain
             quotes_sent += "Quote " + quote.replace("\n", " ") + "\nExplain: " + quote_explain + "\n\n"
     dict["quotes_str"] = quotes_sent
-    dict["quotes"]=quotes_dict2
-
+    dict["quotes"] = quotes_dict2
 
     # main ideas
     main_ideas_sent = ""
@@ -401,18 +397,16 @@ def build_quotes_Index():
         for mid in range(1, size + 1):
             quote_dict = books[str(mid)]["quotes"]
             for q in quote_dict:
-
                 yield {
                     "_index": "quotes_index",
                     "_type": 'doc',
-                    "_id": str(mid)+q[:20],
-                    "book_id":mid,
+                    "_id": str(mid) + q[:20],
+                    "book_id": mid,
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
                     "quote": q,
-                    "quote_explianation":quote_dict[q]
+                    "quote_explianation": quote_dict[q]
                 }
-
 
     helpers.bulk(es, actions())
 
