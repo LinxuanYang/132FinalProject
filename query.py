@@ -45,7 +45,7 @@ def search_query():
             result = {'id': hit.meta.id}
             result['title'] = hit.title[0]
             results.append(result)
-    return jsonify(token=generate_token(id, title))
+    return json.dumps(results)
 
 # display results page for first set of results and "next" sets.
 @app.route("/results", methods=['GET','POST'])
