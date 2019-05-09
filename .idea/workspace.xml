@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="612e5030-f47b-4e07-8b33-57c5444e93f4" name="Default Changelist" comment="readme index.py">
+    <list default="true" id="e91b2863-d41c-468e-b913-66ace8cb64c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail2.jl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail_sample.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparknotes/sparknotes/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparknotes/sparknotes/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparknotes/sparknotes/spiders/details_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparknotes/sparknotes/spiders/details_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparknotes_book_detail.jl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparknotes_book_detail_sample.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.jl" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,101 +18,45 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/132Final$index.coverage" NAME="index Coverage Results" MODIFIED="1556564043113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/goodreads" />
-    <SUITE FILE_PATH="coverage/132Final$index__1_.coverage" NAME="index (1) Coverage Results" MODIFIED="1557278379522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/132Final$index_2.coverage" NAME="index 2 Coverage Results" MODIFIED="1556563868561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/132Final$query.coverage" NAME="query Coverage Results" MODIFIED="1557278471831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/132FinalProject$crawler_test.coverage" NAME="crawler_test Coverage Results" MODIFIED="1555648775271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/132FinalProject$goodreads_title_crawler.coverage" NAME="goodreads_title_crawler Coverage Results" MODIFIED="1555792680834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../132PA5/query.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2361" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="167" column="56" selection-start-line="167" selection-start-column="56" selection-end-line="167" selection-end-column="56" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/readme.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="348">
-                <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/spiders/details_spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sparknotes_book_detail.jl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="18" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/query.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="75" column="19" lean-forward="true" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
+            <state relative-caret-position="528">
+              <caret line="207" column="23" lean-forward="true" selection-start-line="207" selection-start-column="23" selection-end-line="207" selection-end-column="23" />
               <folding>
-                <element signature="e#489#498#0" expanded="true" />
+                <element signature="e#0#16#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/page_query.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/films_corpus.json">
+        <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes_book_detail_sample.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1986" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail.jl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4980">
-              <caret line="332" column="3091" selection-start-line="332" selection-start-column="3004" selection-end-line="332" selection-end-column="3091" />
+            <state relative-caret-position="545">
+              <caret line="173" column="14" lean-forward="true" selection-start-line="173" selection-start-column="14" selection-end-line="173" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.jl">
+        <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/items.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="513">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/pipelines.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
             </state>
           </provider>
         </entry>
@@ -121,115 +72,143 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bookTitle</find>
-      <find>book</find>
+      <find>class='title'&gt;</find>
+      <find>title</find>
+      <find>div class='title</find>
       <find>&lt;a class=&quot;bookTitle&quot;</find>
-      <find>&lt;a class=&quot;bookTitle&quot; .&gt;(.*?)&lt;/a&gt;</find>
-      <find>bookT</find>
-      <find>Love's Labour's Lost</find>
-      <find>Alice’s Adventures in Wonderland</find>
-      <find>Angela’s Ashes</find>
-      <find>The Oedipus Plays</find>
-      <find>The Book of Margery Kempe</find>
-      <find>For Whom The Bell Tolls</find>
-      <find>A Clash of Kings</find>
-      <find>The Epic of Gilgamesh</find>
-      <find>Harry Potter and the Sorcerer’s Stone</find>
-      <find>The Fellowship of the Ring</find>
-      <find>The Two Towers</find>
-      <find>Midnight’s Children</find>
-      <find>Bible: The New Testament</find>
-      <find>A Storm of Swords</find>
-      <find>Catching Fire</find>
-      <find>The Return of the King</find>
-      <find>Bible: The Old Testament</find>
-      <find>A Perfect Day for Bananafish</find>
-      <find>The Pilgrim’s Progress</find>
-      <find>Through the Looking-Glass</find>
-      <find>A Room of One’s Own</find>
-      <find>Poisonwood Bible</find>
-      <find>character</find>
-      <find>movie</find>
+      <find>ITEM_PIPELINES</find>
+      <find>err</find>
+      <find>http</find>
+      <find>pyvenv</find>
+      <find>DS_Store</find>
+      <find>idea</find>
+      <find>self.index</find>
+      <find>self.pagination_links</find>
+      <find>Where the Wild Things</find>
+      <find>saved</find>
+      <find>further_study</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/crawler_test.py" />
+        <option value="$PROJECT_DIR$/sparknotes_crawler.py" />
+        <option value="$PROJECT_DIR$/goodreads_title_crawler.py" />
+        <option value="$PROJECT_DIR$/crawler/sparknotes_crawler.py" />
         <option value="$PROJECT_DIR$/good_read_shelve.json" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/goodreads/index.py" />
-        <option value="$PROJECT_DIR$/sparknotes_book_detail_sample.json" />
-        <option value="$PROJECT_DIR$/test.jl" />
-        <option value="$PROJECT_DIR$/index 2.py" />
-        <option value="$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail2.jl" />
-        <option value="$PROJECT_DIR$/index.py" />
-        <option value="$PROJECT_DIR$/query.py" />
+        <option value="$PROJECT_DIR$/good_read_shelve_except.json" />
+        <option value="$PROJECT_DIR$/crawler/goodreads_title_crawler.py" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes/html/sparknotes_lit.html" />
+        <option value="$PROJECT_DIR$/shelve/sparknotes_titles.json" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes/spiders/detail_spider.py" />
+        <option value="$PROJECT_DIR$/sparknotes/shelve/sparknotes_titles.json" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes_book_link.json" />
+        <option value="$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_link.json" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes/spiders/titles_spider.py" />
         <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/sparknotes/test.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes/settings.py" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes/pipelines.py" />
+        <option value="$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail.json" />
+        <option value="$PROJECT_DIR$/templates/page_query.html" />
+        <option value="$PROJECT_DIR$/templates/page_SERP.html" />
+        <option value="$PROJECT_DIR$/templates/page_targetArticle.html" />
+        <option value="$PROJECT_DIR$/goodreads/shelve/good_read_shelve_except.json" />
+        <option value="$PROJECT_DIR$/goodreads/goodreads_title_crawler.py" />
+        <option value="$PROJECT_DIR$/goodreads/shelve/good_read_title_2.json" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes/items.py" />
+        <option value="$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail_sample.json" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes/spiders/details_spider.py" />
+        <option value="$PROJECT_DIR$/sparknotes/sparknotes_book_detail_sample.json" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="49" />
-    <option name="y" value="23" />
-    <option name="width" value="1301" />
-    <option name="height" value="796" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1440" />
+    <option name="y" value="-157" />
+    <option name="width" value="1850" />
+    <option name="height" value="1057" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="132Final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="132Final" type="462c0819:PsiDirectoryNode" />
+              <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="132FinalProject" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="132Final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="132Final" type="462c0819:PsiDirectoryNode" />
+              <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="132FinalProject" type="462c0819:PsiDirectoryNode" />
               <item name="goodreads" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="132Final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="132Final" type="462c0819:PsiDirectoryNode" />
+              <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="132FinalProject" type="462c0819:PsiDirectoryNode" />
+              <item name="goodreads" type="462c0819:PsiDirectoryNode" />
+              <item name="shelve" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="132FinalProject" type="462c0819:PsiDirectoryNode" />
               <item name="sparknotes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="132Final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="132Final" type="462c0819:PsiDirectoryNode" />
+              <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="132FinalProject" type="462c0819:PsiDirectoryNode" />
               <item name="sparknotes" type="462c0819:PsiDirectoryNode" />
               <item name="shelve" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="132Final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="132Final" type="462c0819:PsiDirectoryNode" />
+              <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="132FinalProject" type="462c0819:PsiDirectoryNode" />
+              <item name="sparknotes" type="462c0819:PsiDirectoryNode" />
+              <item name="sparknotes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="132FinalProject" type="462c0819:PsiDirectoryNode" />
+              <item name="sparknotes" type="462c0819:PsiDirectoryNode" />
+              <item name="sparknotes" type="462c0819:PsiDirectoryNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="132FinalProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="132FinalProject" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last.edited.regexp" value="&lt;a class=&quot;bookTitle&quot; href=&quot;/book/show/22571259-the-honest-truth&quot;&gt;The Honest Truth (Hardcover)&lt;/a&gt;" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/crawler" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -245,8 +224,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.query">
-    <configuration name="crawler_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.details_spider">
+    <configuration name="details_spider" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="132FinalProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -254,12 +233,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sparknotes/sparknotes/spiders" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawler_test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sparknotes/sparknotes/spiders/details_spider.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -268,51 +247,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="index 2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="132FinalProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/index 2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="index (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="132FinalProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/index.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="index" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="goodreads_title_crawler (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="132FinalProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -325,7 +260,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/index 2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/goodreads/goodreads_title_crawler.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -334,7 +269,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="query" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="goodreads_title_crawler" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="132FinalProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -347,7 +282,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/query.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawler/goodreads_title_crawler.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -358,11 +293,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.query" />
-        <item itemvalue="Python.index (1)" />
-        <item itemvalue="Python.index" />
-        <item itemvalue="Python.index 2" />
-        <item itemvalue="Python.crawler_test" />
+        <item itemvalue="Python.details_spider" />
+        <item itemvalue="Python.goodreads_title_crawler (1)" />
+        <item itemvalue="Python.goodreads_title_crawler" />
       </list>
     </recent_temporary>
   </component>
@@ -371,47 +304,55 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="612e5030-f47b-4e07-8b33-57c5444e93f4" name="Default Changelist" comment="" />
-      <created>1555644906363</created>
+      <changelist id="e91b2863-d41c-468e-b913-66ace8cb64c3" name="Default Changelist" comment="" />
+      <created>1555709380934</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1555644906363</updated>
-      <workItem from="1555644907450" duration="4584000" />
-      <workItem from="1555699315336" duration="79000" />
-      <workItem from="1555699421999" duration="28397000" />
+      <updated>1555709380934</updated>
+      <workItem from="1555709383887" duration="3033000" />
+      <workItem from="1555789190678" duration="29236000" />
+      <workItem from="1556132298055" duration="358000" />
+      <workItem from="1556132965972" duration="217000" />
+      <workItem from="1556133720818" duration="399000" />
+      <workItem from="1556134133284" duration="19252000" />
+      <workItem from="1556392302740" duration="105000" />
+      <workItem from="1557340467032" duration="41000" />
+      <workItem from="1557341481202" duration="15635000" />
     </task>
-    <task id="LOCAL-00001" summary="readme index.py">
-      <created>1557341882647</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1557341882647</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33060000" />
+    <option name="totallyTimeSpent" value="68276000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="23" width="1301" height="796" extended-state="0" />
+    <frame x="1440" y="-157" width="1889" height="1057" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26290706" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17379534" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.51278406" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30569947" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5566265" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2599432" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.22487047" />
+      <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.2580311" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32891566" />
+      <window_info anchor="bottom" id="TODO" order="11" weight="0.32891566" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.33734939" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -419,12 +360,12 @@
       <window_info anchor="right" id="Database" order="4" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17095852" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10714286" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5212435" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32953367" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -433,8 +374,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.036144577" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.22487047" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.39067358" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -445,182 +386,333 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="readme index.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="readme index.py" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <default-breakpoints>
-        <breakpoint type="python-exception">
-          <properties notifyOnTerminate="true" exception="BaseException">
-            <option name="notifyOnTerminate" value="true" />
-          </properties>
-        </breakpoint>
-      </default-breakpoints>
-    </breakpoint-manager>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/132FinalProject$goodreads_title_crawler__1_.coverage" NAME="goodreads_title_crawler (1) Coverage Results" MODIFIED="1557351153086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/goodreads" />
+    <SUITE FILE_PATH="coverage/132FinalProject$details_spider.coverage" NAME="details_spider Coverage Results" MODIFIED="1557375001408" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sparknotes/sparknotes/spiders" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index 2.py" />
-    <entry file="file://$PROJECT_DIR$/great_book.py">
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/python_stubs/-1199943126/time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="301" column="35" lean-forward="true" selection-start-line="301" selection-start-column="35" selection-end-line="301" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawler/great_book.py" />
+    <entry file="file://$PROJECT_DIR$/tutorial/pipelines.py" />
+    <entry file="file://$PROJECT_DIR$/tutorial/middlewares.py" />
+    <entry file="file://$PROJECT_DIR$/tutorial/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/tutorial/items.py" />
+    <entry file="file://$PROJECT_DIR$/tutorial/settings.py" />
+    <entry file="file://$PROJECT_DIR$/crawler/sparknotes_crawler.py" />
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/good_read_shelve.json" />
+    <entry file="file://$PROJECT_DIR$/good_read_shelve_except.json" />
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/spiders/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/titles.json" />
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/html/sparknotes_lit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3171">
+          <caret line="5561" selection-start-line="5561" selection-end-line="5561" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#p#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#1;n#p#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelve/sparknotes_titles.json" />
+    <entry file="file://$PROJECT_DIR$/sparknotes/scrapy.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes_book_link.json" />
+    <entry file="file:///usr/local/lib/python3.7/site-packages/scrapy/exporters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="87" column="60" lean-forward="true" selection-start-line="87" selection-start-column="60" selection-end-line="87" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_link.json" />
+    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_links.jl" />
+    <entry file="file://$PROJECT_DIR$/sparknotes/test.json" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/page_targetArticle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="678">
+          <caret line="45" column="39" selection-start-line="45" selection-start-column="39" selection-end-line="45" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/page_SERP.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="190" selection-start-line="190" selection-end-line="190" />
+          <folding>
+            <element signature="n#style#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#2;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#2;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#form#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/page_query.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/spiders/titles_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shelve/good_read_shelve.json">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        <state relative-caret-position="209">
+          <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawler_test.py">
+    <entry file="file://$PROJECT_DIR$/goodreads/shelve/good_read_title_2.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        <state relative-caret-position="316">
+          <caret line="46499" column="33" lean-forward="true" selection-start-line="46499" selection-start-column="33" selection-end-line="46499" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_link.jl">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/goodreads/shelve/good_read_title.json">
+    <entry file="file://$PROJECT_DIR$/goodreads/shelve/good_read_shelve_except.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76646" />
+        <state relative-caret-position="322">
+          <caret line="24" column="33" lean-forward="true" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_titles.json">
+    <entry file="file://$PROJECT_DIR$/goodreads/goodreads_title_crawler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3346" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../132PA5/index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="115" selection-end-line="157" />
+        <state relative-caret-position="304">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail_sample.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="872">
-          <caret line="132" column="5" selection-start-line="132" selection-start-column="5" selection-end-line="132" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index 2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="91" column="37" lean-forward="true" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes_book_detail_sample.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index 2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="81" column="11" lean-forward="true" selection-start-line="81" selection-start-column="11" selection-end-line="81" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail2.jl">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/films_corpus.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1986" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../132PA5/query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2361" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes_book_detail.jl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
+        <state relative-caret-position="57">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/sparknotes_book_detail_sample.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        <state relative-caret-position="-1481" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="252" column="25" selection-start-line="252" selection-start-column="25" selection-end-line="252" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail.jl">
+    <entry file="file://$PROJECT_DIR$/sparknotes_book_detail.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4980">
-          <caret line="332" column="3091" selection-start-line="332" selection-start-column="3004" selection-end-line="332" selection-end-column="3091" />
+        <state relative-caret-position="473">
+          <caret line="579" selection-start-line="579" selection-end-line="579" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/page_query.html">
+    <entry file="file://$PROJECT_DIR$/data_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail2.jl">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.py">
+    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_titles.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="167" column="56" selection-start-line="167" selection-start-column="56" selection-end-line="167" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="114">
+          <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/goodreads/shelve/good_read_title.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="37" lean-forward="true" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1064">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="75" column="19" lean-forward="true" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
+        <state relative-caret-position="494">
+          <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
           <folding>
             <element signature="e#489#498#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_link.jl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail.jl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="566" column="14" selection-start-line="566" selection-start-column="14" selection-end-line="566" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="348">
-            <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="303">
+            <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="32" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail_sample.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/shelve/sparknotes_book_detail_sample.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="158" column="33" selection-start-line="158" selection-start-column="33" selection-end-line="158" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes_book_detail_sample.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="173" column="14" lean-forward="true" selection-start-line="173" selection-start-column="14" selection-end-line="173" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sparknotes/sparknotes/spiders/details_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="207" column="23" lean-forward="true" selection-start-line="207" selection-start-column="23" selection-end-line="207" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

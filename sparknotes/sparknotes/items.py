@@ -24,3 +24,4 @@ class Book(scrapy.Item):
     character_list = scrapy.Field()
     main_ideas = scrapy.Field()
     quotes = scrapy.Field()
+    further_study = scrapy.Field()

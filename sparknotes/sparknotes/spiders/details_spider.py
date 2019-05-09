@@ -13,7 +13,7 @@ class DetailsSpider(scrapy.Spider):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.file_name = 'shelve/sparknotes_book_detail2.jl'
+        self.file_name = 'sparknotes_book_detail_sample.json'
         self.domain = 'https://www.sparknotes.com'
         saved = {}
         self.saved = saved
@@ -22,8 +22,8 @@ class DetailsSpider(scrapy.Spider):
                 saved[obj['title']] = True
 
     def start_requests(self):
-        # yield scrapy.Request(url='https://www.sparknotes.com/lit/1984/', callback=self.parse)
         print('start')
+        # yield scrapy.Request(url='https://www.sparknotes.com/lit/1984/', callback=self.parse)
         with jsonlines.open('shelve/sparknotes_book_link.jl') as reader:
             for index, obj in enumerate(reader):
                 if obj['title'] in self.saved:
@@ -160,6 +160,51 @@ class DetailsSpider(scrapy.Spider):
                 yield request
             else:
                 payload['book']['quotes'] = payload['quotes']
-                yield payload['book']
+                payload['index'] = 0
+
+                request = scrapy.Request(url=payload['further_study']['context_link'],
+                                         callback=self.get_further_study_context)
+                request.meta['payload'] = payload
+                yield request
         else:
-            yield payload['book']
+            request = scrapy.Request(url=payload['further_study']['context_link'],
+                                     callback=self.get_further_study_context)
+            request.meta['payload'] = payload
+            yield request
+
+    def get_further_study_context(self, response):
+        payload = response.meta['payload']
+
+        if response.status == 200:
+            context = response.xpath('//*[@id="context"]/descendant-or-self::*/text()').extract()
+            payload['further_study']['context'] = context
+
+            payload['book']['further_study'] = payload['further_study']
+
+            request = scrapy.Request(url=payload['further_study']['study-questions_link'],
+                                     callback=self.get_further_study_question)
+            request.meta['payload'] = payload
+
+            yield request
+
+        else:
+            request = scrapy.Request(url=payload['further_study']['study-questions_link'],
+                                     callback=self.get_further_study_question)
+            request.meta['payload'] = payload
+            yield request
+
+    def get_further_study_question(self, response):
+        payload = response.meta['payload']
+
+        if response.status == 200:
+            for question_block in response.xpath('/html/body/div[6]/div[1]/div[@class="content_txt"]'):
+                question = question_block.xpath(
+                    './/*[@class="quote-line"]/p/descendant-or-self::*/text()').extract()
+                question = ' '.join(list(map(str.strip, question)))
+
+                answer = question_block.xpath('./div[2]/following-sibling::p/text()').extract()
+                payload['further_study']['study-questions'][question] = answer
+
+            payload['book']['further_study'] = payload['further_study']
+
+        yield payload['book']
