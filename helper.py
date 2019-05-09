@@ -90,9 +90,17 @@ def merge_good_spark(jl_file, json_file):
         for book in file1_temp:
             book_name1 = set([stemmer.stem(word) for word in book['name'].split('')])
             book_name2 = set([stemmer.stem(word) for word in file2_temp.split('')])
-            # if book_name1 == book_name2:
-            #     merger_file[book['name']] =
+            if book_name1 == book_name2:
+                merger_file[book['name']] = book
+                merger_file[book['name']]['rate'] = book_name2
         writer.write()
+
+
+def generate_token_dict(corpus):
+    res = set()
+    with jsonlines.open(corpus) as reader:
+        for obj in reader:
+            pass
 
 
 if __name__ == '__main__':
