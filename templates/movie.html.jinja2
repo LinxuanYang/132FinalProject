@@ -1,0 +1,34 @@
+{% extends 'layout.html.jinja2' %}
+
+{% block body %}
+    <button type="button" class="btn btn-primary back">back</button>
+    <div class="card search_result">
+        <div class="card-body">
+            <h5 class="card-title">{{ result.title[0] }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                Director:{{ ','.join(result.director or []) }}
+                <br>
+                Starring:{{ ','.join(result.starring or []) }}
+                <br>
+                Location:{{ ','.join(result.location or []) }}
+                <br>
+                Running Time(mins):{{ result.runtime or [] }}
+                <br>
+                Country:{{ ','.join(result.country or [] ) }}
+                <br>
+                Language:{{ ','.join(result.language or []) }}
+            </h6>
+            <p class="card-text">
+                Detail:{{ result.text }}</p>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary back">back</button>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $('.back').on('click', function () {
+            history.back()
+        })
+    </script>
+{% endblock %}
