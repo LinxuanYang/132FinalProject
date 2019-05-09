@@ -107,5 +107,35 @@ def documents(res):
     return json.dump(book.to_dict())
 
 
+@app.route('/hover', methods=['POST'])
+def hover_data_collect():
+    form = request.form
+    query_id = form.get('queryId', '')
+    document_id = form.get('id', '')
+    time = form.get('time', 3000)
+
+
+@app.route('/click', methods=['POST'])
+def click_through():
+    form = request.form
+    query_id = form.get('queryId', '')
+    document_id = form.get('id', '')
+
+
+@app.route('/page_stay', methods=['POST'])
+def page_stay():
+    form = request.form
+    query_id = form.get('queryId', '')
+    document_id = form.get('id', '')
+    time = form.get('time', 3000)
+
+
+@app.route('/drag', methods=['POST'])
+def drag_over_item():
+    form = request.form
+    query_id = form.get('queryId', '')
+    document_id = form.get('id', '')
+
+
 if __name__ == "__main__":
     app.run()

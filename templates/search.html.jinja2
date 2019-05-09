@@ -1,0 +1,85 @@
+{% extends 'layout.html.jinja2' %}
+
+{% block body %}
+    <form action="/results" method="post">
+        <div class="form-group">
+            <div class="form-group">
+                <label for="text">text</label>
+                <input type="text" class="form-control" id="text" aria-describedby="textSearch"
+                       placeholder="Enter the text you want to search" name="text" value="{{ show["tmp_text"] |e }}"/>
+            </div>
+            <div class="form-group">
+                <label for="starring">starring</label>
+                <input type="text" class="form-control" id="starring" aria-describedby="textSearch"
+                       placeholder="Enter the starring you want to search" name="starring"
+                       value="{{ show["tmp_star"]|e }}"></div>
+            <div class="form-group">
+                <label for="language">language</label>
+                <input type="text" class="form-control" id="language" aria-describedby="textSearch"
+                       placeholder="Enter the language you want to search" name="language"
+                       value="{{ show["tmp_language"] |e }}"></div>
+
+            <div class="form-group">
+                <label for="categories">categories</label><select type="text" class="form-control" id="categories"
+                                                                  aria-describedby="textSearch"
+                                                                  placeholder="Enter the categories you want to search"
+                                                                  name="categories"
+                                                                  value="{{ show["tmp_category"]|e }}">
+                <option value="">all</option>
+                {% for cat in category_choices %}
+                    <option value="{{ cat|e }}"
+                            {% if show["tmp_category"]==cat %}selected{% endif %}>{{ cat|e }}</option>
+                {% endfor %}
+            </select></div>
+            <div class="form-group">
+                <label for="country">country</label> <select type="text" class="form-control" id="country"
+                                                             aria-describedby="textSearch"
+                                                             placeholder="Enter the country you want to search"
+                                                             name="country"
+                                                             value="{{ show["tmp_country"] |e }}">
+
+                <option value="">all</option>
+                {% for country in country_choices %}
+                    <option value="{{ country|e }}"
+                            {% if show["tmp_country"]==country %}selected{% endif %}>{{ country|e }}</option>
+                {% endfor %}
+            </select></div>
+            <div class="form-group">
+                <label for="director">director</label><input type="text" class="form-control" id="director"
+                                                             aria-describedby="textSearch"
+                                                             placeholder="Enter the director you want to search"
+                                                             name="director"
+                                                             value="{{ show["tmp_director"] |e }}"></div>
+            <div class="form-group">
+                <label for="location">location</label><select type="text" class="form-control" id="location"
+                                                             aria-describedby="textSearch"
+                                                             placeholder="Enter the location you want to search"
+                                                             name="location"
+                                                              value="{{ show["tmp_location"]|e }}">
+                 <option value="">all</option>
+                {% for location in location_choices %}
+                    <option value="{{ country|e }}"
+                            {% if show["tmp_location"]==location %}selected{% endif %}>{{ location|e }}</option>
+                {% endfor %}
+
+            </select></div>
+            <div class="form-group">
+                <label for="max_time">max time</label><input type="number" class="form-control" id="max_time"
+                                                             aria-describedby="textSearch"
+                                                             placeholder="Enter the time you want to search"
+                                                             name="max_time"
+                                                             value="{{ show["tmp_max"] or 9999 }}"></div>
+            <div class="form-group">
+                <label for="min_time">min time</label><input type="number" class="form-control" id="min_time"
+                                                             aria-describedby="textSearch"
+                                                             placeholder="Enter the time you want to search"
+                                                             name="min_time"
+                                                             value="{{ show["tmp_min"] or 0 }}"></div>
+            <input type="hidden" name="page_number" id="page_number">
+            <br>
+            <button type="submit" class="btn btn-primary" id="search">search</button>
+        </div>
+        {% block search_result %}
+        {% endblock %}
+    </form>
+{% endblock %}
