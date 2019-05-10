@@ -1,6 +1,8 @@
+import datetime
 import json
 import jsonlines
 import nltk
+import string
 from nltk.stem.snowball import SnowballStemmer
 import ast
 from index import makeup_fields
@@ -32,26 +34,69 @@ def parse_result(response_object):
     return result_list
 
 
+def reformat_goodread(json_file='goodreads/shelve/good_read_title_2.json'):
+    res = {}
+    with open(json_file, 'r') as f:
+        goodread = json.load(f)
+
+    for cat, book in goodread.items():
+        for title, content in book.items():
+            if not res.get(title):
+                res[title] = content
+                res[title]['rate'] = ' ('.join([x[:-2] for x in res[title]['rate'][:2]]).strip() + ')'
+            if res[title].get('category'):
+                res[title]['category'].append(cat)
+            else:
+                res[title]['category'] = [cat]
+    with open('goodreads/shelve/reformed_goodread.json', 'w') as f:
+        json.dump(res, f)
+
+
 def merge_good_spark(jl_file, json_file):
+    begin_time = datetime.datetime.now()
+
     stemmer = SnowballStemmer("english")
-    file1_temp = {}
-    file2_temp = {}
+    jl_file_temp = {}
+    json_file_temp = {}
+    goodread_name_token_map = {}
 
     with jsonlines.open(jl_file) as reader:
         for obj in reader:
-            file1_temp[obj['name']] = obj
-    with json.load(json_file) as f:
-        file2_temp = f
+            jl_file_temp[obj['title']] = obj
+    with open(json_file, 'r') as f:
+        json_file_temp = json.load(f)
 
-    with jsonlines.open('merged_sparknote.jl', mode='w') as writer:
+    for name in json_file_temp.keys():
+        token_name = ' '.join(
+            [stemmer.stem(word) for word in nltk.word_tokenize(name) if word not in string.punctuation])
+        goodread_name_token_map[token_name] = name
+
+    with jsonlines.open('sparknotes/shelve/merged_sparknote.jl', mode='w') as writer:
         merger_file = {}
-        for book in file1_temp:
-            book_name1 = set([stemmer.stem(word) for word in book['name'].split('')])
-            book_name2 = set([stemmer.stem(word) for word in file2_temp.split('')])
-            if book_name1 == book_name2:
-                merger_file[book['name']] = book
-                merger_file[book['name']]['rate'] = book_name2
-        writer.write()
+        count = 0
+        for name, content in jl_file_temp.items():
+            print("processing: ", name)
+            if name in json_file_temp.keys():
+                merger_file[name] = {**content,
+                                     'rate': json_file_temp[name]['rate'],
+                                     'category': json_file_temp[name]['category']
+                                     }
+                count += 1
+            else:
+                spark_token_name = ' '.join(
+                    [stemmer.stem(word) for word in nltk.word_tokenize(name) if word not in string.punctuation])
+                goodread_name = goodread_name_token_map.get(spark_token_name)
+                if goodread_name:
+                    merger_file[name] = {**content,
+                                         'rate': json_file_temp[goodread_name]['rate'],
+                                         'category': json_file_temp[goodread_name]['category']
+                                         }
+                    count += 1
+                else:
+                    merger_file[name] = content
+            writer.write(merger_file[name])
+
+    print(count, " files merged in ", datetime.datetime.now() - begin_time)
 
 
 def generate_token_dict(corpus):
@@ -62,7 +107,6 @@ def generate_token_dict(corpus):
             for field in [book.get(key) for key in
                           ['title', 'author', 'summary_sentence', 'summary', 'character_list_str', 'quote_str',
                            'main_ideas_str']]:
-                print(field)
                 if field:
                     res = res | set(nltk.word_tokenize(field.lower()))
     with open('token_dict.txt', 'w') as output:
@@ -81,4 +125,7 @@ def boost_fields(boost_weight):
 
 if __name__ == '__main__':
     # generate_token_dict('sparknotes/shelve/sparknotes_book_detail_2.jl')
+    # reformat_goodread()
+    merge_good_spark('sparknotes/shelve/sparknotes_book_detail_2.jl', 'goodreads/shelve/reformed_goodread.json')
+
     pass

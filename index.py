@@ -135,7 +135,7 @@ def makeup_fields(dict):
             character_intro = ' '.join(map(lambda x: x.strip().replace('\n', ' '), intro))
             character_dict[character] = character_intro
             character_str += character + character_intro + '\n'
-        dict["character_list"] = character_dict  # {name1:discription,name2:discription,....}
+        dict["character_list"] = character_dict  # {name1: description, name2: description, ...}
         dict["character_list_str"] = character_str
     else:
         dict['character_list'] = {}
@@ -182,7 +182,7 @@ def makeup_fields(dict):
 
 
 # Populate the index
-def buildIndex():
+def build_index():
     film_index = Index('book_index')
     film_index.document(Book)
 
@@ -225,7 +225,7 @@ def buildIndex():
     helpers.bulk(es, actions())
 
 
-def build_summary_Index():
+def build_summary_index():
     summary_index = Index("summary_index")
     summary_index.document(Summary)
 
@@ -257,7 +257,7 @@ def build_summary_Index():
     helpers.bulk(es, actions())
 
 
-def build_summary_sentence_Index():
+def build_summary_sentence_index():
     summary_sentence_index = Index('summary_sentence_index')
     summary_sentence_index.document(Summary_Sentence)
 
@@ -291,7 +291,7 @@ def build_summary_sentence_Index():
     helpers.bulk(es, actions())
 
 
-def build_main_ideas_Index():
+def build_main_ideas_index():
     main_ideas_index = Index('main_ideas_index')
     main_ideas_index.document(Main_Ideas)
 
@@ -330,7 +330,7 @@ def build_main_ideas_Index():
 
 
 # character_list
-def build_character_Index():
+def build_character_index():
     film_index = Index('character_index')
     film_index.document(Book)
 
@@ -373,7 +373,7 @@ def build_character_Index():
 
 
 # quotes
-def build_quotes_Index():
+def build_quotes_index():
     quotes_index = Index('quotes_index')
     quotes_index.document(Quotes)
 
@@ -411,7 +411,7 @@ def build_quotes_Index():
 
 
 # author
-def build_author_Index():
+def build_author_index():
     author_index = Index('author_index')
     author_index.document(Author)
 
@@ -444,7 +444,7 @@ def build_author_Index():
 
 
 # title
-def build_title_Index():
+def build_title_index():
     title_index = Index('title_index')
     title_index.document(Title)
 
@@ -479,14 +479,14 @@ def build_title_Index():
 # command line invocation builds index and prints the running time.
 def main():
     start_time = time.time()
-    buildIndex()
-    build_title_Index()
-    build_author_Index()
-    build_summary_sentence_Index()
-    build_summary_Index()
-    build_main_ideas_Index()
-    build_character_Index()
-    build_quotes_Index()
+    build_index()
+    build_title_index()
+    build_author_index()
+    build_summary_sentence_index()
+    build_summary_index()
+    build_main_ideas_index()
+    build_character_index()
+    build_quotes_index()
     print("=== Built index in %s seconds ===" % (time.time() - start_time))
 
 
