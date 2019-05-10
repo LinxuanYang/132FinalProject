@@ -25,7 +25,7 @@ import helper
 
 app = Flask(__name__, static_folder='public', static_url_path='')
 index_name = 'book_index'
-
+# index_name = 'sample_film_index'
 
 # display query page
 @app.route("/")
@@ -65,13 +65,12 @@ def results():
 
     search = Search(index=index_name)
 
-    fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes',
-                   'picture']
+    fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes', 'picture']
 
     # + AND -
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # SIMPLE QUERY STRING supports '|', '+', '-', "" phrase search， '*'， etc.
-    s = search.query('simple_query_string', fields=['summary'], query=query, default_operator='and')
+    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
 
     # highlight
     helper.highlight(s, fields_list)

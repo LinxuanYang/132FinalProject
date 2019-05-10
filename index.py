@@ -222,10 +222,10 @@ def buildIndex():
     def actions():
 
         for mid in range(1, size + 1):
-            book = Book(meta={
+            yield {
                 "_index": "book_index",
                 "_type": 'doc',
-                "_id": 'b' + str(mid)}, **{
+                "_id": 'b'+ str(mid),
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
@@ -235,10 +235,9 @@ def buildIndex():
                 "main_ideas": books[str(mid)]['main_ideas_str'],
                 "quotes": books[str(mid)]['quotes_str'],
                 "picture": books[str(mid)]['picture']
-            })
-            book.save()
+            }
 
-    # helpers.bulk(es, actions())
+    helpers.bulk(es, actions())
 
 
 def build_summary_Index():
@@ -260,18 +259,17 @@ def build_summary_Index():
     def actions():
 
         for mid in range(1, size + 1):
-            summary = Summary(meta={
+            yield {
                 "_index": "summary_index",
                 "_type": 'doc',
-                "_id": 's' + str(mid)}, **{
+                "_id": 's'+ str(mid),
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
                 "summary": books[str(mid)]['summary']
-            })
-        summary.save()
+            }
 
-    # helpers.bulk(es, actions())
+    helpers.bulk(es, actions())
 
 
 def build_summary_sentence_Index():
@@ -295,18 +293,17 @@ def build_summary_sentence_Index():
     def actions():
 
         for mid in range(1, size + 1):
-            ss = Summary_Sentence(meta={
+            yield {
                 "_index": "summary_sentence_index",
                 "_type": 'doc',
-                "_id": 'ss' + str(mid)}, **{
+                "_id": 'ss'+ str(mid),
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
                 "summary_sentence": books[str(mid)]['summary_sentence']
-            })
-            ss.save()
+            }
 
-    # helpers.bulk(es, actions())
+    helpers.bulk(es, actions())
 
 
 def build_main_ideas_Index():
@@ -332,25 +329,24 @@ def build_main_ideas_Index():
         for mid in range(1, size + 1):
             main_ideas_dict = books[str(mid)]["main_ideas"]
             for theme in main_ideas_dict:
-                main = Main_Ideas(meta={
+                yield {
+
                     "_index": "main_ideas_index",
                     "_type": 'doc',
-                    "_id": str(mid) + theme[:20]}, **{
+                    "_id": str(mid) + theme[:20],
                     "book_id": str(mid),
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
                     "theme": theme,
                     "theme_explaination": main_ideas_dict[theme]
-                })
-                main.save()
+                }
 
-
-# helpers.bulk(es, actions())
+    helpers.bulk(es, actions())
 
 
 # character_list
 def build_character_Index():
-    film_index = Index('book_index')
+    film_index = Index('character_index')
     film_index.document(Book)
 
     # Overwrite any previous version
@@ -376,19 +372,19 @@ def build_character_Index():
             character_dict = books[str(mid)]['character_list']
 
             for c in character_dict:
-                ch = Character(meta={
+                yield {
+
                     "_index": "main_ideas_index",
                     "_type": 'doc',
-                    "_id": str(mid) + c}, **{
+                    "_id": str(mid) + c,
                     "book_id": str(mid),
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
                     "chracter_name": c,
                     "character_discription": character_dict[c]
-                })
-                ch.save()
+                }
 
-    # helpers.bulk(es, actions())
+    helpers.bulk(es, actions())
 
 
 # quotes
@@ -415,19 +411,18 @@ def build_quotes_Index():
         for mid in range(1, size + 1):
             quote_dict = books[str(mid)]["quotes"]
             for q in quote_dict:
-                quote = Quotes(meta={
+                yield {
                     "_index": "quotes_index",
                     "_type": 'doc',
-                    "_id": str(mid) + q[:20]}, **{
+                    "_id": str(mid) + q[:20],
                     "book_id": str(mid),
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
                     "quote": q,
                     "quote_explianation": quote_dict[q]
-                })
-                quote.save()
+                }
 
-    # helpers.bulk(es, actions())
+    helpers.bulk(es, actions())
 
 
 # author
@@ -452,16 +447,15 @@ def build_author_Index():
     def actions():
 
         for mid in range(1, size + 1):
-            author = Author(meta={
+            yield {
                 "_index": "author_index",
                 "_type": 'doc',
-                "_id": str(mid)}, **{
+                "_id": str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author']
-            })
-            author.save()
+            }
 
-    # helpers.bulk(es, actions())
+    helpers.bulk(es, actions())
 
 
 # title
@@ -486,15 +480,15 @@ def build_title_Index():
     def actions():
 
         for mid in range(1, size + 1):
-            title = Title(meta={
+            yield {
                 "_index": "title_index",
                 "_type": 'doc',
-                "_id": 't' + str(mid)}, **{
+                "_id": 't'+ str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author']
-            })
+            }
 
-    # helpers.bulk(es, actions())
+    helpers.bulk(es, actions())
 
 
 # command line invocation builds index and prints the running time.
