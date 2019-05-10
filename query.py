@@ -63,7 +63,7 @@ def results():
 
     query = page.get('query') or ""
 
-    search = Search(index="simple_film_index")
+    search = Search(index=index_name)
 
     fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes',
                    'picture']
@@ -90,7 +90,7 @@ def results():
     result_list = helper.parse_result(response)
 
     result_num = response.hits.total
-    return json.dump({result_list: result_list, result_num: result_num})
+    return str({result_list: result_list, result_num: result_num})
 
 
 # display a particular document given a result number
@@ -166,4 +166,4 @@ def hint():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
