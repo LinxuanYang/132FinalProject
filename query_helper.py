@@ -54,12 +54,7 @@ def merge_good_spark(jl_file, json_file):
         writer.write()
 
 
-def generate_token_dict(corpus='sparknotes/shelve/sparknotes_book_detail_2.jl'):
-    """
-    To open token_dict as set:
-        with open('token_dict.txt', 'r') as f:
-            token_set = ast.literal_eval(f.read())
-    """
+def generate_token_dict(corpus):
     res = set()
     with jsonlines.open(corpus) as reader:
         for obj in reader:
@@ -74,10 +69,16 @@ def generate_token_dict(corpus='sparknotes/shelve/sparknotes_book_detail_2.jl'):
         output.write(str(res))
 
 
+def load_token_dict(token_dict='token_dict.txt'):
+    with open('token_dict.txt', 'r') as f:
+        token_set = ast.literal_eval(f.read())
+    return token_set
+
+
 def boost_fields(boost_weight):
     return list(map(lambda x, y: x + '^' + str(y), fields_list, boost_weight))
 
 
 if __name__ == '__main__':
+    # generate_token_dict('sparknotes/shelve/sparknotes_book_detail_2.jl')
     pass
-    # generate_token_dict()
