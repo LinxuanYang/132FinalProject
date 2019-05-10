@@ -194,7 +194,7 @@ def buildIndex():
     # Open the json film corpus
     books = {}
     mid = 1
-    with open('./sparknotes/shelve/sparknotes_book_detail.jl') as data_file:
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl',encoding='UTF-8') as data_file:
         # load books from json file into dictionary
 
         for line in data_file:
@@ -234,7 +234,7 @@ def build_summary_Index():
 
     books = {}
     mid = 1
-    with open('./sparknotes/shelve/sparknotes_book_detail.jl') as data_file:
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl',encoding='UTF-8') as data_file:
         for line in data_file:
             books[str(mid)] = json.loads(line)
             books[str(mid)] = makeup_fields(books[str(mid)])
@@ -267,7 +267,7 @@ def build_summary_sentence_Index():
 
     books = {}
     mid = 1
-    with open('./sparknotes/shelve/sparknotes_book_detail.jl') as data_file:
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl', encoding='UTF-8') as data_file:
 
         for line in data_file:
             books[str(mid)] = json.loads(line)
@@ -301,7 +301,7 @@ def build_main_ideas_Index():
 
     books = {}
     mid = 1
-    with open('./sparknotes/shelve/sparknotes_book_detail.jl') as data_file:
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl',encoding='UTF-8') as data_file:
 
         for line in data_file:
             books[str(mid)] = json.loads(line)
@@ -342,7 +342,7 @@ def build_character_Index():
     # Open the json film corpus
     books = {}
     mid = 1
-    with open('./sparknotes/shelve/sparknotes_book_detail.jl') as data_file:
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl',encoding='UTF-8') as data_file:
         # load books from json file into dictionary
 
         for line in data_file:
@@ -383,7 +383,7 @@ def build_quotes_Index():
 
     books = {}
     mid = 1
-    with open('./sparknotes/shelve/sparknotes_book_detail.jl') as data_file:
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl',encoding='UTF-8') as data_file:
 
         for line in data_file:
             books[str(mid)] = json.loads(line)
@@ -421,7 +421,7 @@ def build_author_Index():
 
     books = {}
     mid = 1
-    with open('./sparknotes/shelve/sparknotes_book_detail.jl') as data_file:
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl',encoding='UTF-8') as data_file:
 
         for line in data_file:
             books[str(mid)] = json.loads(line)
@@ -454,7 +454,7 @@ def build_title_Index():
 
     books = {}
     mid = 1
-    with open('./sparknotes/shelve/sparknotes_book_detail.jl') as data_file:
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl',encoding='UTF-8') as data_file:
 
         for line in data_file:
             books[str(mid)] = json.loads(line)

@@ -1,4 +1,3 @@
-
 """
 This module implements a (partial, sample) query interface for elasticsearch movie search. 
 You will need to rewrite and expand sections to support the types of queries over the fields in your UI.
@@ -21,8 +20,12 @@ from elasticsearch_dsl import Search
 import query_helper
 from query_helper import index_name, fields_list
 from booster_helper import get_classifier
+from data_base import Query, Hover, Click, Stay, Drag
+from playhouse.shortcuts import model_to_dict, dict_to_model
 
 app = Flask(__name__, static_folder='public', static_url_path='')
+
+
 # index_name = 'sample_film_index'
 
 # display query page
@@ -82,7 +85,7 @@ def results():
     result_list = query_helper.parse_result(response)
 
     result_num = response.hits.total
-    return json.dumps({'result_list': result_list, 'result_num': result_num })
+    return json.dumps({'result_list': result_list, 'result_num': result_num})
 
 
 # display a particular document given a result number
@@ -106,6 +109,9 @@ def hover_data_collect():
     query_id = form.get('queryId', '')
     document_id = form.get('id', '')
     time = form.get('time', 3000)
+    hover = Hover(query_id=query_id, document_id=document_id, duration=time)
+    hover.save()
+    return jsonify(model_to_dict(hover))
 
 
 # this api should return json
@@ -114,6 +120,9 @@ def click_through():
     form = request.form
     query_id = form.get('queryId', '')
     document_id = form.get('id', '')
+    click = Click(query_id=query_id, document_id=document_id)
+    click.save()
+    return jsonify(model_to_dict(click))
 
 
 # this api should return json
@@ -123,6 +132,9 @@ def page_stay():
     query_id = form.get('queryId', '')
     document_id = form.get('id', '')
     time = form.get('time', 3000)
+    stay = Stay(query_id=query_id, document_id=document_id, duration=time)
+    stay.save()
+    return jsonify(model_to_dict(stay))
 
 
 # this api should return json
@@ -131,7 +143,9 @@ def drag_over_item():
     form = request.form
     query_id = form.get('queryId', '')
     document_id = form.get('id', '')
-
+    drag = Drag(query_id=query_id, document_id=document_id)
+    drag.save()
+    return jsonify(model_to_dict(drag))
 
 
 # this api should return json
@@ -147,7 +161,12 @@ def hint():
     form = request.form
     user_input = form.get('q', '')
     if len(user_input) == 0:
-        return
+        return jsonify([
+            "Google Cloud Platform",
+            "Amazon AWS",
+            "Docker",
+            "Digital Ocean"
+        ])
     else:
         user_input = user_input.lower()
         last_word = user_input[user_input.rindex(' ') + 1:]

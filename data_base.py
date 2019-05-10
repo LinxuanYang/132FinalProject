@@ -1,16 +1,17 @@
 from peewee import *
+from playhouse.sqlite_ext import SqliteExtDatabase,JSONField
 
-db = SqliteDatabase('user_statistic.db')
+
+db = SqliteExtDatabase('user_statistic.db')
 
 
 class Query(Model):
-    name = CharField()
+    id = IntegerField(primary_key=True)
     query = CharField()
-    result = CharField()  # we store JSON here for the results
+    result = JSONField()  # we store JSON here for the results
 
     class Meta:
         database = db  # This model uses the "people.db" database.
-
 
 class Hover(Model):
     duration = BigIntegerField()
@@ -39,7 +40,6 @@ class Stay(Model):
 
 
 class Drag(Model):
-    duration = BigIntegerField()
     query_id = ForeignKeyField(Query, backref='drags')
     document_id = CharField()
 
@@ -48,4 +48,5 @@ class Drag(Model):
 
 
 db.connect()
+
 db.create_tables([Query, Hover, Click, Drag, Stay])
