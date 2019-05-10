@@ -16,15 +16,13 @@ https://elasticsearch-dsl.readthedocs.io/en/latest/search_dsl.html
 import re
 from flask import *
 from index import Book
-from pprint import pprint
-from elasticsearch_dsl import Q
 from elasticsearch_dsl.utils import AttrList
-from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
-import helper
+import query_helper
+from query_helper import index_name, fields_list
+from booster_helper import get_classifier
 
 app = Flask(__name__, static_folder='public', static_url_path='')
-index_name = 'book_index'
 # index_name = 'sample_film_index'
 
 # display query page
@@ -55,29 +53,24 @@ def search_query():
 def results():
     page = request.args
 
-    page_number = page.get('page_number') or 1
-
-    # convert the <page_number> parameter in url to integer.
-    if type(page_number) is not int:
-        page_number = int(page_number.encode('utf-8'))
-
+    page_number = int(page.get('page_number').encode('utf-8')) if page.get('page_number') is not None else 1
     query = page.get('query') or ""
-
     search = Search(index=index_name)
 
-    fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes', 'picture']
+    # BOOST FIELD WEIGHTS
+    # boost_weight = get_classifier().predict(query)
+    # fields_list = query_helper.boost_fields(boost_weight)
+    fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98]
+    fields_list = query_helper.boost_fields(fake_weight)
 
-    # + AND -
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # SIMPLE QUERY STRING supports '|', '+', '-', "" phrase search， '*'， etc.
     s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
-
     # highlight
-    helper.highlight(s, fields_list)
+    query_helper.highlight(s, fields_list)
 
     start = 0 + (page_number - 1) * 10
     end = 10 + (page_number - 1) * 10
-
     message = []
     response = s[start:end].execute()
     if response.hits.total == 0 and len(query) > 0:
@@ -86,13 +79,14 @@ def results():
         response = s[start:end].execute()
 
     # insert data into response
-    result_list = helper.parse_result(response)
+    result_list = query_helper.parse_result(response)
 
     result_num = response.hits.total
     return str({'result_list': result_list, 'result_num': result_num })
 
 
 # display a particular document given a result number
+# <res> must be b1, b2, ..., bMAXID
 @app.route("/documents/<res>", methods=['GET'])
 def documents(res):
     book = Book.get(id=res, index=index_name).to_dict()
@@ -102,7 +96,7 @@ def documents(res):
             for item in book[term]:
                 s += item + ",\n "
             book[term] = s
-    return str(book)
+    return str(book) if book else "{}"
 
 
 # this api should return json
@@ -137,6 +131,7 @@ def drag_over_item():
     form = request.form
     query_id = form.get('queryId', '')
     document_id = form.get('id', '')
+
 
 
 # this api should return json
