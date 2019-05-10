@@ -1,15 +1,14 @@
-import re
 import json
 import jsonlines
 from nltk.stem.snowball import SnowballStemmer
 
 index_name = 'book_index'
+fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes', 'picture']
 
 def highlight(search_object, field_list):
     search_object = search_object.highlight_options(pre_tags='<mark>', post_tags='</mark>')
     for field in field_list:
         search_object = search_object.highlight(field, fragment_size=999999999, number_of_fragments=1)
-
 
 def parse_result(response_object):
     result_list = {}
@@ -56,6 +55,8 @@ def generate_token_dict(corpus):
         for obj in reader:
             pass
 
-def preprocess_training_data():
-    pass
 
+def boost_fields(boost_weight):
+    res = list(map(lambda x,y:x+'^'+str(y),fields_list,boost_weight))
+    print(res)
+    return res
