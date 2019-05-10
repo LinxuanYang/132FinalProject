@@ -14,11 +14,11 @@ def highlight(search_object, field_list):
         search_object = search_object.highlight(field, fragment_size=999999999, number_of_fragments=1)
 
 def parse_result(response_object):
-    result_list = {}
+    result_list = []
     for hit in response_object.hits:
         result = {}
         result['score'] = hit.meta.score
-
+        result['id'] = hit.meta.id
         for field in hit:
             if field != 'meta':
                 result[field] = getattr(hit, field)
@@ -26,7 +26,7 @@ def parse_result(response_object):
         if 'hightlight' in hit.meta:
             for field in hit.meta.highlight:
                 result[field] = getattr(hit.meta.highlight, field)[0]
-        result_list[hit.meta.id] = result
+        result_list.append(result)
     return result_list
 
 
@@ -67,9 +67,7 @@ def generate_token_dict(corpus='sparknotes/shelve/sparknotes_book_detail_2.jl'):
 
 
 def boost_fields(boost_weight):
-    res = list(map(lambda x,y:x+'^'+str(y),fields_list,boost_weight))
-    print(res)
-    return res
+    return list(map(lambda x,y:x+'^'+str(y),fields_list,boost_weight))
 
 if __name__ == '__main__':
     # query = "this\"haha\" a\" this\" gaga \"\""
