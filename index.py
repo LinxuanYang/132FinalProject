@@ -119,45 +119,34 @@ def makeup_fields(dict):
     # print("--------------------------------------------a new article-----------------------------------------------")
     keys = list(dict.keys())
     # summary_sentence done
-    if "summary_sentence" in keys and dict["summary_sentence"]:
-        summary_sent = dict["summary_sentence"]
-        if summary_sent[0] == "\n            ":
-            summary_sent = summary_sent[1:]
-        summary_sent = " ".join(summary_sent)
-        summary_sent.replace("\n", " ")
-        dict["summary_sentence"] = summary_sent
+    summary_sentence = dict.get("summary_sentence")
+    if summary_sentence:
+        summary_sentence = ' '.join(map(str.strip, summary_sentence)).replace('  ', ' ')
+        dict["summary_sentence"] = summary_sentence
     else:
         dict["summary_sentence"] = ""
 
     # character list done
-    if "character_list" in keys:
+    character_list = dict.get('character_list')
+    if character_list:
         character_dict = {}
-        character_str = ""
-        for character in dict["character_list"]["character_list"]:
-            character_str += character + ": "
-            ch_intro = dict["character_list"]["character_list"][character]
-            ch_intro = [i.replace("\n", " ") for i in ch_intro]
-            ch_intro = " ".join(ch_intro)
-            character_str += ch_intro + "\n"
-            character_dict[character] = ch_intro
+        character_str = ''
+        for character, intro in character_list['character_list'].items():
+            character_intro = ' '.join(map(str.strip, intro)).replace('\n', ' ')
+            character_dict[character] = character_intro
+            character_str += character + character_intro + '\n'
         dict["character_list"] = character_dict  # {name1:discription,name2:discription,....}
         dict["character_list_str"] = character_str
     else:
         dict['character_list'] = {}
-        dict["character_list_str"] = "link: None\nCharacter List: None"
+        dict["character_list_str"] = "Character List: None"
 
-    # summary done
-    summary_sent = ""
-    summary_sent += "link:" + dict["summary"]["link"] + "\n"
     plot_sent = dict["summary"]["plot_overview"]
     if not plot_sent:
-        plot_sent = "Summary: None\n"
+        plot_sent = "Plot Overview: None"
     else:
-        plot_sent = [i.replace("\n", " ") for i in plot_sent[3:]]
-        plot_sent = " ".join(plot_sent)
-        plot_sent = "Summary: " + plot_sent + "\n"
-    summary_sent += plot_sent
-    dict["summary"] = summary_sent
+        plot_sent = ' '.join(map(lambda x: x.replace('\n', ''), plot_sent))
+    dict["summary"] = plot_sent
 
     # quotes done
     quotes_sent = ""
@@ -225,7 +214,7 @@ def buildIndex():
             yield {
                 "_index": "book_index",
                 "_type": 'doc',
-                "_id": 'b'+ str(mid),
+                "_id": 'b' + str(mid),
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
@@ -262,7 +251,7 @@ def build_summary_Index():
             yield {
                 "_index": "summary_index",
                 "_type": 'doc',
-                "_id": 's'+ str(mid),
+                "_id": 's' + str(mid),
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
@@ -296,7 +285,7 @@ def build_summary_sentence_Index():
             yield {
                 "_index": "summary_sentence_index",
                 "_type": 'doc',
-                "_id": 'ss'+ str(mid),
+                "_id": 'ss' + str(mid),
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
@@ -483,7 +472,7 @@ def build_title_Index():
             yield {
                 "_index": "title_index",
                 "_type": 'doc',
-                "_id": 't'+ str(mid),
+                "_id": 't' + str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author']
             }

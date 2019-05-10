@@ -1,6 +1,9 @@
 import json
 import jsonlines
+import nltk
 from nltk.stem.snowball import SnowballStemmer
+from functools import reduce
+from index import makeup_fields
 
 index_name = 'book_index'
 fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes', 'picture']
@@ -49,14 +52,34 @@ def merge_good_spark(jl_file, json_file):
         writer.write()
 
 
-def generate_token_dict(corpus):
+def generate_token_dict(corpus='sparknotes/shelve/sparknotes_book_detail_2.jl'):
     res = set()
     with jsonlines.open(corpus) as reader:
         for obj in reader:
-            pass
+            book = makeup_fields(obj)
+
+            for key in obj:
+                res.add(nltk.word_tokenize(key))
+
+                for field in key:
+                    res.add(nltk.word_tokenize(field))
+                    # pass
 
 
 def boost_fields(boost_weight):
     res = list(map(lambda x,y:x+'^'+str(y),fields_list,boost_weight))
     print(res)
     return res
+
+if __name__ == '__main__':
+    # query = "this\"haha\" a\" this\" gaga \"\""
+    # print(phrase_filter(query))
+    # query = "book title #plot summary"
+    # print(hashtag_filter(query))
+    # query = "this is cool-bad great"
+    # print(difference_filter(query))
+    # print(phrase_filter(query))
+    # query = "this is cool +must and"
+    # print(conjunction_filter(query))
+
+    generate_token_dict()
