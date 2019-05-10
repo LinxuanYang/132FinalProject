@@ -225,7 +225,7 @@ def buildIndex():
             yield {
                 "_index": "book_index",
                 "_type": 'doc',
-                "_id": mid,
+                "_id": 'b'+mid,
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
@@ -262,7 +262,7 @@ def build_summary_Index():
             yield {
                 "_index": "summary_index",
                 "_type": 'doc',
-                "_id": mid,
+                "_id": 's'+mid,
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
@@ -296,7 +296,7 @@ def build_summary_sentence_Index():
             yield {
                 "_index": "summary_sentence_index",
                 "_type": 'doc',
-                "_id": mid,
+                "_id": 'ss'+mid,
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
@@ -483,7 +483,7 @@ def build_title_Index():
             yield {
                 "_index": "title_index",
                 "_type": 'doc',
-                "_id": mid,
+                "_id": 't'+mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author']
             }
@@ -494,7 +494,6 @@ def build_title_Index():
 # command line invocation builds index and prints the running time.
 def main():
     start_time = time.time()
-    doc = Document()
     buildIndex()
     build_title_Index()
     build_author_Index()
