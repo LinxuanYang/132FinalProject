@@ -143,15 +143,28 @@ def drag_over_item():
 
 
 # this api should return json
+# return something like this
+# [
+#     "Google Cloud Platform",
+#     "Amazon AWS",
+#     "Docker",
+#     "Digital Ocean"
+# ]
 @app.route('/hint', methods=['GET'])
 def hint():
     form = request.form
-    user_input = form.get('userInput', '')
+    user_input = form.get('q', '')
     if len(user_input) == 0:
         return
     else:
         user_input = user_input.lower()
-        last_word = user_input[user_input.rindex(' ')+1:]
+        last_word = user_input[user_input.rindex(' ') + 1:]
+    return jsonify([
+        "Google Cloud Platform",
+        "Amazon AWS",
+        "Docker",
+        "Digital Ocean"
+    ])
 
 
 if __name__ == "__main__":

@@ -1,22 +1,35 @@
-from sqlite_orm.database import Database
-from sqlite_orm.field import IntegerField, BooleanField, TextField
-from sqlite_orm.table import BaseTable
+from peewee import *
+
+db = SqliteDatabase('user_statistic.db')
 
 
-class User(BaseTable):
-    __table_name__ = 'users'
+class Query(Model):
+    name = CharField()
+    birthday = DateField()
 
-    id = IntegerField(primary_key=True, auto_increment=True)  # Р°РІС‚РѕРёРЅРєСЂРµРјРµРЅС‚ РЅР° int РїРѕР»Рµ
-    name = TextField(not_null=True)
-    active = BooleanField(not_null=True, default_value=1)
+    class Meta:
+        database = db  # This model uses the "people.db" database.
 
 
-with Database("test.db") as db:
-    # create table
-    db.query(User).drop().execute()
-    db.query(User).create().execute()
+class Hover(Model):
+    class Meta:
+        database = db
 
-    user1 = User(id=1, name='User1')
-    user2 = User(id=2, name='User2')
-    user3 = User(id=3, name='User3')
-    db.query().insert(user1, user2, user3).execute()
+
+class Click(Model):
+    class Meta:
+        database = db
+
+
+class Stay(Model):
+    class Meta:
+        database = db
+
+
+class Drag(Model):
+    class Meta:
+        database = db
+
+
+db.connect()
+db.create_tables([Query, Hover, Click, Drag, Stay])
