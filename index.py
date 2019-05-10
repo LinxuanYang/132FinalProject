@@ -129,10 +129,10 @@ def makeup_fields(dict):
     # character list done
     character_list = dict.get('character_list')
     if character_list:
-        character_dict = {}
         character_str = ''
+        character_dict = {}
         for character, intro in character_list['character_list'].items():
-            character_intro = ' '.join(map(str.strip, intro)).replace('\n', ' ')
+            character_intro = ' '.join(map(lambda x: x.strip().replace('\n', ' '), intro))
             character_dict[character] = character_intro
             character_str += character + character_intro + '\n'
         dict["character_list"] = character_dict  # {name1:discription,name2:discription,....}
@@ -150,35 +150,31 @@ def makeup_fields(dict):
 
     # quotes done
     quotes_sent = ""
-    quotes_dict2 = {}
+    quotes_dict_tmp = {}
     if "quotes" in keys:
-
-        quotes_dict = dict["quotes"]["important_quotations_explained"]
-        for quote in quotes_dict:
-            quote_explain = quotes_dict[quote]
-            quote = quote.replace("\n", " ")
-            quote_explain = [i.replace("\n", " ") for i in quote_explain]
-            quote_explain = " ".join(quote_explain)
-            quotes_dict2[quote] = quote_explain
-            quotes_sent += "Quote " + quote.replace("\n", " ") + "\nExplain: " + quote_explain + "\n\n"
+        quotes_dict = dict["quotes"].get("important_quotations_explained")
+        if quotes_dict:
+            for quote, explain in quotes_dict.items():
+                quote_self = ' '.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote))
+                quote_explain = ' '.join(map(lambda x: x.replace('\n', ' '), explain))
+                quotes_dict_tmp[quote] = quote_explain
+                quotes_sent += "Quote: " + quote_self + "\nExplain: " + quote_explain + "\n\n"
     dict["quotes_str"] = quotes_sent
-    dict["quotes"] = quotes_dict2
+    dict["quotes"] = quotes_dict_tmp
 
     # main ideas
     main_ideas_sent = ""
     main_ideas_dict = {}
     if "main_ideas" in keys:
-
-        theme_dict = dict["main_ideas"]["themes"]
-        main_ideas_sent += "Link: " + dict["main_ideas"]["link"] + "\n"
-        for theme in theme_dict:
-            theme_sent = theme_dict[theme]
-            theme_sent = [i.replace("\n", " ") for i in theme_sent]
-            theme_sent = " ".join(theme_sent)
-            main_ideas_dict[theme] = theme_sent
-            main_ideas_sent += theme + "\n" + theme_sent + "\n\n"
+        theme_dict = dict["main_ideas"].get("themes")
+        if theme_dict:
+            for theme, explain in theme_dict.items():
+                theme_explain = ' '.join(map(lambda x: x.replace('\n', ' '), explain))
+                main_ideas_dict[theme] = theme_explain
+                main_ideas_sent += "Theme: " + theme + "\nExplain: " + theme_explain + "\n\n"
     dict["main_ideas_str"] = main_ideas_sent
     dict['main_ideas'] = main_ideas_dict
+
     if "picture" not in keys:
         dict["picture"] = ""
 

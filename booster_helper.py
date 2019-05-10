@@ -1,6 +1,6 @@
-
 from collections import defaultdict
 import field_booster
+
 
 def fieldsearch_scores(query):
     """
@@ -10,6 +10,7 @@ def fieldsearch_scores(query):
     """
     pass
 
+
 def userdata_scores(query, behave_data):
     """
     analyze user behaviour data
@@ -17,6 +18,7 @@ def userdata_scores(query, behave_data):
     :return: [T, A, SS, S, C, M, Q, P]
     """
     pass
+
 
 def balance_scores(fieldsearch, userdata):
     """
@@ -26,6 +28,7 @@ def balance_scores(fieldsearch, userdata):
     :return:[T, A, SS, S, C, M, Q, P]
     """
     pass
+
 
 def extract_features(query):
     """
@@ -68,8 +71,10 @@ def preprocess_training_data():
         Y.append(balance_scores(fieldsearch_scores(query), userdata_scores(query, data[query])))
     return X, Y
 
+
 def get_classifier():
     return classifier
+
 
 # X, Y = preprocess_training_data()
 X = [[0., 0.], [1., 1.], [1., 2.]]
