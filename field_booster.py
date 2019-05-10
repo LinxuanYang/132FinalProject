@@ -1,6 +1,5 @@
 from sklearn.neural_network import MLPClassifier
 
-
 # X = [
 #   [F11, F12, F13, ..., F1N],
 #   [F21, F22, F23, ..., F2N],

@@ -73,7 +73,6 @@ All purpose search on books
 
 ## Query
 - Words in ```""```: phrase search
-- ```title``` +  ```field```: displays the content of this field
 - ```-word```: difference search only
 - ```+word```: conjunctive search only
 - "Highest Rated Book" button
