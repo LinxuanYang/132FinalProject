@@ -70,7 +70,7 @@ def generate_token_dict(corpus):
 
 
 def load_token_dict(token_dict='token_dict.txt'):
-    with open('token_dict.txt', 'r') as f:
+    with open(token_dict, 'r') as f:
         token_set = ast.literal_eval(f.read())
     return token_set
 
