@@ -5,28 +5,44 @@ db = SqliteDatabase('user_statistic.db')
 
 class Query(Model):
     name = CharField()
-    birthday = DateField()
+    query = CharField()
+    result = CharField()  # we store JSON here for the results
 
     class Meta:
         database = db  # This model uses the "people.db" database.
 
 
 class Hover(Model):
+    duration = BigIntegerField()
+    query_id = ForeignKeyField(Query, backref='hovers')
+    document_id = CharField()
+
     class Meta:
         database = db
 
 
 class Click(Model):
+    query_id = ForeignKeyField(Query, backref='clicks')
+    document_id = CharField()
+
     class Meta:
         database = db
 
 
 class Stay(Model):
+    duration = BigIntegerField()
+    query_id = ForeignKeyField(Query, backref='stays')
+    document_id = CharField()
+
     class Meta:
         database = db
 
 
 class Drag(Model):
+    duration = BigIntegerField()
+    query_id = ForeignKeyField(Query, backref='drags')
+    document_id = CharField()
+
     class Meta:
         database = db
 
