@@ -1,15 +1,14 @@
 {% extends 'layout.html.jinja2' %}
 
 {% block body %}
-    <form action="/results" method="post">
+    <form action="/results" method="get">
         <div class="form-group">
             <div class="form-group">
-                <label for="text">text</label>
                 <input type="text" class="form-control basicAutoComplete" id="text" aria-describedby="textSearch"
                        autocomplete="off"
-                       placeholder="Enter the text you want to search" name="text" value="{{ show["tmp_text"] |e }}"/>
+                       placeholder="Search the book, pass the exam~" name="query" value="{{ show["tmp_text"] |e }}"/>
             </div>
-            <button type="submit" class="btn btn-primary" id="search">search</button>
+            <button type="submit" class="btn btn-primary btn-block" id="search">search</button>
         </div>
         {% block search_result %}
         {% endblock %}

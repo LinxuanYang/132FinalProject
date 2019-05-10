@@ -22,6 +22,7 @@ from query_helper import index_name, fields_list
 from booster_helper import get_classifier
 from data_base import Query, Hover, Click, Stay, Drag
 from playhouse.shortcuts import model_to_dict, dict_to_model
+from view_helper import *
 
 app = Flask(__name__, static_folder='public', static_url_path='')
 
@@ -31,7 +32,7 @@ app = Flask(__name__, static_folder='public', static_url_path='')
 # display query page
 @app.route("/")
 def search():
-    return render_template('page_query.html')
+    return render_template('index.html.jinja2', show={})
 
 
 @app.route("/query_completion", methods=['GET'])
@@ -85,7 +86,7 @@ def results():
     result_list = query_helper.parse_result(response)
 
     result_num = response.hits.total
-    return json.dumps({'result_list': result_list, 'result_num': result_num})
+    return render_result({'result_list': result_list, 'result_num': result_num})
 
 
 # display a particular document given a result number
