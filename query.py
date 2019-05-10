@@ -64,7 +64,7 @@ def results():
     fields_list = query_helper.boost_fields(fake_weight)
 
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
-    # SIMPLE QUERY STRING supports '|', '+', '-', "" phrase search， '*'， etc.
+    # supports '|', '+', '-', "" phrase search， '*'， etc.
     s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
     # highlight
     query_helper.highlight(s, fields_list)
@@ -82,7 +82,7 @@ def results():
     result_list = query_helper.parse_result(response)
 
     result_num = response.hits.total
-    return str({'result_list': result_list, 'result_num': result_num })
+    return json.dumps({'result_list': result_list, 'result_num': result_num })
 
 
 # display a particular document given a result number
@@ -96,7 +96,7 @@ def documents(res):
             for item in book[term]:
                 s += item + ",\n "
             book[term] = s
-    return str(book) if book else "{}"
+    return json.dumps(book)
 
 
 # this api should return json
