@@ -1,4 +1,4 @@
-;(function () {
+;$(function () {
     let hoverTimeCalculate = {};
 
     $('[data-click]').on('click', function () {
@@ -9,7 +9,7 @@
         sendClick(id, queryId)
 
     });
-    $('[data-hover-monitor]').on('hover', function () {
+    $('[data-hover-monitor]').hover(function () {
         let $this = $(this);
         let id = $this.data('id');
         let queryId = $this.data('queryid');
@@ -17,7 +17,7 @@
         hoverTimeCalculate[id] = time;
         setTimeout(() => {
             if (hoverTimeCalculate[id] === time) {
-                sendHoverTime(id, queryId, time - hoverTimeCalculate[id])
+                sendHoverTime(id, queryId, new Date().getTime() - hoverTimeCalculate[id])
             }
         }, 3000)
     }, function () {
@@ -37,6 +37,18 @@
         dragStatus = false
     });
 
+    let sendDrag = _.debounce((id, queryId) => {
+        if(!queryId){
+            return
+        }
+            $.ajax('/drag', {
+                method: 'post',
+                data: {
+                    id, queryId
+                }
+            })
+        }, 3000
+    )
     $('[data-drag-monitor]').on('mousemove', function () {
         if (!dragStatus) {
             return
@@ -53,6 +65,9 @@
     }, 100000)
 
     function sendHoverTime(id, queryId, time) {
+        if(!queryId){
+            return
+        }
         $.ajax('/hover', {
             method: 'post',
             data: {
@@ -62,16 +77,10 @@
     }
 
     function sendClick(id, queryId) {
+        if(!queryId){
+            return
+        }
         $.ajax('/click', {
-            method: 'post',
-            data: {
-                id, queryId
-            }
-        })
-    }
-
-    function sendDrag(id, queryId) {
-        $.ajax('/drag', {
             method: 'post',
             data: {
                 id, queryId
@@ -87,4 +96,4 @@
             }
         })
     }
-}());
+});
