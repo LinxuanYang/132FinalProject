@@ -71,7 +71,7 @@ def results():
     # + AND -
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # SIMPLE QUERY STRING supports '|', '+', '-', "" phrase search， '*'， etc.
-    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
+    s = search.query('simple_query_string', fields=['summary'], query=query, default_operator='and')
 
     # highlight
     helper.highlight(s, fields_list)
@@ -90,20 +90,20 @@ def results():
     result_list = helper.parse_result(response)
 
     result_num = response.hits.total
-    return str({result_list: result_list, result_num: result_num})
+    return str({'result_list': result_list, 'result_num': result_num })
 
 
 # display a particular document given a result number
 @app.route("/documents/<res>", methods=['GET'])
 def documents(res):
-    book = Book.get(id=res, index='sample_film_index').to_dict()
+    book = Book.get(id=res, index=index_name).to_dict()
     for term in book:
         if type(book[term]) is AttrList:
             s = "\n"
             for item in book[term]:
                 s += item + ",\n "
             book[term] = s
-    return json.dumps(book.to_dict())
+    return str(book)
 
 
 # this api should return json
