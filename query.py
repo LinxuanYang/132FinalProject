@@ -25,7 +25,7 @@ import helper
 
 app = Flask(__name__, static_folder='public', static_url_path='')
 index_name = 'book_index'
-
+# index_name = 'sample_film_index'
 
 # display query page
 @app.route("/")
@@ -63,10 +63,9 @@ def results():
 
     query = page.get('query') or ""
 
-    search = Search(index="simple_film_index")
+    search = Search(index=index_name)
 
-    fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes',
-                   'picture']
+    fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes', 'picture']
 
     # + AND -
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
@@ -90,20 +89,20 @@ def results():
     result_list = helper.parse_result(response)
 
     result_num = response.hits.total
-    return json.dump({result_list: result_list, result_num: result_num})
+    return str({'result_list': result_list, 'result_num': result_num })
 
 
 # display a particular document given a result number
 @app.route("/documents/<res>", methods=['GET'])
 def documents(res):
-    book = Book.get(id=res, index='sample_film_index').to_dict()
+    book = Book.get(id=res, index=index_name).to_dict()
     for term in book:
         if type(book[term]) is AttrList:
             s = "\n"
             for item in book[term]:
                 s += item + ",\n "
             book[term] = s
-    return json.dumps(book.to_dict())
+    return str(book)
 
 
 # this api should return json
@@ -166,4 +165,4 @@ def hint():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

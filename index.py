@@ -335,7 +335,7 @@ def build_main_ideas_Index():
 
 # character_list
 def build_character_Index():
-    film_index = Index('book_index')
+    film_index = Index('character_index')
     film_index.document(Book)
 
     # Overwrite any previous version
