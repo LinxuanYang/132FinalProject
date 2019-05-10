@@ -70,14 +70,4 @@ def boost_fields(boost_weight):
     return list(map(lambda x,y:x+'^'+str(y),fields_list,boost_weight))
 
 if __name__ == '__main__':
-    # query = "this\"haha\" a\" this\" gaga \"\""
-    # print(phrase_filter(query))
-    # query = "book title #plot summary"
-    # print(hashtag_filter(query))
-    # query = "this is cool-bad great"
-    # print(difference_filter(query))
-    # print(phrase_filter(query))
-    # query = "this is cool +must and"
-    # print(conjunction_filter(query))
-
     generate_token_dict()
