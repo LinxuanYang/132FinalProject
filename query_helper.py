@@ -2,16 +2,18 @@ import json
 import jsonlines
 import nltk
 from nltk.stem.snowball import SnowballStemmer
-from functools import reduce
+import ast
 from index import makeup_fields
 
 index_name = 'book_index'
 fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes', 'picture']
 
+
 def highlight(search_object, field_list):
     search_object = search_object.highlight_options(pre_tags='<mark>', post_tags='</mark>')
     for field in field_list:
         search_object = search_object.highlight(field, fragment_size=999999999, number_of_fragments=1)
+
 
 def parse_result(response_object):
     result_list = []
@@ -53,21 +55,29 @@ def merge_good_spark(jl_file, json_file):
 
 
 def generate_token_dict(corpus='sparknotes/shelve/sparknotes_book_detail_2.jl'):
+    """
+    To open token_dict as set:
+        with open('token_dict.txt', 'r') as f:
+            token_set = ast.literal_eval(f.read())
+    """
     res = set()
     with jsonlines.open(corpus) as reader:
         for obj in reader:
             book = makeup_fields(obj)
-
-            for key in obj:
-                res.add(nltk.word_tokenize(key))
-
-                for field in key:
-                    res.add(nltk.word_tokenize(field))
-                    # pass
+            for field in [book.get(key) for key in
+                          ['title', 'author', 'summary_sentence', 'summary', 'character_list_str', 'quote_str',
+                           'main_ideas_str']]:
+                print(field)
+                if field:
+                    res = res | set(nltk.word_tokenize(field.lower()))
+    with open('token_dict.txt', 'w') as output:
+        output.write(str(res))
 
 
 def boost_fields(boost_weight):
-    return list(map(lambda x,y:x+'^'+str(y),fields_list,boost_weight))
+    return list(map(lambda x, y: x + '^' + str(y), fields_list, boost_weight))
+
 
 if __name__ == '__main__':
-    generate_token_dict()
+    pass
+    # generate_token_dict()
