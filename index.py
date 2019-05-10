@@ -225,7 +225,7 @@ def buildIndex():
             yield {
                 "_index": "book_index",
                 "_type": 'doc',
-                "_id": 'b'+mid,
+                "_id": 'b'+ str(mid),
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
@@ -262,7 +262,7 @@ def build_summary_Index():
             yield {
                 "_index": "summary_index",
                 "_type": 'doc',
-                "_id": 's'+mid,
+                "_id": 's'+ str(mid),
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
@@ -296,7 +296,7 @@ def build_summary_sentence_Index():
             yield {
                 "_index": "summary_sentence_index",
                 "_type": 'doc',
-                "_id": 'ss'+mid,
+                "_id": 'ss'+ str(mid),
                 "book_id": mid,
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
@@ -334,7 +334,7 @@ def build_main_ideas_Index():
                     "_index": "main_ideas_index",
                     "_type": 'doc',
                     "_id": str(mid) + theme[:20],
-                    "book_id": mid,
+                    "book_id": str(mid),
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
                     "theme": theme,
@@ -377,7 +377,7 @@ def build_character_Index():
                     "_index": "main_ideas_index",
                     "_type": 'doc',
                     "_id": str(mid) + c,
-                    "book_id": mid,
+                    "book_id": str(mid),
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
                     "chracter_name": c,
@@ -415,7 +415,7 @@ def build_quotes_Index():
                     "_index": "quotes_index",
                     "_type": 'doc',
                     "_id": str(mid) + q[:20],
-                    "book_id": mid,
+                    "book_id": str(mid),
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
                     "quote": q,
@@ -450,7 +450,7 @@ def build_author_Index():
             yield {
                 "_index": "author_index",
                 "_type": 'doc',
-                "_id": mid,
+                "_id": str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author']
             }
@@ -483,7 +483,7 @@ def build_title_Index():
             yield {
                 "_index": "title_index",
                 "_type": 'doc',
-                "_id": 't'+mid,
+                "_id": 't'+ str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author']
             }

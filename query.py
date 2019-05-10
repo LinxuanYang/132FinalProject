@@ -51,21 +51,19 @@ def search_query():
 
 
 # display results page for first set of results and "next" sets.
-@app.route("/results", methods=['GET', 'POST'])
-@app.route("/results/<page>", methods=['GET', 'POST'])
-def results(page):
-    page_number = request.form['page_number'] or 1
+@app.route("/results", methods=['GET'])
+def results():
+    page = request.args
+
+    page_number = page.get('page_number') or 1
 
     # convert the <page_number> parameter in url to integer.
     if type(page_number) is not int:
         page_number = int(page_number.encode('utf-8'))
 
-    query = request.form['query']
+    query = page.get('query') or ""
 
-    search = Search(index=index_name)
-
-    phrase = helper.phrase_filter(query)
-    phrase_list, others = phrase
+    search = Search(index="simple_film_index")
 
     fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes',
                    'picture']
@@ -73,7 +71,7 @@ def results(page):
     # + AND -
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # SIMPLE QUERY STRING supports '|', '+', '-', "" phrase search， '*'， etc.
-    s = search.query('simple_query_string', fields=fields_list, query=others, default_operator='and')
+    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
 
     # highlight
     helper.highlight(s, fields_list)
@@ -83,9 +81,9 @@ def results(page):
 
     message = []
     response = s[start:end].execute()
-    if response.hits.total == 0 and len(others) > 0:
-        message.append(f'Unknown search term: {others},switch to disjunction.')
-        s = s.query('multi_match', query=others, type='cross_fields', fields=fields_list, operator='or')
+    if response.hits.total == 0 and len(query) > 0:
+        message.append(f'Unknown search term: {query},switch to disjunction.')
+        s = s.query('multi_match', query=query, type='cross_fields', fields=fields_list, operator='or')
         response = s[start:end].execute()
 
     # insert data into response
