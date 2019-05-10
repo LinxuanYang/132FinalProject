@@ -8,6 +8,7 @@ from index import makeup_fields
 
 index_name = 'book_index'
 
+
 def highlight(search_object, field_list):
     search_object = search_object.highlight_options(pre_tags='<mark>', post_tags='</mark>')
     for field in field_list:
@@ -66,8 +67,10 @@ def generate_token_dict(corpus='sparknotes/shelve/sparknotes_book_detail_2.jl'):
                     res.add(nltk.word_tokenize(field))
                     # pass
 
+
 def preprocess_training_data():
     pass
+
 
 if __name__ == '__main__':
     # query = "this\"haha\" a\" this\" gaga \"\""
