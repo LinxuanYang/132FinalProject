@@ -26,38 +26,38 @@
                    href="javascript:void(0)" class="btn btn-success">show detail</a>
                 <a href="/like_this/{{ result['id'] }}" class="btn btn-info">more like this</a>
                 <hr class="my-4">
-                <div class="row collapse" id="collapse{{ result['id'] |e }}" data-click data-id="{{ result.id }}"
+                <div class="row collapse" id="collapse{{ result['id'] |e }}"  data-id="{{ result.id }}"
                      data-queryId="{{ query_id }}">
                     <div class="col-3">
                         <div class="nav flex-column nav-pills" role="tablist"
                              aria-orientation="vertical">
-                            {% if result['main_ideas'] %}
-                                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill"
-                                   href="#v-pills-mi{{ result['id']|e }}"
-                                   role="tab" aria-controls="v-pills-home" aria-selected="true">Main Ideas</a>
-                            {% endif %}
                             {% if result['summary'] %}
-                                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
+                                <a class="nav-link" id="v-pills-profile-tab" data-click="summary" data-toggle="pill"
                                    href="#v-pills-s{{ result['id']|e }}"
                                    role="tab" aria-controls="v-pills-profile" aria-selected="false">Summary</a>
                             {% endif %}
+                            {% if result['main_ideas'] %}
+                                <a class="nav-link" id="v-pills-home-tab" data-click="main_ideas" data-toggle="pill"
+                                   href="#v-pills-mi{{ result['id']|e }}"
+                                   role="tab" aria-controls="v-pills-home" aria-selected="true">Main Ideas</a>
+                            {% endif %}
                             {% if result['quotes'] %}
-                                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill"
+                                <a class="nav-link" id="v-pills-home-tab" data-click="quotes" data-toggle="pill"
                                    href="#v-pills-q{{ result['id']|e }}"
                                    role="tab" aria-controls="v-pills-home" aria-selected="true">Quote</a>
                             {% endif %}
                             {% if result['character_list'] %}
-                                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill"
+                                <a class="nav-link" id="v-pills-messages-tab" data-click="character_list" data-toggle="pill"
                                    href="#v-pills-c{{ result['id']|e }}"
                                    role="tab" aria-controls="v-pills-messages" aria-selected="false">Character</a>
                             {% endif %}
                             {% if result['quiz'] %}
-                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
+                                <a class="nav-link" id="v-pills-settings-tab" data-click="quiz" data-toggle="pill"
                                    href="#v-pills-quiz{{ result['id']|e }}"
                                    role="tab" aria-controls="v-pills-settings" aria-selected="false">Quizzes</a>
                             {% endif %}
                             {% if result['background'] %}
-                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
+                                <a class="nav-link" id="v-pills-settings-tab" data-click="background" data-toggle="pill"
                                    href="#v-pills-context{{ result['id']|e }}"
                                    role="tab" aria-controls="v-pills-settings" aria-selected="false">Background</a>
                             {% endif %}
@@ -73,7 +73,7 @@
                                 {% endfor %}
                             </div>
                             <div class="tab-pane fade" id="v-pills-s{{ result['id']|e }}" role="tabpanel"
-                                 aria-labelledby="v-pills-messages-tab">{{ result['summary'] }}
+                                 aria-labelledby="v-pills-messages-tab" style="text-indent:35px">{{ result['summary'] }}
                             </div>
                             <div class="tab-pane fade" id="v-pills-q{{ result['id']|e }}" role="tabpanel"
                                  aria-labelledby="v-pills-settings-tab">
@@ -84,7 +84,7 @@
                             </div>
                             <div class="tab-pane fade" id="v-pills-c{{ result['id']|e }}" role="tabpanel"
                                  aria-labelledby="v-pills-settings-tab">
-                               {% for character in result['character_list'] %}
+                                {% for character in result['character_list'] %}
                                     <h5 style="text-indent:35px">{{ index }}{{ character[0]|e }}</h5>
                                     <p style="text-indent:35px"> {{ character[1]|e }}</p>
                                 {% endfor %}
@@ -97,7 +97,8 @@
                                 {% endfor %}
                             </div>
                             <div class="tab-pane fade" id="v-pills-context{{ result['id']|e }}" role="tabpanel"
-                                 aria-labelledby="v-pills-settings-tab">{{ result['background']|e }}
+                                 aria-labelledby="v-pills-settings-tab"
+                                 style="text-indent:35px">{{ result['background']|e }}
                             </div>
                         </div>
                     </div>
