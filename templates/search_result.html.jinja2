@@ -129,6 +129,13 @@
                 $(value).find('.nav-link').eq(0).click()
             })
             window.queryId ={{ query_id }};
+            {% if book_id %}
+                form = search.parents('form')
+                text = form.find('#text').val('')
+                $('#prev,#next').on('click', function () {
+                    form[0].action = '/like_this/{{ book_id }}'
+                })
+            {% endif %}
         }())
     </script>
 {% endblock %}
