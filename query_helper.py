@@ -26,7 +26,7 @@ def parse_result(response_object):
         for field in hit:
             if field != 'meta':
                 result[field] = getattr(hit, field)
-        result['title'] = ' | '.join(result['title'])
+        # result['title'] = '  '.join(result['title'])
         if 'hightlight' in hit.meta:
             for field in hit.meta.highlight:
                 result[field] = getattr(hit.meta.highlight, field)[0]
@@ -126,6 +126,6 @@ def boost_fields(boost_weight):
 if __name__ == '__main__':
     # generate_token_dict('sparknotes/shelve/sparknotes_book_detail_2.jl')
     # reformat_goodread()
-    merge_good_spark('sparknotes/shelve/sparknotes_book_detail_2.jl', 'goodreads/shelve/reformed_goodread.json')
+    # merge_good_spark('sparknotes/shelve/sparknotes_book_detail_2.jl', 'goodreads/shelve/reformed_goodread.json')
 
     pass
