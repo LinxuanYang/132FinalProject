@@ -43,7 +43,6 @@ def results():
 
     page_number = int(page.get('page_number').encode('utf-8')) if page.get('page_number') is not None else 1
     query = page.get('query') or ""
-    if len(query) > 0:
 
     search = Search(index=index_name)
 
@@ -78,6 +77,8 @@ def results():
 
     # insert data into response
     result_list = query_helper.parse_result(response)
+    if len(result_list) > 0:
+        pass
 
     result_num = response.hits.total
     return render_result({'result_list': result_list, 'result_num': result_num})
