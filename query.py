@@ -29,9 +29,6 @@ from index import SearchQuery
 app = Flask(__name__, static_folder='public', static_url_path='')
 word_trie = query_helper.load_token_dict_as_trie()
 
-
-# index_name = 'sample_film_index'
-
 # display query page
 @app.route("/")
 def search():
