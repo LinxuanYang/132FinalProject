@@ -86,7 +86,7 @@ def results():
             query_id = Query.get(Query.query == query).id
 
     result_num = response.hits.total
-    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query, 'page_number': page_number, 'message': message})
+    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query, 'page_number': page_number, 'message': message, 'page_size': 10})
 
 
 # display a particular document given a result number
