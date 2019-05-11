@@ -66,19 +66,35 @@
                     <div class="col-9">
                         <div class="tab-content">
                             <div class="tab-pane active" id="v-pills-mi{{ result['id']|e }}" role="tabpanel"
-                                 aria-labelledby="v-pills-profile-tab">{{ result['main_ideas']|e }}
+                                 aria-labelledby="v-pills-profile-tab">
+                                {% for idea in result['main_ideas'] %}
+                                    <h5 style="text-indent:35px">{{ index }}{{ idea[0]|e }}</h5>
+                                    <p style="text-indent:35px"> {{ idea[1]|e }}</p>
+                                {% endfor %}
                             </div>
                             <div class="tab-pane fade" id="v-pills-s{{ result['id']|e }}" role="tabpanel"
                                  aria-labelledby="v-pills-messages-tab">{{ result['summary'] }}
                             </div>
                             <div class="tab-pane fade" id="v-pills-q{{ result['id']|e }}" role="tabpanel"
-                                 aria-labelledby="v-pills-settings-tab">{{ result['quotes'] | e }}
+                                 aria-labelledby="v-pills-settings-tab">
+                                {% for quote in result['quotes'] %}
+                                    <h5 style="text-indent:35px">{{ index }}{{ quote[0]|e }}</h5>
+                                    <p style="text-indent:35px"> {{ quote[1]|e }}</p>
+                                {% endfor %}
                             </div>
                             <div class="tab-pane fade" id="v-pills-c{{ result['id']|e }}" role="tabpanel"
-                                 aria-labelledby="v-pills-settings-tab">{{ result['character_list'] | join('\n') |e }}
+                                 aria-labelledby="v-pills-settings-tab">
+                               {% for character in result['character_list'] %}
+                                    <h5 style="text-indent:35px">{{ index }}{{ character[0]|e }}</h5>
+                                    <p style="text-indent:35px"> {{ character[1]|e }}</p>
+                                {% endfor %}
                             </div>
                             <div class="tab-pane fade" id="v-pills-quiz{{ result['id']|e }}" role="tabpanel"
-                                 aria-labelledby="v-pills-settings-tab">{{ result['quiz']|e }}
+                                 aria-labelledby="v-pills-settings-tab">
+                                {% for quiz in result['quiz'] %}
+                                    <h5 style="text-indent:35px">{{ index }}{{ quiz[0]|e }}</h5>
+                                    <p style="text-indent:35px"> {{ quiz[1]|e }}</p>
+                                {% endfor %}
                             </div>
                             <div class="tab-pane fade" id="v-pills-context{{ result['id']|e }}" role="tabpanel"
                                  aria-labelledby="v-pills-settings-tab">{{ result['background']|e }}
