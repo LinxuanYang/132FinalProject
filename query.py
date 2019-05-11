@@ -35,24 +35,6 @@ word_trie = query_helper.load_token_dict_as_trie()
 def search():
     return render_template('index.html.jinja2', show={})
 
-
-@app.route("/query_completion", methods=['GET'])
-def search_query():
-    search = Search(index='query_index')
-    keyword = request.get_json['keyword']
-    s = search.query('simple_query_string', fields=['query'], query=keyword, default_operator='and')
-    start = 0
-    end = 10
-    results = []
-    response = s[start:end].execute()
-    if response.hits.total != 0:
-        for hit in response.hits:
-            result = {'id': hit.meta.id}
-            result['title'] = hit.title[0]
-            results.append(result)
-    return json.dumps(results)
-
-
 # display results page for first set of results and "next" sets.
 @app.route("/results", methods=['GET'])
 def results():
@@ -92,7 +74,7 @@ def results():
 
 # display a particular document given a result number
 # <res> must be b1, b2, ..., bMAXID
-@app.route("/documents/<res>", methods=['GET'])
+@app.route("/movie/<res>", methods=['GET'])
 def documents(res):
     book = Book.get(id=res, index=index_name).to_dict()
     for term in book:

@@ -48,7 +48,8 @@ def load_from_database():
 
 
 def preprocess_training_data():
-    """ preprocess_training_data
+    """
+    preprocess_training_data
     :return:
         X = [
           [F11, F12, F13, ..., F1N],
@@ -70,7 +71,6 @@ def preprocess_training_data():
         X.append(extract_features(query))
         Y.append(balance_scores(fieldsearch_scores(query), userdata_scores(query, data[query])))
     return X, Y
-
 
 def get_classifier():
     return classifier
