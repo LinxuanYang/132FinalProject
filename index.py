@@ -50,8 +50,10 @@ class Book(Document):
 
 class Query(Document):
     query = Text()
+
     def save(self, *args, **kwargs):
         return super(Query, self).save(*args, **kwargs)
+
 
 # define class Summary
 class Summary(Document):
@@ -164,6 +166,7 @@ class Category(Document):
     def save(self, *args, **kwargs):
         return super(Category, self).save(*args, **kwargs)
 
+
 def makeup_fields(dict):
     # print("--------------------------------------------a new article-----------------------------------------------")
     keys = list(dict.keys())
@@ -254,7 +257,7 @@ def makeup_fields(dict):
     # rate
     rate = 4.0
     if "rate" in keys:
-        rate = float(dict["rate"].split()[2])
+        rate = float(dict["rate"])
     dict["rate"] = rate
 
     return dict

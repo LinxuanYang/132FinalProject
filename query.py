@@ -36,6 +36,7 @@ word_trie = query_helper.load_token_dict_as_trie()
 def search():
     return render_template('index.html.jinja2', show={})
 
+
 # display results page for first set of results and "next" sets.
 @app.route("/results", methods=['GET'])
 def results():
@@ -55,13 +56,8 @@ def results():
 
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # supports '|', '+', '-', "" phrase search， '*'， etc.
-    #
 
-    # s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and',
-    #                  functions=[dsl_query.SF('script_score', script=score_script)])
-    q = Q('function_score', fields=fields_list, query=query, operator='and',
-          functions=[dsl_query.SF('script_score', script=score_script)])
-    s = search.query(q)
+    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
 
     # highlight
     query_helper.highlight(s, fields_list)
