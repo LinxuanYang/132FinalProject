@@ -4,7 +4,7 @@ import time
 
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
-from elasticsearch_dsl import Index, Document, Text, Keyword, Integer
+from elasticsearch_dsl import Index, Document, Text, Keyword, Integer, Float
 from elasticsearch_dsl.connections import connections
 from elasticsearch_dsl.analysis import tokenizer, analyzer, char_filter, token_filter
 from elasticsearch_dsl.query import MultiMatch, Match
@@ -29,6 +29,7 @@ def test_analyzer(text, analyzer):
 
 # Define document mapping (schema) by defining a class as a subclass of Document.
 class Book(Document):
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)  # stop words
     author = Text(analyzer=my_analyzer)
     summary_sentence = Text(analyzer=my_analyzer)
@@ -36,7 +37,11 @@ class Book(Document):
     character_list = Text(analyzer=my_analyzer)
     main_ideas = Text(analyzer=my_analyzer)
     quotes = Text(analyzer=my_analyzer)
-    rate = Integer()
+    picture = Text(analyzer=my_analyzer)
+    quiz = Text(analyzer=my_analyzer)
+    background = Text(analyzer=my_analyzer)
+    category = Text(analyzer=my_analyzer)
+    rate = Float()
 
     # override the Document save method to include subclass field definitions
     def save(self, *args, **kwargs):
@@ -45,7 +50,9 @@ class Book(Document):
 
 # define class Summary
 class Summary(Document):
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
     summary = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
@@ -54,7 +61,9 @@ class Summary(Document):
 
 # define class Summary_Sentence
 class Summary_Sentence(Document):
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
     summary_sentence = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
@@ -63,11 +72,11 @@ class Summary_Sentence(Document):
 
 # main ideas
 class Main_Ideas(Document):
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
     author = Text(analyzer=my_analyzer)
-    book_id = Text(analyzer=my_analyzer)
     theme = Text(analyzer=my_analyzer)
-    theme_explaination = Text(analyzer=my_analyzer)
+    theme_explanation = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
         return super(Main_Ideas, self).save(*args, **kwargs)
@@ -75,11 +84,11 @@ class Main_Ideas(Document):
 
 # Character_List
 class Character(Document):
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
     author = Text(analyzer=my_analyzer)
-    book_id = Text(analyzer=my_analyzer)
     character_name = Text(analyzer=my_analyzer)
-    character_discription = Text(analyzer=my_analyzer)
+    character_description = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
         return super(Character, self).save(*args, **kwargs)
@@ -89,9 +98,9 @@ class Character(Document):
 class Quotes(Document):
     book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
-    quotes = Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
     quote = Text(analyzer=my_analyzer)
-    quote_explianation = Text(analyzer=my_analyzer)
+    quote_explanation = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
         return super(Quotes, self).save(*args, **kwargs)
@@ -99,6 +108,7 @@ class Quotes(Document):
 
 # author
 class Author(Document):
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
     author = Text(analyzer=my_analyzer)
 
@@ -108,7 +118,43 @@ class Author(Document):
 
 # title
 class Title(Document):
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
+
+    def save(self, *args, **kwargs):
+        return super(Title, self).save(*args, **kwargs)
+
+
+# background
+class Background(Document):
+    book_id = Text(analyzer=my_analyzer)
+    title = Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
+    background = Text(analyzer=my_analyzer)
+
+    def save(self, *args, **kwargs):
+        return super(Title, self).save(*args, **kwargs)
+
+
+# quiz
+class Quiz(Document):
+    book_id = Text(analyzer=my_analyzer)
+    title = Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
+    quiz_question = Text(analyzer=my_analyzer)
+    quiz_explanation = Text(analyzer=my_analyzer)
+
+    def save(self, *args, **kwargs):
+        return super(Title, self).save(*args, **kwargs)
+
+
+# Category
+class Category(Document):
+    book_id = Text(analyzer=my_analyzer)
+    title = Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
+    category = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
         return super(Title, self).save(*args, **kwargs)
@@ -177,6 +223,36 @@ def makeup_fields(dict):
     if "picture" not in keys:
         dict["picture"] = ""
 
+    # further study
+    quiz_dict2 = {}
+    quiz_string = ""
+    background = ""
+    if "further_study" in keys:
+        quiz_dict = dict["further_study"].get("study-questions")
+        if quiz_dict:
+            for quiz, explain in quiz_dict.items():
+                explain = " ".join(map(lambda x: x.replace("\n", " "), explain))
+                quiz_dict2[quiz] = explain
+                quiz_string += "Quiz question: " + quiz + "\nExplain: " + explain + "\n\n"
+        background = dict["further_study"].get("context")
+        if background:
+            background = " ".join(map(lambda x: x.replace("\n", " "), background)) + "\n\n"
+    dict["quiz_str"] = quiz_string
+    dict["quiz"] = quiz_dict2
+    dict["background"] = background
+
+    # category
+    category = ""
+    if "category" in keys:
+        category = " ".join(dict["category"])
+    dict["category"] = category
+
+    # rate
+    rate = 4.0
+    if "rate" in keys:
+        rate = float(dict["rate"].split()[2])
+    dict["rate"] = rate
+
     return dict
 
 
@@ -210,7 +286,7 @@ def build_index():
                 "_index": "book_index",
                 "_type": 'doc',
                 "_id": 'b' + str(mid),
-                "book_id": mid,
+                "book_id": str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
                 "summary_sentence": books[str(mid)]['summary_sentence'],
@@ -218,7 +294,12 @@ def build_index():
                 "character_list": books[str(mid)]['character_list_str'],
                 "main_ideas": books[str(mid)]['main_ideas_str'],
                 "quotes": books[str(mid)]['quotes_str'],
-                "picture": books[str(mid)]['picture']
+                "picture": books[str(mid)]['picture'],
+                "quiz": books[str(mid)]["quiz_str"],
+                "background": books[str(mid)]["background"],
+                "category": books[str(mid)]["category"],
+                "rate": books[str(mid)]["rate"]
+
             }
 
     helpers.bulk(es, actions())
@@ -247,7 +328,7 @@ def build_summary_index():
                 "_index": "summary_index",
                 "_type": 'doc',
                 "_id": 's' + str(mid),
-                "book_id": mid,
+                "book_id": str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
                 "summary": books[str(mid)]['summary']
@@ -281,7 +362,7 @@ def build_summary_sentence_index():
                 "_index": "summary_sentence_index",
                 "_type": 'doc',
                 "_id": 'ss' + str(mid),
-                "book_id": mid,
+                "book_id": str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
                 "summary_sentence": books[str(mid)]['summary_sentence']
@@ -322,7 +403,7 @@ def build_main_ideas_index():
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
                     "theme": theme,
-                    "theme_explaination": main_ideas_dict[theme]
+                    "theme_explanation": main_ideas_dict[theme]
                 }
 
     helpers.bulk(es, actions())
@@ -331,7 +412,7 @@ def build_main_ideas_index():
 # character_list
 def build_character_index():
     film_index = Index('character_index')
-    film_index.document(Book)
+    film_index.document(Character)
 
     # Overwrite any previous version
     if film_index.exists():
@@ -364,8 +445,8 @@ def build_character_index():
                     "book_id": str(mid),
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
-                    "chracter_name": c,
-                    "character_discription": character_dict[c]
+                    "character_name": c,
+                    "character_description": character_dict[c]
                 }
 
     helpers.bulk(es, actions())
@@ -403,7 +484,7 @@ def build_quotes_index():
                     "title": books[str(mid)]['title'],
                     "author": books[str(mid)]['author'],
                     "quote": q,
-                    "quote_explianation": quote_dict[q]
+                    "quote_explanation": quote_dict[q]
                 }
 
     helpers.bulk(es, actions())
@@ -435,6 +516,7 @@ def build_author_index():
                 "_index": "author_index",
                 "_type": 'doc',
                 "_id": str(mid),
+                "book_id": str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author']
             }
@@ -468,8 +550,87 @@ def build_title_index():
                 "_index": "title_index",
                 "_type": 'doc',
                 "_id": 't' + str(mid),
+                "book_id": str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author']
+            }
+
+    helpers.bulk(es, actions())
+
+
+# quiz
+def build_quiz_Index():
+    film_index = Index('quiz_index')
+    film_index.document(Quiz)
+
+    # Overwrite any previous version
+    if film_index.exists():
+        film_index.delete()
+    film_index.create()
+
+    # Open the json film corpus
+    books = {}
+    mid = 1
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl', encoding='UTF-8') as data_file:
+        # load books from json file into dictionary
+
+        for line in data_file:
+            books[str(mid)] = json.loads(line)
+            books[str(mid)] = makeup_fields(books[str(mid)])
+            mid += 1
+        size = len(books)
+
+    def actions():
+
+        for mid in range(1, size + 1):
+            quiz_dict = books[str(mid)]["quiz"]
+
+            for q in quiz_dict:
+                yield {
+
+                    "_index": "main_ideas_index",
+                    "_type": 'doc',
+                    "_id": str(mid) + q,
+                    "book_id": str(mid),
+                    "title": books[str(mid)]['title'],
+                    "author": books[str(mid)]['author'],
+                    "quiz_question": q,
+                    "quiz_explanation": quiz_dict[q]
+                }
+
+    helpers.bulk(es, actions())
+
+
+# background
+def build_title_Index():
+    title_index = Index('background_index')
+    title_index.document(Background)
+
+    if title_index.exists():
+        title_index.delete()
+    title_index.create()
+
+    books = {}
+    mid = 1
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl', encoding='UTF-8') as data_file:
+
+        for line in data_file:
+            books[str(mid)] = json.loads(line)
+            books[str(mid)] = makeup_fields(books[str(mid)])
+            mid += 1
+        size = len(books)
+
+    def actions():
+
+        for mid in range(1, size + 1):
+            yield {
+                "_index": "title_index",
+                "_type": 'doc',
+                "_id": 'b' + str(mid),
+                "book_id": str(mid),
+                "title": books[str(mid)]['title'],
+                "author": books[str(mid)]['author'],
+                "background": books[str(mid)]["background"]
             }
 
     helpers.bulk(es, actions())

@@ -67,10 +67,13 @@ def results():
     # fields_list = query_helper.boost_fields(boost_weight)
     fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98]
     fields_list = query_helper.boost_fields(fake_weight)
+    score_script = "_score + doc['rate'].value / 5"
 
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # supports '|', '+', '-', "" phrase search， '*'， etc.
-    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
+    #
+    s = search.query('simple_query_string',
+                     fields=fields_list, query=query, default_operator='and', script=score_script)
     # highlight
     query_helper.highlight(s, fields_list)
 
@@ -167,7 +170,7 @@ def hint():
     else:
         user_input = ' ' + user_input.lower()
         last_word = user_input[user_input.rindex(' ') + 1:]
-        prefix_word = user_input[:user_input.rindex(' ')+1]
+        prefix_word = user_input[:user_input.rindex(' ') + 1]
         # now I only deal with last word situation
         print(last_word)
         try:
