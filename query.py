@@ -24,6 +24,7 @@ from booster_helper import get_classifier
 from data_base import Query, Hover, Click, Stay, Drag
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from view_helper import *
+from index import SearchQuery
 
 app = Flask(__name__, static_folder='public', static_url_path='')
 word_trie = query_helper.load_token_dict_as_trie()
@@ -43,8 +44,7 @@ def results():
 
     page_number = int(page.get('page_number').encode('utf-8')) if page.get('page_number') is not None else 1
     query = page.get('query') or ""
-    if len(query) > 0:
-        search = Search(index=index_name)
+    search = Search(index=index_name)
 
     # BOOST FIELD WEIGHTS
     # boost_weight = get_classifier().predict(query)
@@ -77,13 +77,25 @@ def results():
     # insert data into response
     result_list = query_helper.parse_result(response)
     # if there are results, insert it to query_index
+    query_id = 0
+    qs = ""
+    try:
+        qs = Query.select().where(Query.query == query)
+    except Query.DoesNotExist:
+        qs = None
     if len(result_list) > 0:
-        query = Query(query=query)
-        query.save()
-    print(Query._meta)
+        if not qs:
+            q1 = Query(query=query, result=json.dumps(result_list))
+            q1.save()
+            print(q1.id)
+            query_id = q1.id
+            q = SearchQuery(query=query, suggest=query, meta={'index': 'query_index', 'id': query_id})
+            q.save()
+        else:
+            query_id = Query.get(Query.query == query).id
 
     result_num = response.hits.total
-    return render_result({'result_list': result_list, 'result_num': result_num})
+    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id})
 
 
 # display a particular document given a result number
@@ -156,6 +168,7 @@ def drag_over_item():
 # ]
 @app.route('/hint', methods=['GET'])
 def hint():
+    search = SearchQuery.search(index='query_index')
     form = request.args
     user_input = form.get('q', '')
     if len(user_input) == 0:
@@ -164,8 +177,13 @@ def hint():
         user_input = ' ' + user_input.lower()
         last_word = user_input[user_input.rindex(' ') + 1:]
         prefix_word = user_input[:user_input.rindex(' ') + 1]
+        # query auto suggestion
+        s = search.suggest('suggestion', user_input.strip(), completion={'field': 'suggest'})
+        response = s.execute()
+        if len(response.suggest.suggestion[0].options) != 0:
+            return jsonify(list(map(lambda x: x.text, response.suggest.suggestion[0].options)))
+
         # now I only deal with last word situation
-        print(last_word)
         try:
             return jsonify(list(map(lambda x: prefix_word + x, word_trie.keys(prefix=last_word)))[0:10])
         except Exception:

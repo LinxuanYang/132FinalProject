@@ -4,7 +4,7 @@ import time
 
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
-from elasticsearch_dsl import Index, Document, Text, Keyword, Integer, Float
+from elasticsearch_dsl import Index, Document, Text, Keyword, Integer, Float, Completion
 from elasticsearch_dsl.connections import connections
 from elasticsearch_dsl.analysis import tokenizer, analyzer, char_filter, token_filter
 from elasticsearch_dsl.query import MultiMatch, Match
@@ -48,10 +48,12 @@ class Book(Document):
         return super(Book, self).save(*args, **kwargs)
 
 
-class Query(Document):
+class SearchQuery(Document):
     query = Text()
+    suggest = Completion()
+
     def save(self, *args, **kwargs):
-        return super(Query, self).save(*args, **kwargs)
+        return super(SearchQuery, self).save(*args, **kwargs)
 
 
 # define class Summary
@@ -640,11 +642,18 @@ def build_title_Index():
 
     helpers.bulk(es, actions())
 
+def build_query_Index():
+    query_index = Index('query_index')
+    query_index.document(SearchQuery)
+    if query_index.exists():
+        query_index.delete()
+    query_index.create()
+    SearchQuery.init()
 
 # command line invocation builds index and prints the running time.
 def main():
     start_time = time.time()
-    Query.init()
+    build_query_Index()
     build_index()
     build_title_index()
     build_author_index()
