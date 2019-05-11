@@ -25,6 +25,7 @@ class Hover(Model):
 class Click(Model):
     query_id = ForeignKeyField(Query, backref='clicks')
     document_id = CharField()
+    field_id = CharField()
 
     class Meta:
         database = db
