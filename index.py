@@ -53,6 +53,7 @@ class Query(Document):
     def save(self, *args, **kwargs):
         return super(Query, self).save(*args, **kwargs)
 
+
 # define class Summary
 class Summary(Document):
     book_id = Text(analyzer=my_analyzer)
@@ -643,6 +644,7 @@ def build_title_Index():
 # command line invocation builds index and prints the running time.
 def main():
     start_time = time.time()
+    Query.init()
     build_index()
     build_title_index()
     build_author_index()
