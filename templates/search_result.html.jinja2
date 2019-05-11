@@ -14,17 +14,26 @@
     </div>
     <div id="result_box">
         {% for result in results %}
-            <div class="card search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}"
+            <div class="jumbotron search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}"
                  data-queryId="{{ query_id }}">
-                <div class="card-body">
-                    <a href="/movie/{{ result['id'] }}" class="card-title">{{ result['title']|e }}</a>
-                    <p>score:{{ result['score'] }}</p>
-                    <p class="card-text">{{ result['text'] }}</p>
-
-                    <a data-click data-id="{{ result.id }}" data-queryId="{{ query_id }}"
-                       href="/movie/{{ result['id'] }}" class="card-link">detail</a>
-                </div>
+                <h1 class="display-5">{{ result['title'] | e }}</h1>
+                <p class="lead">{{ result['summary_sentence'] |e }}</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger
+                    container.</p>
+                <a class="btn btn-primary btn-lg" href="/movie/{{ result['id'] |e }}" role="button">Details</a>
             </div>
+            {#            <div class="card search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}"#}
+            {#                 data-queryId="{{ query_id }}">#}
+            {#                <div class="card-body">#}
+            {#                    <a href="/movie/{{ result['id'] }}" class="card-title">{{ result['title']|e }}</a>#}
+            {#                    <p>score:{{ result['score'] }}</p>#}
+            {#                    <p class="card-text">{{ result['text'] }}</p>#}
+            {##}
+            {#                    <a data-click data-id="{{ result.id }}" data-queryId="{{ query_id }}"#}
+            {#                       href="/movie/{{ result['id'] }}" class="card-link">detail</a>#}
+            {#                </div>#}
+            {#            </div>#}
         {% endfor %}
     </div>
 

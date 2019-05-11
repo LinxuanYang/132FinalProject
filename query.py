@@ -43,8 +43,8 @@ def results():
 
     page_number = int(page.get('page_number').encode('utf-8')) if page.get('page_number') is not None else 1
     query = page.get('query') or ""
-
-    search = Search(index=index_name)
+    if len(query) > 0:
+        search = Search(index=index_name)
 
     # BOOST FIELD WEIGHTS
     # boost_weight = get_classifier().predict(query)
@@ -57,8 +57,7 @@ def results():
     # supports '|', '+', '-', "" phrase search， '*'， etc.
     #
 
-    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and',
-                     functions=[dsl_query.SF('script_score', script=score_script)])
+    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
     # q = Q('function_score', fields=fields_list, query=query, operator='and',
     #       functions=[dsl_query.SF('script_score', script=score_script)])
     # s = search.query(q)
