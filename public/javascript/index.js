@@ -1,7 +1,7 @@
 ;$(function () {
     let hoverTimeCalculate = {};
 
-    $('[data-click]').on('click', function () {
+    $('[data-click]').on('show.bs.collapse', function () {
         let $this = $(this);
         let id = $this.data('id');
         let queryId = $this.data('queryid');
@@ -38,9 +38,9 @@
     });
 
     let sendDrag = _.debounce((id, queryId) => {
-        if(!queryId){
-            return
-        }
+            if (!queryId) {
+                return
+            }
             $.ajax('/drag', {
                 method: 'post',
                 data: {
@@ -65,7 +65,7 @@
     }, 100000)
 
     function sendHoverTime(id, queryId, time) {
-        if(!queryId){
+        if (!queryId) {
             return
         }
         $.ajax('/hover', {
@@ -77,7 +77,7 @@
     }
 
     function sendClick(id, queryId) {
-        if(!queryId){
+        if (!queryId) {
             return
         }
         $.ajax('/click', {
