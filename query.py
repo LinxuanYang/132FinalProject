@@ -183,6 +183,7 @@ def hint():
 
 @app.route('/like_this/<book_id>')
 def like_this(book_id):
+
     return render_result({})
 
 
