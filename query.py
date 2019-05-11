@@ -80,7 +80,7 @@ def results():
         qs = Query.select().where(Query.query == query)
     except Query.DoesNotExist:
         qs = None
-    if len(result_list) > 0:
+    if result_list:
         if not qs:
             q1 = Query(query=query, result=json.dumps(result_list))
             q1.save()
@@ -91,7 +91,7 @@ def results():
             query_id = Query.get(Query.query == query).id
 
     result_num = response.hits.total
-    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id})
+    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query, 'page_number': page_number, 'message': message, 'page_size': 10})
 
 
 # display a particular document given a result number
@@ -186,7 +186,7 @@ def hint():
             return jsonify([])
 
 
-@app.route('/like_this/<book_id>',methods=['GET'])
+@app.route('/like_this/<book_id>')
 def like_this(book_id):
     #_id book id
     # index book_index
