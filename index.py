@@ -19,9 +19,7 @@ es = Elasticsearch()
 # You can create a custom analyzer by choosing among elasticsearch options
 # or writing your own functions.
 # Elasticsearch also has default analyzers that might be appropriate.
-my_analyzer = analyzer('custom',
-                       tokenizer='standard',
-                       filter=['lowercase', 'stop', 'asciifolding', 'snowball'])
+my_analyzer = analyzer('custom', tokenizer='standard', filter=['lowercase', 'stop', 'asciifolding', 'snowball'])
 
 
 def test_analyzer(text, analyzer):
@@ -38,6 +36,7 @@ class Book(Document):
     character_list = Text(analyzer=my_analyzer)
     main_ideas = Text(analyzer=my_analyzer)
     quotes = Text(analyzer=my_analyzer)
+    rate = Integer()
 
     # override the Document save method to include subclass field definitions
     def save(self, *args, **kwargs):
