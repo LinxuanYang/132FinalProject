@@ -20,7 +20,9 @@
         ;(function () {
             $('#text').autoComplete({
                 resolverSettings: {
-                    url: '/hint'
+                    url: '/hint',
+                    minLength:2,
+
                 }
             });
         }())

@@ -14,13 +14,16 @@
     </div>
     <div id="result_box">
         {% for result in results %}
-            <div class="jumbotron search_result" data-click data-hover-monitor data-drag-monitor data-id="{{ result.id }}"
+            <div class="jumbotron search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}"
                  data-queryId="{{ query_id }}">
                 <h1 class="display-5">{{ result['title'] | e }}</h1>
                 <span class="badge badge-secondary"> {{ result['author'] }}</span>
                 <p class="lead">{{ result['summary_sentence'] |e }}</p>
+                <a data-click data-toggle="collapse" data-target="#collapse{{ result['id'] |e }}"
+                   data-id="{{ result.id }}" data-queryId="{{ query_id }}"
+                   href="javascript:void(0)" class="btn btn-success">show detail</a>
                 <hr class="my-4">
-                <div class="row">
+                <div class="row collapse" id="collapse{{ result['id'] |e }}">
                     <div class="col-3">
                         <div class="nav flex-column nav-pills" role="tablist"
                              aria-orientation="vertical">
