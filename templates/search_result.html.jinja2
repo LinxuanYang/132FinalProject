@@ -12,12 +12,12 @@
     <div class="alert alert-success" role="alert">
         you have total of {{ res_num }} results matched
     </div>
-    <div>
+    <div id="result_box">
         {% for result in results %}
             <div class="card search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}"
                  data-queryId="{{ query_id }}">
                 <div class="card-body">
-                    <a href="/movie/{{ result['id'] }}" class="card-title">{{ result['title'] }}</a>
+                    <a href="/movie/{{ result['id'] }}" class="card-title">{{ result['title']|e }}</a>
                     <p>score:{{ result['score'] }}</p>
                     <p class="card-text">{{ result['text'] }}</p>
 
@@ -43,26 +43,28 @@
 {% endblock %}
 
 {% block extra_js %}
+    {{ super() }}
     <script type="application/javascript">
-        page_number = $('#page_number')
-        page_val = {{ page_number }}
-            search = $('#search')
-        {% if similar %}
-            form = search.parents('form')
-            text = form.find('#text').val('')
-            $('#prev,#next').on('click', function () {
-                form[0].action = '/similar/{{ movie_id }}'
-            })
-        {% endif %}
-        $('#prev').on('click', function () {
-            page_number.val(parseInt(page_val) - 1)
-            search.click()
-        })
-        $('#next').on('click', function () {
-            page_number.val(parseInt(page_val) + 1)
-            search.click()
-        })
-        window.queryId =
-        {{ query_id }}
+        ;(function () {
+            let page_number = $('#page_number');
+            let page_val = {{ page_number }};
+            let search = $('#search');
+            {% if similar %}
+                let form = search.parents('form');
+                let text = form.find('#text').val('');
+                $('#prev,#next').on('click', function () {
+                    form[0].action = '/similar/{{ movie_id }}'
+                });
+            {% endif %}
+            $('#prev').on('click', function () {
+                page_number.val(parseInt(page_val) - 1);
+                search.click()
+            });
+            $('#next').on('click', function () {
+                page_number.val(parseInt(page_val) + 1);
+                search.click()
+            });
+            window.queryId ={{ query_id }};
+        }())
     </script>
 {% endblock %}

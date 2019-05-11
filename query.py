@@ -25,6 +25,7 @@ from playhouse.shortcuts import model_to_dict, dict_to_model
 from view_helper import *
 
 app = Flask(__name__, static_folder='public', static_url_path='')
+word_trie = query_helper.load_token_dict_as_trie()
 
 
 # index_name = 'sample_film_index'
@@ -159,24 +160,20 @@ def drag_over_item():
 # ]
 @app.route('/hint', methods=['GET'])
 def hint():
-    form = request.form
+    form = request.args
     user_input = form.get('q', '')
     if len(user_input) == 0:
-        return jsonify([
-            "Google Cloud Platform",
-            "Amazon AWS",
-            "Docker",
-            "Digital Ocean"
-        ])
+        return jsonify([])
     else:
-        user_input = user_input.lower()
+        user_input = ' ' + user_input.lower()
         last_word = user_input[user_input.rindex(' ') + 1:]
-    return jsonify([
-        "Google Cloud Platform",
-        "Amazon AWS",
-        "Docker",
-        "Digital Ocean"
-    ])
+        prefix_word = user_input[:user_input.rindex(' ')+1]
+        # now I only deal with last word situation
+        print(last_word)
+        try:
+            return jsonify(list(map(lambda x: prefix_word + x, word_trie.keys(prefix=last_word)))[0:10])
+        except Exception:
+            return jsonify([])
 
 
 if __name__ == "__main__":

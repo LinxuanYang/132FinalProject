@@ -1,13 +1,6 @@
 body {
     padding: 15px;
 }
-
-
-.search_result {
-    width: 500px;
-    margin: 20px;
-}
-
 .form-control{
     margin-bottom: 10px;
 }
@@ -41,4 +34,11 @@ html {
 
 #introduction{
     display: none;
+}
+#result_box{
+    width: 100%;
+}
+#result_box .search_result{
+    width: 100%;
+    margin-bottom: 20px;
 }
