@@ -8,7 +8,7 @@ db = SqliteExtDatabase('user_statistic.db')
 class Query(Model):
     id = IntegerField(primary_key=True)
     query = CharField()
-    result = JSONField()  # we store JSON here for the results
+    result = CharField()  # we store JSON here for the results
 
     class Meta:
         database = db  # This model uses the "people.db" database.

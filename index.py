@@ -4,7 +4,7 @@ import time
 
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
-from elasticsearch_dsl import Index, Document, Text, Keyword, Integer, Float
+from elasticsearch_dsl import Index, Document, Text, Keyword, Integer, Float, Completion
 from elasticsearch_dsl.connections import connections
 from elasticsearch_dsl.analysis import tokenizer, analyzer, char_filter, token_filter
 from elasticsearch_dsl.query import MultiMatch, Match
@@ -48,13 +48,14 @@ class Book(Document):
         return super(Book, self).save(*args, **kwargs)
 
 
-# class Query(Document):
-#     query = Text()
-#
-#     def save(self, *args, **kwargs):
-#         return super(Query, self).save(*args, **kwargs)
-#
-#
+class SearchQuery(Document):
+    query = Text()
+    suggest = Completion()
+
+    def save(self, *args, **kwargs):
+        return super(SearchQuery, self).save(*args, **kwargs)
+
+
 # # define class Summary
 # class Summary(Document):
 #     book_id = Text(analyzer=my_analyzer)
@@ -166,7 +167,6 @@ class Book(Document):
 #     def save(self, *args, **kwargs):
 #         return super(Category, self).save(*args, **kwargs)
 
-
 def makeup_fields(dict):
     # print("--------------------------------------------a new article-----------------------------------------------")
     keys = list(dict.keys())
@@ -210,8 +210,7 @@ def makeup_fields(dict):
         quotes_dict = dict["quotes"].get("important_quotations_explained")
         if quotes_dict:
             for quote, explain in quotes_dict.items():
-                quote_self = ''.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote)).replace('\t',
-                                                                                                            ' ').strip()
+                quote_self = ''.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote)).replace('\t', ' ').strip()
                 quote_explain = ' '.join(map(lambda x: x.replace('\n', ' '), explain))
                 quotes_dict_tmp[quote] = quote_explain
                 quotes_sent.append([quote_self, quote_explain])
@@ -236,7 +235,7 @@ def makeup_fields(dict):
 
     # further study
     quiz_dict2 = {}
-    quiz_string = []
+    quiz_string = ""
     background = ""
     if "further_study" in keys:
         quiz_dict = dict["further_study"].get("study-questions")
@@ -244,7 +243,7 @@ def makeup_fields(dict):
             for quiz, explain in quiz_dict.items():
                 explain = " ".join(map(lambda x: x.replace("\n", " "), explain))
                 quiz_dict2[quiz] = explain
-                quiz_string.append([quiz, explain])
+                quiz_string += "Quiz question: " + quiz + "\nExplain: " + explain + "\n\n"
         background = dict["further_study"].get("context")
         if background:
             background = " ".join(map(lambda x: x.replace("\n", " "), background))
@@ -268,7 +267,6 @@ def makeup_fields(dict):
     dict["rate"] = rate
 
     return dict
-
 
 # Populate the index
 def build_index():
@@ -313,6 +311,7 @@ def build_index():
                 "background": books[str(mid)]["background"],
                 "category": books[str(mid)]["category"],
                 "rate": books[str(mid)]["rate"]
+
             }
 
     helpers.bulk(es, actions())
@@ -648,10 +647,18 @@ def build_index():
 #
 #     helpers.bulk(es, actions())
 
+def build_query_Index():
+    query_index = Index('query_index')
+    query_index.document(SearchQuery)
+    if query_index.exists():
+        query_index.delete()
+    query_index.create()
+    SearchQuery.init()
 
 # command line invocation builds index and prints the running time.
 def main():
     start_time = time.time()
+    build_query_Index()
     build_index()
     # build_title_index()
     # build_author_index()
