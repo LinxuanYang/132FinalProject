@@ -207,7 +207,8 @@ def makeup_fields(dict):
         quotes_dict = dict["quotes"].get("important_quotations_explained")
         if quotes_dict:
             for quote, explain in quotes_dict.items():
-                quote_self = ''.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote)).replace('\t', ' ').strip()
+                quote_self = ''.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote)).replace('\t',
+                                                                                                            ' ').strip()
                 quote_explain = ' '.join(map(lambda x: x.replace('\n', ' '), explain))
                 quotes_dict_tmp[quote] = quote_explain
                 quotes_sent.append([quote_self, quote_explain])
@@ -232,7 +233,7 @@ def makeup_fields(dict):
 
     # further study
     quiz_dict2 = {}
-    quiz_string = ""
+    quiz_string = []
     background = ""
     if "further_study" in keys:
         quiz_dict = dict["further_study"].get("study-questions")
@@ -240,7 +241,7 @@ def makeup_fields(dict):
             for quiz, explain in quiz_dict.items():
                 explain = " ".join(map(lambda x: x.replace("\n", " "), explain))
                 quiz_dict2[quiz] = explain
-                quiz_string += "Quiz question: " + quiz + "\nExplain: " + explain + "\n\n"
+                quiz_string.append([quiz, explain])
         background = dict["further_study"].get("context")
         if background:
             background = " ".join(map(lambda x: x.replace("\n", " "), background)) + "\n\n"
@@ -261,6 +262,7 @@ def makeup_fields(dict):
     dict["rate"] = rate
 
     return dict
+
 
 # Populate the index
 def build_index():
@@ -305,11 +307,9 @@ def build_index():
                 "background": books[str(mid)]["background"],
                 "category": books[str(mid)]["category"],
                 "rate": books[str(mid)]["rate"]
-
             }
 
     helpers.bulk(es, actions())
-
 
 # def build_summary_index():
 #     summary_index = Index("summary_index")
