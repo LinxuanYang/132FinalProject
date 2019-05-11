@@ -14,17 +14,90 @@
     </div>
     <div id="result_box">
         {% for result in results %}
-            <div class="card search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}"
+            <div class="jumbotron search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}"
                  data-queryId="{{ query_id }}">
-                <div class="card-body">
-                    <a href="/movie/{{ result['id'] }}" class="card-title">{{ result['title']|e }}</a>
-                    <p>score:{{ result['score'] }}</p>
-                    <p class="card-text">{{ result['text'] }}</p>
-
-                    <a data-click data-id="{{ result.id }}" data-queryId="{{ query_id }}"
-                       href="/movie/{{ result['id'] }}" class="card-link">detail</a>
+                <h1 class="display-5">{{ result['title'] | e }}</h1>
+                <span class="badge badge-primary"> Rate:{{ result['rate'] }}</span>
+                <span class="badge badge-secondary"> {{ result['author'] }}</span>
+                {% for category in result.category%}
+                     <span class="badge badge-danger"> {{ category}}</span>
+                {% endfor %}
+                <p class="lead">{{ result['summary_sentence'] |e }}</p>
+                <a data-toggle="collapse" data-target="#collapse{{ result['id'] |e }}"
+                   href="javascript:void(0)" class="btn btn-success">show detail</a>
+                <hr class="my-4">
+                <div class="row collapse" id="collapse{{ result['id'] |e }}" data-click data-id="{{ result.id }}"
+                     data-queryId="{{ query_id }}">
+                    <div class="col-3">
+                        <div class="nav flex-column nav-pills" role="tablist"
+                             aria-orientation="vertical">
+                            {% if result['main_ideas'] %}
+                                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill"
+                                   href="#v-pills-mi{{ result['id']|e }}"
+                                   role="tab" aria-controls="v-pills-home" aria-selected="true">Main Ideas</a>
+                            {% endif %}
+                            {% if result['summary'] %}
+                                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
+                                   href="#v-pills-s{{ result['id']|e }}"
+                                   role="tab" aria-controls="v-pills-profile" aria-selected="false">Summary</a>
+                            {% endif %}
+                            {% if result['quotes'] %}
+                                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill"
+                                   href="#v-pills-q{{ result['id']|e }}"
+                                   role="tab" aria-controls="v-pills-home" aria-selected="true">Quote</a>
+                            {% endif %}
+                            {% if result['character_list'] %}
+                                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill"
+                                   href="#v-pills-c{{ result['id']|e }}"
+                                   role="tab" aria-controls="v-pills-messages" aria-selected="false">Character</a>
+                            {% endif %}
+                            {% if result['quiz'] %}
+                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
+                                   href="#v-pills-quiz{{ result['id']|e }}"
+                                   role="tab" aria-controls="v-pills-settings" aria-selected="false">Quizzes</a>
+                            {% endif %}
+                            {% if result['background'] %}
+                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
+                                   href="#v-pills-context{{ result['id']|e }}"
+                                   role="tab" aria-controls="v-pills-settings" aria-selected="false">Background</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="v-pills-mi{{ result['id']|e }}" role="tabpanel"
+                                 aria-labelledby="v-pills-profile-tab">{{ result['main_ideas']|e }}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-s{{ result['id']|e }}" role="tabpanel"
+                                 aria-labelledby="v-pills-messages-tab">{{ result['summary'] }}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-q{{ result['id']|e }}" role="tabpanel"
+                                 aria-labelledby="v-pills-settings-tab">{{ result['quotes'] | e }}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-c{{ result['id']|e }}" role="tabpanel"
+                                 aria-labelledby="v-pills-settings-tab">{{ result['character_list'] | join('\n') |e }}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-quiz{{ result['id']|e }}" role="tabpanel"
+                                 aria-labelledby="v-pills-settings-tab">{{ result['quiz']|e }}
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-context{{ result['id']|e }}" role="tabpanel"
+                                 aria-labelledby="v-pills-settings-tab">{{ result['background']|e }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            {#            <div class="card search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}"#}
+            {#                 data-queryId="{{ query_id }}">#}
+            {#                <div class="card-body">#}
+            {#                    <a href="/movie/{{ result['id'] }}" class="card-title">{{ result['title']|e }}</a>#}
+            {#                    <p>score:{{ result['score'] }}</p>#}
+            {#                    <p class="card-text">{{ result['text'] }}</p>#}
+            {##}
+            {#                    <a data-click data-id="{{ result.id }}" data-queryId="{{ query_id }}"#}
+            {#                       href="/movie/{{ result['id'] }}" class="card-link">detail</a>#}
+            {#                </div>#}
+            {#            </div>#}
         {% endfor %}
     </div>
 
@@ -64,6 +137,9 @@
                 page_number.val(parseInt(page_val) + 1);
                 search.click()
             });
+            $('.search_result').each((index, value) => {
+                $(value).find('.nav-link').eq(0).click()
+            })
             window.queryId ={{ query_id }};
         }())
     </script>

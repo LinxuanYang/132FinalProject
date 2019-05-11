@@ -249,9 +249,9 @@ def makeup_fields(dict):
     dict["background"] = background
 
     # category
-    category = ""
+    category = []
     if "category" in keys:
-        category = " ".join(dict["category"])
+        category = dict["category"]
     dict["category"] = category
 
     # rate

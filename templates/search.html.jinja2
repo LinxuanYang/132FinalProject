@@ -6,7 +6,7 @@
             <div class="form-group">
                 <input type="text" class="form-control basicAutoComplete" id="text" aria-describedby="textSearch"
                        autocomplete="off"
-                       placeholder="Search the book, pass the exam~" name="query" value="{{ show["tmp_text"] |e }}"/>
+                       placeholder="Search the book, pass the exam~" name="query" value="{{ show["query"] |e }}"/>
             </div>
             <button type="submit" class="btn btn-primary btn-block" id="search">search</button>
         </div>
@@ -20,7 +20,9 @@
         ;(function () {
             $('#text').autoComplete({
                 resolverSettings: {
-                    url: '/hint'
+                    url: '/hint',
+                    minLength:2,
+
                 }
             });
         }())
