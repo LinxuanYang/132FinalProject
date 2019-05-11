@@ -77,8 +77,9 @@ def results():
 
     # insert data into response
     result_list = query_helper.parse_result(response)
+    # if there are results, save it to query
     if len(result_list) > 0:
-        pass
+        Query(query=query).save()
 
     result_num = response.hits.total
     return render_result({'result_list': result_list, 'result_num': result_num})
