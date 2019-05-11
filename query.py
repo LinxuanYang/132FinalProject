@@ -16,7 +16,8 @@ import re
 from flask import *
 from index import Book
 from elasticsearch_dsl.utils import AttrList
-from elasticsearch_dsl import Search
+from elasticsearch_dsl import Search, function, Q
+from elasticsearch_dsl import query as dsl_query
 import query_helper
 from query_helper import index_name, fields_list
 from booster_helper import get_classifier
@@ -72,8 +73,13 @@ def results():
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # supports '|', '+', '-', "" phrase search， '*'， etc.
     #
-    s = search.query('simple_query_string',
-                     fields=fields_list, query=query, default_operator='and', script=score_script)
+
+    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and',
+                     functions=[dsl_query.SF('script_score', script=score_script)])
+    # q = Q('function_score', fields=fields_list, query=query, operator='and',
+    #       functions=[dsl_query.SF('script_score', script=score_script)])
+    # s = search.query(q)
+
     # highlight
     query_helper.highlight(s, fields_list)
 
