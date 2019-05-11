@@ -36,6 +36,7 @@ word_trie = query_helper.load_token_dict_as_trie()
 def search():
     return render_template('index.html.jinja2', show={})
 
+
 # display results page for first set of results and "next" sets.
 @app.route("/results", methods=['GET'])
 def results():
@@ -167,6 +168,11 @@ def hint():
             return jsonify(list(map(lambda x: prefix_word + x, word_trie.keys(prefix=last_word)))[0:10])
         except Exception:
             return jsonify([])
+
+
+@app.route('/like_this/<book_id>')
+def like_this(book_id):
+    return render_result({})
 
 
 if __name__ == "__main__":
