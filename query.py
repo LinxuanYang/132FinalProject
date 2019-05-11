@@ -186,20 +186,34 @@ def hint():
             return jsonify([])
 
 
-@app.route('/like_this/<book_id>')
+@app.route('/like_this/<book_id>',methods=['GET'])
 def like_this(book_id):
     #_id book id
     # index book_index
     #_type: Document
+    page = request.args
+
+    page_number = int(page.get('page_number')) if page.get('page_number') is not "" else 1
+
+
+
     search = Search(index=index_name)
     s = search.query('more_like_this',
-                     fields=["title","author","summary","summary_sentence","character_list","main_ideas",
+                     fields=["title","author","summary","summary_sentence","picture","character_list","main_ideas",
                              "quotes","quiz","background","category","rate"],
                      like=[{"_index":"book_index","_type":'',"_id":book_id}],
                      min_term_freq=1,
                      max_query_terms=12)
 
-    return render_result({})
+    start = 0 + (page_number - 1) * 10
+    end = 10 + (page_number - 1) * 10
+    response = s[start:end].execute()
+    # insert data into response
+    result_list = query_helper.parse_result(response)
+    # if there are results, insert it to query_index
+
+    result_num = response.hits.total
+    return render_result({'result_list': result_list, 'result_num': result_num,"book_id":book_id,"page_number":page_number})
 
 
 if __name__ == "__main__":
