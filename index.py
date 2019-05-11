@@ -191,13 +191,16 @@ def makeup_fields(dict):
         dict["character_list_str"] = character_str
     else:
         dict['character_list'] = {}
-        dict["character_list_str"] = "Character List: None"
+        dict["character_list_str"] = []
 
     plot_sent = dict["summary"]["plot_overview"]
     if not plot_sent:
-        plot_sent = "Plot Overview: None"
+        plot_sent = ""
     else:
         plot_sent = ' '.join(map(lambda x: x.replace('\n', ''), plot_sent))
+        if plot_sent.startswith(' Summary'):
+            plot_sent = plot_sent[9:]
+
     dict["summary"] = plot_sent
 
     # quotes done
@@ -244,7 +247,10 @@ def makeup_fields(dict):
                 quiz_string.append([quiz, explain])
         background = dict["further_study"].get("context")
         if background:
-            background = " ".join(map(lambda x: x.replace("\n", " "), background)) + "\n\n"
+            background = " ".join(map(lambda x: x.replace("\n", " "), background))
+
+            if background.startswith('  Context'):
+                background = background[12:]
     dict["quiz_str"] = quiz_string
     dict["quiz"] = quiz_dict2
     dict["background"] = background
