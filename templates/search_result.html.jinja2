@@ -43,6 +43,7 @@
 {% endblock %}
 
 {% block extra_js %}
+    {{ super() }}
     <script type="application/javascript">
         page_number = $('#page_number')
         page_val = {{ page_number }}

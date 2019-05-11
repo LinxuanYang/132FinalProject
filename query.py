@@ -167,9 +167,13 @@ def hint():
     else:
         user_input = ' ' + user_input.lower()
         last_word = user_input[user_input.rindex(' ') + 1:]
+        prefix_word = user_input[:user_input.rindex(' ')+1]
         # now I only deal with last word situation
         print(last_word)
-        return jsonify(list(filter(lambda x: x != last_word, word_trie.keys(prefix=last_word)))[0:10])
+        try:
+            return jsonify(list(map(lambda x: prefix_word + x, word_trie.keys(prefix=last_word)))[0:10])
+        except Exception:
+            return jsonify([])
 
 
 if __name__ == "__main__":
