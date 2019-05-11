@@ -12,12 +12,12 @@
     <div class="alert alert-success" role="alert">
         you have total of {{ res_num }} results matched
     </div>
-    <div>
+    <div id="result_box">
         {% for result in results %}
             <div class="card search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}"
                  data-queryId="{{ query_id }}">
-                <div class="card-body">
-                    <a href="/movie/{{ result['id'] }}" class="card-title">{{ result['title'] }}</a>
+                <div  class="card-body">
+                    <a href="/movie/{{ result['id'] }}" class="card-title">{{ result['title']|e }}</a>
                     <p>score:{{ result['score'] }}</p>
                     <p class="card-text">{{ result['text'] }}</p>
 

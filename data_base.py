@@ -1,6 +1,6 @@
 from peewee import *
 from playhouse.sqlite_ext import SqliteExtDatabase,JSONField
-
+from playhouse.migrate import *
 
 db = SqliteExtDatabase('user_statistic.db')
 
@@ -48,5 +48,6 @@ class Drag(Model):
 
 
 db.connect()
-
+# perform migrate
+# http://docs.peewee-orm.com/en/latest/peewee/playhouse.html#migrate
 db.create_tables([Query, Hover, Click, Drag, Stay])
