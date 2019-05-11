@@ -18,11 +18,15 @@
                  data-queryId="{{ query_id }}">
                 <h1 class="display-5">{{ result['title'] | e }}</h1>
                 <span class="badge badge-secondary"> {{ result['author'] }}</span>
+                {% for category in result.category%}
+                     <span class="badge badge-secondary"> {{ category}}</span>
+                {% endfor %}
                 <p class="lead">{{ result['summary_sentence'] |e }}</p>
-                <a  data-toggle="collapse" data-target="#collapse{{ result['id'] |e }}"
+                <a data-toggle="collapse" data-target="#collapse{{ result['id'] |e }}"
                    href="javascript:void(0)" class="btn btn-success">show detail</a>
                 <hr class="my-4">
-                <div class="row collapse" id="collapse{{ result['id'] |e }}"  data-click data-id="{{ result.id }}" data-queryId="{{ query_id }}">
+                <div class="row collapse" id="collapse{{ result['id'] |e }}" data-click data-id="{{ result.id }}"
+                     data-queryId="{{ query_id }}">
                     <div class="col-3">
                         <div class="nav flex-column nav-pills" role="tablist"
                              aria-orientation="vertical">
