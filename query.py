@@ -56,7 +56,6 @@ def results():
 
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # supports '|', '+', '-', "" phrase search， '*'， etc.
-    #
 
     s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
     # q = Q('function_score', fields=fields_list, query=query, operator='and',

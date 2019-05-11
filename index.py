@@ -257,7 +257,7 @@ def makeup_fields(dict):
     # rate
     rate = 4.0
     if "rate" in keys:
-        rate = float(dict["rate"].split()[2])
+        rate = float(dict["rate"])
     dict["rate"] = rate
 
     return dict
