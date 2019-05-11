@@ -181,12 +181,12 @@ def makeup_fields(dict):
     # character list done
     character_list = dict.get('character_list')
     if character_list:
-        character_str = ''
+        character_str = []
         character_dict = {}
         for character, intro in character_list['character_list'].items():
-            character_intro = ' '.join(map(lambda x: x.strip().replace('\n', ' '), intro))
+            character_intro = ''.join(map(lambda x: x.strip().replace('\n', ' '), intro)).strip()
             character_dict[character] = character_intro
-            character_str += character + character_intro + '\n'
+            character_str.append([character, character_intro])
         dict["character_list"] = character_dict  # {name1: description, name2: description, ...}
         dict["character_list_str"] = character_str
     else:
@@ -201,16 +201,16 @@ def makeup_fields(dict):
     dict["summary"] = plot_sent
 
     # quotes done
-    quotes_sent = ""
+    quotes_sent = []
     quotes_dict_tmp = {}
     if "quotes" in keys:
         quotes_dict = dict["quotes"].get("important_quotations_explained")
         if quotes_dict:
             for quote, explain in quotes_dict.items():
-                quote_self = ' '.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote))
+                quote_self = ''.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote)).strip()
                 quote_explain = ' '.join(map(lambda x: x.replace('\n', ' '), explain))
                 quotes_dict_tmp[quote] = quote_explain
-                quotes_sent += "Quote: " + quote_self + "\nExplain: " + quote_explain + "\n\n"
+                quotes_sent.append([quote_self, quote_explain])
     dict["quotes_str"] = quotes_sent
     dict["quotes"] = quotes_dict_tmp
 
