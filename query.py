@@ -36,24 +36,6 @@ word_trie = query_helper.load_token_dict_as_trie()
 def search():
     return render_template('index.html.jinja2', show={})
 
-
-@app.route("/query_completion", methods=['GET'])
-def search_query():
-    search = Search(index='query_index')
-    keyword = request.get_json['keyword']
-    s = search.query('simple_query_string', fields=['query'], query=keyword, default_operator='and')
-    start = 0
-    end = 10
-    results = []
-    response = s[start:end].execute()
-    if response.hits.total != 0:
-        for hit in response.hits:
-            result = {'id': hit.meta.id}
-            result['title'] = hit.title[0]
-            results.append(result)
-    return json.dumps(results)
-
-
 # display results page for first set of results and "next" sets.
 @app.route("/results", methods=['GET'])
 def results():
@@ -61,6 +43,7 @@ def results():
 
     page_number = int(page.get('page_number').encode('utf-8')) if page.get('page_number') is not None else 1
     query = page.get('query') or ""
+
     search = Search(index=index_name)
 
     # BOOST FIELD WEIGHTS
@@ -94,6 +77,8 @@ def results():
 
     # insert data into response
     result_list = query_helper.parse_result(response)
+    if len(result_list) > 0:
+        pass
 
     result_num = response.hits.total
     return render_result({'result_list': result_list, 'result_num': result_num})
@@ -101,7 +86,7 @@ def results():
 
 # display a particular document given a result number
 # <res> must be b1, b2, ..., bMAXID
-@app.route("/documents/<res>", methods=['GET'])
+@app.route("/movie/<res>", methods=['GET'])
 def documents(res):
     book = Book.get(id=res, index=index_name).to_dict()
     for term in book:
