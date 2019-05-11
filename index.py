@@ -184,7 +184,7 @@ def makeup_fields(dict):
         character_str = []
         character_dict = {}
         for character, intro in character_list['character_list'].items():
-            character_intro = ''.join(map(lambda x: x.strip().replace('\n', ' '), intro)).strip()
+            character_intro = ''.join(map(lambda x: x.strip().replace('\n', ' '), intro)).replace('-\xa0', '').strip()
             character_dict[character] = character_intro
             character_str.append([character, character_intro])
         dict["character_list"] = character_dict  # {name1: description, name2: description, ...}
@@ -207,7 +207,7 @@ def makeup_fields(dict):
         quotes_dict = dict["quotes"].get("important_quotations_explained")
         if quotes_dict:
             for quote, explain in quotes_dict.items():
-                quote_self = ''.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote)).strip()
+                quote_self = ''.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote)).replace('\t', ' ').strip()
                 quote_explain = ' '.join(map(lambda x: x.replace('\n', ' '), explain))
                 quotes_dict_tmp[quote] = quote_explain
                 quotes_sent.append([quote_self, quote_explain])
@@ -215,7 +215,7 @@ def makeup_fields(dict):
     dict["quotes"] = quotes_dict_tmp
 
     # main ideas
-    main_ideas_sent = ""
+    main_ideas_sent = []
     main_ideas_dict = {}
     if "main_ideas" in keys:
         theme_dict = dict["main_ideas"].get("themes")
@@ -223,7 +223,7 @@ def makeup_fields(dict):
             for theme, explain in theme_dict.items():
                 theme_explain = ' '.join(map(lambda x: x.replace('\n', ' '), explain))
                 main_ideas_dict[theme] = theme_explain
-                main_ideas_sent += "Theme: " + theme + "\nExplain: " + theme_explain + "\n\n"
+                main_ideas_sent.append([theme, theme_explain])
     dict["main_ideas_str"] = main_ideas_sent
     dict['main_ideas'] = main_ideas_dict
 
