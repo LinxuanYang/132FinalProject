@@ -52,15 +52,10 @@ def results():
     # fields_list = query_helper.boost_fields(boost_weight)
     fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98]
     fields_list = query_helper.boost_fields(fake_weight)
-    score_script = "_score + doc['rate'].value / 5"
 
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # supports '|', '+', '-', "" phrase search， '*'， etc.
-
     s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
-    # q = Q('function_score', fields=fields_list, query=query, operator='and',
-    #       functions=[dsl_query.SF('script_score', script=score_script)])
-    # s = search.query(q)
 
     # highlight
     query_helper.highlight(s, fields_list)
@@ -83,11 +78,10 @@ def results():
         qs = Query.select().where(Query.query == query)
     except Query.DoesNotExist:
         qs = None
-    if len(result_list) > 0:
+    if result_list:
         if not qs:
             q1 = Query(query=query, result=json.dumps(result_list))
             q1.save()
-            print(q1.id)
             query_id = q1.id
             q = SearchQuery(query=query, suggest=query, meta={'index': 'query_index', 'id': query_id})
             q.save()
@@ -95,7 +89,7 @@ def results():
             query_id = Query.get(Query.query == query).id
 
     result_num = response.hits.total
-    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id})
+    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query, 'page_number': page_number, 'message': message})
 
 
 # display a particular document given a result number
@@ -192,6 +186,7 @@ def hint():
 
 @app.route('/like_this/<book_id>')
 def like_this(book_id):
+
     return render_result({})
 
 

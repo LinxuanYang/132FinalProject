@@ -236,7 +236,7 @@ def makeup_fields(dict):
 
     # further study
     quiz_dict2 = {}
-    quiz_string = ""
+    quiz_string = []
     background = ""
     if "further_study" in keys:
         quiz_dict = dict["further_study"].get("study-questions")
@@ -244,7 +244,7 @@ def makeup_fields(dict):
             for quiz, explain in quiz_dict.items():
                 explain = " ".join(map(lambda x: x.replace("\n", " "), explain))
                 quiz_dict2[quiz] = explain
-                quiz_string += "Quiz question: " + quiz + "\nExplain: " + explain + "\n\n"
+                quiz_string.append([quiz, explain])
         background = dict["further_study"].get("context")
         if background:
             background = " ".join(map(lambda x: x.replace("\n", " "), background))
@@ -315,7 +315,6 @@ def build_index():
             }
 
     helpers.bulk(es, actions())
-
 
 # def build_summary_index():
 #     summary_index = Index("summary_index")

@@ -1,12 +1,13 @@
 ;$(function () {
     let hoverTimeCalculate = {};
 
-    $('[data-click]').on('show.bs.collapse', function () {
-        let $this = $(this);
+    $('[data-click]').on('click', function () {
+        let $this = $(this).parents('[data-id]');
         let id = $this.data('id');
         let queryId = $this.data('queryid');
         let type = 'clickThrough';
-        sendClick(id, queryId)
+        console.log(id,queryId)
+        sendClick(id, queryId, $(this).data('click'))
 
     });
     $('[data-hover-monitor]').hover(function () {
@@ -76,14 +77,14 @@
         })
     }
 
-    function sendClick(id, queryId) {
+    function sendClick(id, queryId, field) {
         if (!queryId) {
             return
         }
         $.ajax('/click', {
             method: 'post',
             data: {
-                id, queryId
+                id, queryId, field
             }
         })
     }
