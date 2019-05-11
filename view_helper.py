@@ -1,12 +1,4 @@
 from flask import *
-from index import Book
-from elasticsearch_dsl.utils import AttrList
-from elasticsearch_dsl import Search
-import query_helper
-from query_helper import index_name, fields_list
-from booster_helper import get_classifier
-from data_base import Query, Hover, Click, Stay, Drag
-from playhouse.shortcuts import model_to_dict, dict_to_model
 
 
 def render_result(params):
@@ -16,7 +8,8 @@ def render_result(params):
     res_num = params.get('result_num')
     mes = params.get('message', [])
     results = params.get('result_list', [])
-    query=params.get('query')
+    query = params.get('query')
+    book_id = params.get('book_id')  # this is for similar book function, I use this for pagination
     # print(list(map(lambda x:x['title'],results)))
     return render_template('search_result.html.jinja2', show={query}, page_number=page_number, page_size=page_size,
                            res_num=res_num, results=results, query_id=query_id, mes=mes)

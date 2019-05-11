@@ -169,5 +169,10 @@ def hint():
             return jsonify([])
 
 
+@app.route('/like_this/<book_id>')
+def like_this(book_id):
+    return render_result({})
+
+
 if __name__ == "__main__":
     app.run(debug=True)
