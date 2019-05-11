@@ -74,11 +74,11 @@ def results():
     # supports '|', '+', '-', "" phrase search， '*'， etc.
     #
 
-    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and',
-                     functions=[dsl_query.SF('script_score', script=score_script)])
-    # q = Q('function_score', fields=fields_list, query=query, operator='and',
-    #       functions=[dsl_query.SF('script_score', script=score_script)])
-    # s = search.query(q)
+    # s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and',
+    #                  functions=[dsl_query.SF('script_score', script=score_script)])
+    q = Q('function_score', fields=fields_list, query=query, operator='and',
+          functions=[dsl_query.SF('script_score', script=score_script)])
+    s = search.query(q)
 
     # highlight
     query_helper.highlight(s, fields_list)
