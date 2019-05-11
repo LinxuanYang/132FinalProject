@@ -43,7 +43,7 @@ def search():
 def results():
     page = request.args
 
-    page_number = int(page.get('page_number').encode('utf-8')) if page.get('page_number') is not None else 1
+    page_number = int(page.get('page_number')) if page.get('page_number') is not "" else 1
     query = page.get('query') or ""
     search = Search(index=index_name)
 
