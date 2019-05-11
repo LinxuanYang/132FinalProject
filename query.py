@@ -193,15 +193,12 @@ def like_this(book_id):
     #_type: Document
     page = request.args
 
-    page_number = int(page.get('page_number')) if page.get('page_number','') is not "" else 1
-
-
+    page_number = int(page.get('page_number')) if page.get('page_number','') is not '' else 1
 
     search = Search(index=index_name)
     s = search.query('more_like_this',
-                     fields=["title","author","summary","summary_sentence","picture","character_list","main_ideas",
-                             "quotes","quiz","background","category","rate"],
-                     like=[{"_index":"book_index","_type":'',"_id":book_id}],
+                     fields=fields_list,
+                     like=[{"_index": "book_index", "_type": "doc", "_id":book_id}],
                      min_term_freq=1,
                      max_query_terms=12)
 
