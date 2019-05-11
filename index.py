@@ -210,7 +210,8 @@ def makeup_fields(dict):
         quotes_dict = dict["quotes"].get("important_quotations_explained")
         if quotes_dict:
             for quote, explain in quotes_dict.items():
-                quote_self = ''.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote)).replace('\t', ' ').strip()
+                quote_self = ''.join(map(lambda x: x.replace('\n', ' ').replace('  ', ' '), quote)).replace('\t',
+                                                                                                            ' ').strip()
                 quote_explain = ' '.join(map(lambda x: x.replace('\n', ' '), explain))
                 quotes_dict_tmp[quote] = quote_explain
                 quotes_sent.append([quote_self, quote_explain])
@@ -268,6 +269,7 @@ def makeup_fields(dict):
 
     return dict
 
+
 # Populate the index
 def build_index():
     film_index = Index('book_index')
@@ -292,7 +294,6 @@ def build_index():
 
     # Action series for bulk loading with helpers.bulk function.
     def actions():
-
         for mid in range(1, size + 1):
             yield {
                 "_index": "book_index",
@@ -311,7 +312,6 @@ def build_index():
                 "background": books[str(mid)]["background"],
                 "category": books[str(mid)]["category"],
                 "rate": books[str(mid)]["rate"]
-
             }
 
     helpers.bulk(es, actions())
@@ -654,6 +654,7 @@ def build_query_Index():
         query_index.delete()
     query_index.create()
     SearchQuery.init()
+
 
 # command line invocation builds index and prints the running time.
 def main():

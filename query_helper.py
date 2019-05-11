@@ -29,7 +29,6 @@ def parse_result(response_object):
         for field in hit:
             if field != 'meta':
                 result[field] = getattr(hit, field)
-        # result['title'] = '  '.join(result['title'])
         if 'hightlight' in hit.meta:
             for field in hit.meta.highlight:
                 result[field] = getattr(hit.meta.highlight, field)[0]
