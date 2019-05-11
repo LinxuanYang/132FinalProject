@@ -85,10 +85,8 @@ def results():
         qs = None
     if len(result_list) > 0:
         if not qs:
-            print(result_list[0])
             q1 = Query(query=query, result=json.dumps(result_list))
             q1.save()
-            print(q1.id)
             query_id = q1.id
             q = SearchQuery(query=query, suggest=query, meta={'index': 'query_index', 'id': query_id})
             q.save()

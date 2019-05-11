@@ -1,6 +1,7 @@
 import datetime
 import json
 import random
+
 import jsonlines
 import nltk
 import string
@@ -11,6 +12,7 @@ from index import makeup_fields
 
 index_name = 'book_index'
 fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes', 'picture']
+from elasticsearch_dsl.utils import AttrList
 
 def highlight(search_object, field_list):
     search_object = search_object.highlight_options(pre_tags='<mark>', post_tags='</mark>')
@@ -27,6 +29,8 @@ def parse_result(response_object):
         for field in hit:
             if field != 'meta':
                 result[field] = getattr(hit, field)
+                if type(result[field]) is AttrList:
+                    result[field] = list(result[field])
         if 'hightlight' in hit.meta:
             for field in hit.meta.highlight:
                 result[field] = getattr(hit.meta.highlight, field)[0]
