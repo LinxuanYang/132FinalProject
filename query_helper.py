@@ -102,7 +102,7 @@ def merge_good_spark(jl_file, json_file):
                 else:
                     merger_file[name] = {**content,
                                          'rate': str(avg_score + random.randrange(-30, 30) / 100)[:4],
-                                         'category': ['unknown']
+                                         'category': []
                                          }
             writer.write(merger_file[name])
 
