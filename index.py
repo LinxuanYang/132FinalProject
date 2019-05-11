@@ -48,6 +48,11 @@ class Book(Document):
         return super(Book, self).save(*args, **kwargs)
 
 
+class Query(Document):
+    query = Text()
+    def save(self, *args, **kwargs):
+        return super(Query, self).save(*args, **kwargs)
+
 # define class Summary
 class Summary(Document):
     book_id = Text(analyzer=my_analyzer)
@@ -134,7 +139,7 @@ class Background(Document):
     background = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
-        return super(Title, self).save(*args, **kwargs)
+        return super(Background, self).save(*args, **kwargs)
 
 
 # quiz
@@ -146,7 +151,7 @@ class Quiz(Document):
     quiz_explanation = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
-        return super(Title, self).save(*args, **kwargs)
+        return super(Quiz, self).save(*args, **kwargs)
 
 
 # Category
@@ -157,8 +162,7 @@ class Category(Document):
     category = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
-        return super(Title, self).save(*args, **kwargs)
-
+        return super(Category, self).save(*args, **kwargs)
 
 def makeup_fields(dict):
     # print("--------------------------------------------a new article-----------------------------------------------")
