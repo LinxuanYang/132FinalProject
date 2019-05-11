@@ -16,7 +16,8 @@ import re
 from flask import *
 from index import Book
 from elasticsearch_dsl.utils import AttrList
-from elasticsearch_dsl import Search
+from elasticsearch_dsl import Search, function, Q
+from elasticsearch_dsl import query as dsl_query
 import query_helper
 from query_helper import index_name, fields_list
 from booster_helper import get_classifier
@@ -49,10 +50,18 @@ def results():
     # fields_list = query_helper.boost_fields(boost_weight)
     fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98]
     fields_list = query_helper.boost_fields(fake_weight)
+    score_script = "_score + doc['rate'].value / 5"
 
     # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # supports '|', '+', '-', "" phrase search， '*'， etc.
-    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
+    #
+
+    s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and',
+                     functions=[dsl_query.SF('script_score', script=score_script)])
+    # q = Q('function_score', fields=fields_list, query=query, operator='and',
+    #       functions=[dsl_query.SF('script_score', script=score_script)])
+    # s = search.query(q)
+
     # highlight
     query_helper.highlight(s, fields_list)
 
@@ -149,7 +158,7 @@ def hint():
     else:
         user_input = ' ' + user_input.lower()
         last_word = user_input[user_input.rindex(' ') + 1:]
-        prefix_word = user_input[:user_input.rindex(' ')+1]
+        prefix_word = user_input[:user_input.rindex(' ') + 1]
         # now I only deal with last word situation
         print(last_word)
         try:

@@ -4,7 +4,7 @@ import time
 
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
-from elasticsearch_dsl import Index, Document, Text, Keyword, Integer
+from elasticsearch_dsl import Index, Document, Text, Keyword, Integer, Float
 from elasticsearch_dsl.connections import connections
 from elasticsearch_dsl.analysis import tokenizer, analyzer, char_filter, token_filter
 from elasticsearch_dsl.query import MultiMatch, Match
@@ -19,9 +19,7 @@ es = Elasticsearch()
 # You can create a custom analyzer by choosing among elasticsearch options
 # or writing your own functions.
 # Elasticsearch also has default analyzers that might be appropriate.
-my_analyzer = analyzer('custom',
-                       tokenizer='standard',
-                       filter=['lowercase', 'stop', 'asciifolding', 'snowball'])
+my_analyzer = analyzer('custom', tokenizer='standard', filter=['lowercase', 'stop', 'asciifolding', 'snowball'])
 
 
 def test_analyzer(text, analyzer):
@@ -31,7 +29,7 @@ def test_analyzer(text, analyzer):
 
 # Define document mapping (schema) by defining a class as a subclass of Document.
 class Book(Document):
-    book_id=Text(analyzer=my_analyzer)
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)  # stop words
     author = Text(analyzer=my_analyzer)
     summary_sentence = Text(analyzer=my_analyzer)
@@ -39,11 +37,11 @@ class Book(Document):
     character_list = Text(analyzer=my_analyzer)
     main_ideas = Text(analyzer=my_analyzer)
     quotes = Text(analyzer=my_analyzer)
-    picture=Text(analyzer=my_analyzer)
-    quiz=Text(analyzer=my_analyzer)
-    background=Text(analyzer=my_analyzer)
-    category=Text(analyzer=my_analyzer)
-    rate=Text(analyzer=my_analyzer)
+    picture = Text(analyzer=my_analyzer)
+    quiz = Text(analyzer=my_analyzer)
+    background = Text(analyzer=my_analyzer)
+    category = Text(analyzer=my_analyzer)
+    rate = Float()
 
     # override the Document save method to include subclass field definitions
     def save(self, *args, **kwargs):
@@ -52,9 +50,9 @@ class Book(Document):
 
 # define class Summary
 class Summary(Document):
-    book_id=Text(analyzer=my_analyzer)
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
-    author=Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
     summary = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
@@ -63,9 +61,9 @@ class Summary(Document):
 
 # define class Summary_Sentence
 class Summary_Sentence(Document):
-    book_id=Text(analyzer=my_analyzer)
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
-    author=Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
     summary_sentence = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
@@ -100,7 +98,7 @@ class Character(Document):
 class Quotes(Document):
     book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
-    author=Text(analyzer=my_analyzer)
+    author = Text(analyzer=my_analyzer)
     quote = Text(analyzer=my_analyzer)
     quote_explanation = Text(analyzer=my_analyzer)
 
@@ -110,7 +108,7 @@ class Quotes(Document):
 
 # author
 class Author(Document):
-    book_id=Text(analyzer=my_analyzer)
+    book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
     author = Text(analyzer=my_analyzer)
 
@@ -127,26 +125,29 @@ class Title(Document):
     def save(self, *args, **kwargs):
         return super(Title, self).save(*args, **kwargs)
 
+
 # background
 class Background(Document):
     book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
     author = Text(analyzer=my_analyzer)
-    background=Text(analyzer=my_analyzer)
+    background = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
         return super(Title, self).save(*args, **kwargs)
+
 
 # quiz
 class Quiz(Document):
     book_id = Text(analyzer=my_analyzer)
     title = Text(analyzer=my_analyzer)
     author = Text(analyzer=my_analyzer)
-    quiz_question=Text(analyzer=my_analyzer)
-    quiz_explanation=Text(analyzer=my_analyzer)
+    quiz_question = Text(analyzer=my_analyzer)
+    quiz_explanation = Text(analyzer=my_analyzer)
 
     def save(self, *args, **kwargs):
         return super(Title, self).save(*args, **kwargs)
+
 
 # Category
 class Category(Document):
@@ -157,6 +158,7 @@ class Category(Document):
 
     def save(self, *args, **kwargs):
         return super(Title, self).save(*args, **kwargs)
+
 
 def makeup_fields(dict):
     # print("--------------------------------------------a new article-----------------------------------------------")
@@ -224,34 +226,32 @@ def makeup_fields(dict):
     # further study
     quiz_dict2 = {}
     quiz_string = ""
-    background= ""
+    background = ""
     if "further_study" in keys:
         quiz_dict = dict["further_study"].get("study-questions")
         if quiz_dict:
             for quiz, explain in quiz_dict.items():
-                explain=" ".join(map(lambda x:x.replace("\n"," "),explain))
-                quiz_dict2[quiz]=explain
+                explain = " ".join(map(lambda x: x.replace("\n", " "), explain))
+                quiz_dict2[quiz] = explain
                 quiz_string += "Quiz question: " + quiz + "\nExplain: " + explain + "\n\n"
-        background=dict["further_study"].get("context")
+        background = dict["further_study"].get("context")
         if background:
-            background="Context: "+" ".join(map(lambda x:x.replace("\n"," "),explain))+ "\n\n"
-    dict["quiz_str"]=quiz_string
-    dict["quiz"]=quiz_dict2
-    dict["background"]=background
+            background = " ".join(map(lambda x: x.replace("\n", " "), background)) + "\n\n"
+    dict["quiz_str"] = quiz_string
+    dict["quiz"] = quiz_dict2
+    dict["background"] = background
 
-    #category
-    category=""
+    # category
+    category = ""
     if "category" in keys:
-        category=" ".join(dict["category"])
-    dict["category"]=category
+        category = " ".join(dict["category"])
+    dict["category"] = category
 
     # rate
-    rate=""
+    rate = 4.0
     if "rate" in keys:
-        rate=dict["rate"]
-    dict["rate"]=rate
-
-
+        rate = float(dict["rate"].split()[2])
+    dict["rate"] = rate
 
     return dict
 
@@ -295,7 +295,7 @@ def build_index():
                 "main_ideas": books[str(mid)]['main_ideas_str'],
                 "quotes": books[str(mid)]['quotes_str'],
                 "picture": books[str(mid)]['picture'],
-                "quiz":books[str(mid)]["quiz_str"],
+                "quiz": books[str(mid)]["quiz_str"],
                 "background": books[str(mid)]["background"],
                 "category": books[str(mid)]["category"],
                 "rate": books[str(mid)]["rate"]
@@ -516,7 +516,7 @@ def build_author_index():
                 "_index": "author_index",
                 "_type": 'doc',
                 "_id": str(mid),
-                "book_id":str(mid),
+                "book_id": str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author']
             }
@@ -550,12 +550,13 @@ def build_title_index():
                 "_index": "title_index",
                 "_type": 'doc',
                 "_id": 't' + str(mid),
-                "book_id":str(mid),
+                "book_id": str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author']
             }
 
     helpers.bulk(es, actions())
+
 
 # quiz
 def build_quiz_Index():
@@ -570,7 +571,7 @@ def build_quiz_Index():
     # Open the json film corpus
     books = {}
     mid = 1
-    with open('./sparknotes/shelve/sparknotes_book_detail.jl',encoding='UTF-8') as data_file:
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl', encoding='UTF-8') as data_file:
         # load books from json file into dictionary
 
         for line in data_file:
@@ -599,6 +600,7 @@ def build_quiz_Index():
 
     helpers.bulk(es, actions())
 
+
 # background
 def build_title_Index():
     title_index = Index('background_index')
@@ -610,7 +612,7 @@ def build_title_Index():
 
     books = {}
     mid = 1
-    with open('./sparknotes/shelve/sparknotes_book_detail.jl',encoding='UTF-8') as data_file:
+    with open('./sparknotes/shelve/sparknotes_book_detail.jl', encoding='UTF-8') as data_file:
 
         for line in data_file:
             books[str(mid)] = json.loads(line)
@@ -628,7 +630,7 @@ def build_title_Index():
                 "book_id": str(mid),
                 "title": books[str(mid)]['title'],
                 "author": books[str(mid)]['author'],
-                "background":books[str(mid)]["background"]
+                "background": books[str(mid)]["background"]
             }
 
     helpers.bulk(es, actions())

@@ -115,7 +115,7 @@ def generate_token_dict(corpus):
 
 
 def load_token_dict_as_trie(token_dict='token_dict.txt'):
-    with open(token_dict, 'r',encoding='UTF-8') as f:
+    with open(token_dict, 'r', encoding='UTF-8') as f:
         token_set = ast.literal_eval(f.read())
     t = trie.CharTrie()
     for token in token_set:
