@@ -17,9 +17,10 @@
             <div class="jumbotron search_result" data-hover-monitor data-drag-monitor data-id="{{ result.id }}"
                  data-queryId="{{ query_id }}">
                 <h1 class="display-5">{{ result['title'] | e }}</h1>
+                <span class="badge badge-primary"> Rate:{{ result['rate'] }}</span>
                 <span class="badge badge-secondary"> {{ result['author'] }}</span>
                 {% for category in result.category%}
-                     <span class="badge badge-secondary"> {{ category}}</span>
+                     <span class="badge badge-danger"> {{ category}}</span>
                 {% endfor %}
                 <p class="lead">{{ result['summary_sentence'] |e }}</p>
                 <a data-toggle="collapse" data-target="#collapse{{ result['id'] |e }}"
