@@ -24,7 +24,7 @@
                 <p class="lead">{{ result['summary_sentence'] |e }}</p>
                 <a data-toggle="collapse" data-target="#collapse{{ result['id'] |e }}"
                    href="javascript:void(0)" class="btn btn-success">show detail</a>
-                <a href="/like_this/{{ result['id'] }}" class="btn">more like this</a>
+                <a href="/like_this/{{ result['id'] }}" class="btn btn-info">more like this</a>
                 <hr class="my-4">
                 <div class="row collapse" id="collapse{{ result['id'] |e }}" data-click data-id="{{ result.id }}"
                      data-queryId="{{ query_id }}">
