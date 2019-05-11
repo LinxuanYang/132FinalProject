@@ -15,7 +15,6 @@ def render_result(params):
     page_size = params.get('page_size', 10)
     res_num = params.get('result_num')
     mes = params.get('message', [])
-    results=params.get('result_list',[])
+    results = params.get('result_list', [])
     return render_template('search_result.html.jinja2', show={}, page_number=page_number, page_size=page_size,
-                           res_num=res_num,results=results,
-                           query_id=query_id, mes=mes)
+                           res_num=res_num, results=results, query_id=query_id, mes=mes)
