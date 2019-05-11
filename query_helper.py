@@ -29,11 +29,15 @@ def parse_result(response_object):
         for field in hit:
             if field != 'meta':
                 result[field] = getattr(hit, field)
-                if type(result[field]) is AttrList:
-                    result[field] = list(result[field])
         if 'hightlight' in hit.meta:
             for field in hit.meta.highlight:
                 result[field] = getattr(hit.meta.highlight, field)[0]
+        for field in result:
+            if type(result[field]) is AttrList:
+                result[field] = list(result[field])
+                for i in range(0, len(result[field])):
+                    if type(result[field][i]) is AttrList:
+                        result[field][i] = list(result[field][i])
         result_list.append(result)
     return result_list
 
