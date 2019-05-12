@@ -1,7 +1,7 @@
 ;$(function () {
     let hoverTimeCalculate = {};
 
-    $(document).on('click', '[data-cate]', function () {
+    $('body').on('click', '[data-cate]', function () {
         let $this = $(this)
         let cate = $this.data('cate')
         console.log(cate)
@@ -14,7 +14,7 @@
         })
     })
 
-    $(document).on('click', '[data-click]', function () {
+    $('body').on('click', '[data-click]', function () {
         let $this = $(this).parents('[data-id]');
         let id = $this.data('id');
         let queryId = $this.data('queryid');
@@ -23,7 +23,7 @@
         sendClick(id, queryId, $(this).data('click'))
 
     });
-    $(document).on('mouseenter', '[data-hover-monitor]', function () {
+    $('body').on('mouseenter', '[data-hover-monitor]', function () {
         let $this = $(this);
         let id = $this.data('id');
         let queryId = $this.data('queryid');
@@ -45,7 +45,7 @@
         hoverTimeCalculate[id] = ''
     });
     let dragStatus = false;
-    $(document).mousedown(function () {
+    $('body').mousedown(function () {
         dragStatus = true
     }).mouseup(function () {
         dragStatus = false
@@ -63,7 +63,7 @@
             })
         }, 1000
     )
-    $(document).on('mousemove', '[data-drag-monitor]', function () {
+    $('body').on('mousemove', '[data-drag-monitor]', function () {
         if (!dragStatus) {
             return
         }
