@@ -23,6 +23,7 @@ fields_list = ['title',
                'background',
                'category',
                'rate']
+
 from elasticsearch_dsl.utils import AttrList
 
 def highlight(search_object, field_list):
