@@ -1,5 +1,5 @@
 from peewee import *
-from playhouse.sqlite_ext import SqliteExtDatabase,JSONField
+from playhouse.sqlite_ext import SqliteExtDatabase, JSONField
 from playhouse.migrate import *
 
 db = SqliteExtDatabase('user_statistic.db')
@@ -12,6 +12,7 @@ class Query(Model):
 
     class Meta:
         database = db  # This model uses the "people.db" database.
+
 
 class Hover(Model):
     duration = BigIntegerField()
