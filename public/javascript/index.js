@@ -1,7 +1,7 @@
 ;$(function () {
     let hoverTimeCalculate = {};
 
-    $('[data-cate]').on('click', function () {
+    $(document.body).on('click', '[data-cate]', function () {
         let $this = $(this)
         let cate = $this.data('cate')
         $.ajax(`/good_reads/${cate}`, {
@@ -13,7 +13,7 @@
         })
     })
 
-    $('[data-click]').on('click', function () {
+    $(document.body).on('click', '[data-click]', function () {
         let $this = $(this).parents('[data-id]');
         let id = $this.data('id');
         let queryId = $this.data('queryid');
@@ -22,7 +22,7 @@
         sendClick(id, queryId, $(this).data('click'))
 
     });
-    $('[data-hover-monitor]').hover(function () {
+    $(document.body).on('mouseenter', '[data-hover-monitor]', function () {
         let $this = $(this);
         let id = $this.data('id');
         let queryId = $this.data('queryid');
@@ -32,16 +32,16 @@
             if (hoverTimeCalculate[id] === time) {
                 sendHoverTime(id, queryId, new Date().getTime() - hoverTimeCalculate[id])
             }
-        }, 8000)
-    }, function () {
+        }, 15000)
+    }).on('mouseleave', '[data-hover-monitor]', function () {
         let $this = $(this);
         let id = $this.data('id');
         let queryId = $this.data('queryid');
         let time = new Date().getTime();
-        if (hoverTimeCalculate[id] && time - hoverTimeCalculate[id] > 8000) {
+        if (hoverTimeCalculate[id] && time - hoverTimeCalculate[id] > 15000) {
             sendHoverTime(id, queryId, time - hoverTimeCalculate[id]);
-            hoverTimeCalculate[id] = ''
         }
+        hoverTimeCalculate[id] = ''
     });
     let dragStatus = false;
     $(document.body).mousedown(function () {
@@ -60,9 +60,9 @@
                     id, queryId
                 }
             })
-        }, 3000
+        }, 1000
     )
-    $('[data-drag-monitor]').on('mousemove', function () {
+    $(document.body).on('mousemove', '[data-drag-monitor]', function () {
         if (!dragStatus) {
             return
         }
