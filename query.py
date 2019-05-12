@@ -194,21 +194,24 @@ def like_this(book_id):
     page_number = int(page.get('page_number')) if page.get('page_number', '') is not '' else 1
 
     search = Search(index=index_name)
-    s = search.query('more_like_this',
-                     fields=fields_list[0:11],
-                     like=[{"_index": "book_index", "_type": "doc", "_id": book_id}],
-                     min_term_freq=1,
-                     minimum_should_match='70%',
-                     max_query_terms=5)
+    match_rate=90
+    result_num=0
 
-    start = (page_number - 1) * 10
-    end = 10 + (page_number - 1) * 10
-    response = s[start:end].execute()
-    # insert data into response
-    result_list = query_helper.parse_result(response)
-    # if there are results, insert it to query_index
-
-    result_num = response.hits.total
+    while result_num<10:
+        s = search.query('more_like_this',
+                         fields=fields_list[0:11],
+                         like=[{"_index": "book_index", "_type": "doc", "_id": book_id}],
+                         min_term_freq=1,
+                         minimum_should_match=str(match_rate)+'%',
+                         max_query_terms=5)
+        match_rate-=10
+        start = (page_number - 1) * 10
+        end = 10 + (page_number - 1) * 10
+        response = s[start:end].execute()
+        # insert data into response
+        result_list = query_helper.parse_result(response)
+        # if there are results, insert it to query_index
+        result_num = response.hits.total
     return render_result(
         {'result_list': result_list, 'result_num': result_num, "book_id": book_id, "page_number": page_number})
 
