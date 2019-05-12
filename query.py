@@ -47,17 +47,11 @@ def results():
     # BOOST FIELD WEIGHTS
     # boost_weight = get_classifier().predict(query)
     # fields_list = query_helper.boost_fields(boost_weight)
-    fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98]
+    fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98, 1, 1, 1]
     fields_list = query_helper.boost_fields(fake_weight)
-    score_script = "_score + doc['rate'].value / 5"
 
-    # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
     # supports '|', '+', '-', "" phrase search， '*'， etc.
-
     s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
-    # q = Q('function_score', fields=fields_list, query=query, operator='and',
-    #       functions=[dsl_query.SF('script_score', script=score_script)])
-    # s = search.query(q)
 
     # highlight
     query_helper.highlight(s, fields_list)

@@ -11,7 +11,18 @@ import pygtrie as trie
 from index import makeup_fields
 
 index_name = 'book_index'
-fields_list = ['title', 'author', 'summary_sentence', 'summary', 'character_list', 'main_ideas', 'quotes', 'picture', 'quiz', 'background', 'category', 'rate']
+fields_list = ['title',
+               'author',
+               'summary_sentence',
+               'summary',
+               'character_list',
+               'main_ideas',
+               'quotes',
+               'picture',
+               'quiz',
+               'background',
+               'category',
+               'rate']
 from elasticsearch_dsl.utils import AttrList
 
 def highlight(search_object, field_list):
