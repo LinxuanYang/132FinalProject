@@ -19,7 +19,7 @@ from elasticsearch_dsl.utils import AttrList
 from elasticsearch_dsl import Search
 import query_helper
 from query_helper import index_name, fields_list
-from booster_helper import get_classifier
+# from booster_helper import get_classifier
 from data_base import Query, Hover, Click, Stay, Drag
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from view_helper import *
@@ -198,6 +198,7 @@ def like_this(book_id):
                      fields=fields_list[0:11],
                      like=[{"_index": "book_index", "_type": "doc", "_id": book_id}],
                      min_term_freq=1,
+                     minimum_should_match='70%',
                      max_query_terms=5)
 
     start = (page_number - 1) * 10

@@ -32,13 +32,13 @@
             if (hoverTimeCalculate[id] === time) {
                 sendHoverTime(id, queryId, new Date().getTime() - hoverTimeCalculate[id])
             }
-        }, 8000)
+        }, 15000)
     }, function () {
         let $this = $(this);
         let id = $this.data('id');
         let queryId = $this.data('queryid');
         let time = new Date().getTime();
-        if (hoverTimeCalculate[id] && time - hoverTimeCalculate[id] > 8000) {
+        if (hoverTimeCalculate[id] && time - hoverTimeCalculate[id] > 15000) {
             sendHoverTime(id, queryId, time - hoverTimeCalculate[id]);
             hoverTimeCalculate[id] = ''
         }
