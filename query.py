@@ -47,17 +47,12 @@ def results():
     # BOOST FIELD WEIGHTS
     # boost_weight = get_classifier().predict(query)
     # fields_list = query_helper.boost_fields(boost_weight)
-    fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98]
+    fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98, 1, 1.1, 1, 1.1]
     fields_list = query_helper.boost_fields(fake_weight)
     score_script = "_score + doc['rate'].value / 5"
 
-    # HERE WE USE SIMPLE QUERY STRING API FROM ELASTICSEARCH
-    # supports '|', '+', '-', "" phrase search， '*'， etc.
-
+    # '|', '+', '-', "" phrase search， '*'， etc.
     s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
-    # q = Q('function_score', fields=fields_list, query=query, operator='and',
-    #       functions=[dsl_query.SF('script_score', script=score_script)])
-    # s = search.query(q)
 
     # highlight
     query_helper.highlight(s, fields_list)
@@ -75,6 +70,7 @@ def results():
     result_list = query_helper.parse_result(response)
     # if there are results, insert it to query_index
     query_id = 0
+
     qs = ""
     try:
         qs = Query.select().where(Query.query == query)
@@ -200,7 +196,7 @@ def like_this(book_id):
                      fields=fields_list,
                      like=[{"_index": "book_index", "_type": "doc", "_id": book_id}],
                      min_term_freq=1,
-                     max_query_terms=5)
+                     max_query_terms=10)
 
     start = 0 + (page_number - 1) * 10
     end = 10 + (page_number - 1) * 10
