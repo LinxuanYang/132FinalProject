@@ -194,16 +194,21 @@ def like_this(book_id):
     page_number = int(page.get('page_number')) if page.get('page_number', '') is not '' else 1
 
     search = Search(index=index_name)
-    s = search.query('more_like_this',
-                     fields=fields_list[0:11],
-                     like=[{"_index": "book_index", "_type": "doc", "_id": book_id}],
-                     min_term_freq=1,
-                     minimum_should_match='70%',
-                     max_query_terms=5)
+    percent = 90
+    res_num = 0
+    while res_num < 10:
+        s = search.query('more_like_this',
+                         fields=fields_list[0:11],
+                         like=[{"_index": "book_index", "_type": "doc", "_id": book_id}],
+                         min_term_freq=1,
+                         minimum_should_match=str(percent) + '%',
+                         max_query_terms=5)
 
-    start = (page_number - 1) * 10
-    end = 10 + (page_number - 1) * 10
-    response = s[start:end].execute()
+        start = (page_number - 1) * 10
+        end = 10 + (page_number - 1) * 10
+        response = s[start:end].execute()
+        percent -= 10
+        res_num = response.hits.total
     # insert data into response
     result_list = query_helper.parse_result(response)
     # if there are results, insert it to query_index
