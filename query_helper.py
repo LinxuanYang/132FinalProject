@@ -9,6 +9,7 @@ from nltk.stem.snowball import SnowballStemmer
 import ast
 import pygtrie as trie
 from index import makeup_fields
+from elasticsearch_dsl.utils import AttrList
 
 index_name = 'book_index'
 fields_list = ['title',
@@ -24,14 +25,10 @@ fields_list = ['title',
                'category',
                'rate']
 
-from elasticsearch_dsl.utils import AttrList
-
-
 def highlight(search_object, field_list):
     search_object = search_object.highlight_options(pre_tags='<mark>', post_tags='</mark>')
     for field in field_list:
         search_object = search_object.highlight(field, fragment_size=999999999, number_of_fragments=1)
-
 
 def parse_result(response_object):
     result_list = []
@@ -54,7 +51,6 @@ def parse_result(response_object):
         result_list.append(result)
     return result_list
 
-
 def reformat_goodread(json_file='goodreads/shelve/good_read_title_2.json'):
     res = {}
     with open(json_file, 'r') as f:
@@ -70,7 +66,6 @@ def reformat_goodread(json_file='goodreads/shelve/good_read_title_2.json'):
                 res[title]['category'] = [cat]
     with open('goodreads/shelve/reformed_goodread.json', 'w') as f:
         json.dump(res, f)
-
 
 def merge_good_spark(jl_file, json_file):
     begin_time = datetime.datetime.now()

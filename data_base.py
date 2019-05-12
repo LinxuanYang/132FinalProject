@@ -26,7 +26,7 @@ class Hover(Model):
 class Click(Model):
     query_id = ForeignKeyField(Query, backref='clicks')
     document_id = CharField()
-    field_id = CharField()
+    field = CharField()
 
     class Meta:
         database = db
@@ -52,5 +52,5 @@ class Drag(Model):
 db.connect()
 # perform migrate
 # http://docs.peewee-orm.com/en/latest/peewee/playhouse.html#migrate
-db.drop_tables([Query, Hover, Click, Drag, Stay])
+# db.drop_tables([Query, Hover, Click, Drag, Stay])
 db.create_tables([Query, Hover, Click, Drag, Stay])

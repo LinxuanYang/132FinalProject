@@ -27,7 +27,6 @@
         let id = $this.data('id');
         let queryId = $this.data('queryid');
         let type = 'clickThrough';
-        console.log(id, queryId)
         sendClick(id, queryId, $(this).data('click'))
 
     });
@@ -41,13 +40,13 @@
             if (hoverTimeCalculate[id] === time) {
                 sendHoverTime(id, queryId, new Date().getTime() - hoverTimeCalculate[id])
             }
-        }, 15000)
+        }, 1500)
     }).on('mouseleave', '[data-hover-monitor]', function () {
         let $this = $(this);
         let id = $this.data('id');
         let queryId = $this.data('queryid');
         let time = new Date().getTime();
-        if (hoverTimeCalculate[id] && time - hoverTimeCalculate[id] > 15000) {
+        if (hoverTimeCalculate[id] && time - hoverTimeCalculate[id] > 1500) {
             sendHoverTime(id, queryId, time - hoverTimeCalculate[id]);
         }
         hoverTimeCalculate[id] = ''

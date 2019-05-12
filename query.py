@@ -12,14 +12,13 @@ Search DSL:
 https://elasticsearch-dsl.readthedocs.io/en/latest/search_dsl.html
 """
 
-import re
 from flask import *
 from index import Book
 from elasticsearch_dsl.utils import AttrList
 from elasticsearch_dsl import Search
 import query_helper
 from query_helper import index_name, fields_list
-# from booster_helper import get_classifier
+from booster_helper import get_classifier, extract_features
 from data_base import Query, Hover, Click, Stay, Drag
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from view_helper import *
@@ -46,10 +45,8 @@ def results():
     search = Search(index=index_name)
 
     # BOOST FIELD WEIGHTS
-    # boost_weight = get_classifier().predict(query)
-    # fields_list = query_helper.boost_fields(boost_weight)
-    fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98, 1, 1, 1]
-    fields_list = query_helper.boost_fields(fake_weight)
+    boost_weight = [i + 1for i in get_classifier().predict([extract_features(query)])[0]]
+    fields_list = query_helper.boost_fields(boost_weight)
 
     # supports '|', '+', '-', "" phrase search， '*'， etc.
     s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
@@ -105,7 +102,6 @@ def documents(res):
             book[term] = s
     return json.dumps(book)
 
-
 # this api should return json
 @app.route('/hover', methods=['POST'])
 def hover_data_collect():
@@ -117,18 +113,16 @@ def hover_data_collect():
     hover.save()
     return jsonify(model_to_dict(hover))
 
-
 # this api should return json
 @app.route('/click', methods=['POST'])
 def click_through():
     form = request.form
     query_id = form.get('queryId', '')
     document_id = form.get('id', '')
-    field_id = form.get('field_id', '')
-    click = Click(query_id=query_id, document_id=document_id, field_id=field_id)
+    field = form.get('field', '')
+    click = Click(query_id=query_id, document_id=document_id, field=field)
     click.save()
     return jsonify(model_to_dict(click))
-
 
 # this api should return json
 @app.route('/page_stay', methods=['POST'])

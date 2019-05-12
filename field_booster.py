@@ -16,7 +16,7 @@ class FieldBooster:
 
     def __init__(self, X, y):
         clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
-                            hidden_layer_sizes=(15,), random_state=1)
+                            hidden_layer_sizes=(2,2), random_state=1)
         clf.fit(X, y)
         self.classifier = clf
 

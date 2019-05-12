@@ -1,10 +1,11 @@
 from collections import defaultdict
 import field_booster
+import math
 import nltk
 from data_base import *
 from elasticsearch_dsl import Search, function, Q
 from query_helper import fields_list, index_name, parse_result
-
+from playhouse.shortcuts import model_to_dict, dict_to_model
 
 def fieldsearch_scores(query):
     """
@@ -15,7 +16,6 @@ def fieldsearch_scores(query):
     scores = []
     search = Search(index=index_name)
     for field in fields_list[0:11]:
-        print([field])
         s = search.query('simple_query_string', fields=[field], query=query, default_operator='and')
         response = s[0:10].execute()
         result_list = parse_result(response)
@@ -25,7 +25,7 @@ def fieldsearch_scores(query):
             sum += result['score']
             total += 1
         scores.append(sum / float(total) if total != 0 else 0)
-    return scores
+    return length_normalization(scores)
 
 
 def userdata_scores(query, behave_data):
@@ -34,9 +34,28 @@ def userdata_scores(query, behave_data):
     :param query: query
     :return: [T, A, SS, S, C, M, Q, P]
     """
-    scores = [0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 1]
-    return scores
+    scores = []
+    dict = defaultdict(float)
+    for key in behave_data:
+        key_set = key.split(" ")
+        dict[key_set[0]] = behave_data[key] if key_set[1] == 'click' else dict[key_set[0]]
+    for key in behave_data:
+        key_set = key.split(" ")
+        dict[key_set[0]] = (0.5 * dict[key_set[0]] * behave_data[key])/float(1500) if key_set[1] == 'hover' else dict[key_set[0]]
+    for field in fields_list[0:11]:
+        if field in dict:
+            scores.append(dict[field])
+        else:
+            scores.append(0)
+    return length_normalization(scores)
 
+def length_normalization(scores):
+    total = 0
+    for score in scores:
+        total += score * score
+    for i in range(0, len(scores)):
+        scores[i] = scores[i] / math.sqrt(total) if total != 0 else 0
+    return scores
 
 def balance_scores(fieldsearch, userdata):
     """
@@ -45,7 +64,8 @@ def balance_scores(fieldsearch, userdata):
     :param userdata: [T', A', SS', S', C', M', Q', P']
     :return:[T, A, SS, S, C, M, Q, P]
     """
-    return 2 * fieldsearch * userdata / (fieldsearch + userdata)
+    result = list(map(lambda x, y: round((x + y)/2), fieldsearch, userdata))
+    return result
 
 
 def extract_features(query):
@@ -82,24 +102,22 @@ def load_from_database():
     :return: {query: {behave: behave_data}}
     """
 
-    result = defaultdict(lambda: defaultdict(float))
+    results = defaultdict(lambda: defaultdict(float))
     queries = Query.select()
-    print(queries)
-    for query in queries:
-        behave1 = 0
-        behave2 = 0
-        for click in query.clicks:
-            a = click.id
 
-        clicks = Click.select().where(Click.query_id == query.id)
-        print(clicks)
-        for click in clicks:
-            a = click.id
-            pass
+    for q in queries:
+        result = defaultdict(int)
+        id = q.id
+        clicks = Click.select(fn.Count('*').alias('count'), Click.field.alias('field')).where(Click.query_id==id).group_by(Click.field)
+        hovers = Click.select(Click.field.alias('field'), fn.Sum(Hover.duration).alias('duration')).join(Query).join(Hover).where((Click.query_id==id) & (Hover.query_id==id)).group_by(Click.field)
+        for c in clicks:
+            result[c.field + ' click'] = c.count
+        for h in hovers:
+            result[h.field + ' hover'] = h.duration
 
-        result[query]['behave1'] = behave1
-        result[query]['behave2'] = behave2
-    return result
+        results[q.query] = result
+
+    return results
 
 
 def preprocess_training_data():
@@ -128,11 +146,9 @@ def preprocess_training_data():
     return X, Y
 
 
-# def get_classifier():
-#     return classifier
+def get_classifier():
+    return classifier
 
 
-# X, Y = preprocess_training_data()
-# classifier = field_booster.FieldBooster(X, Y)
-# print(extract_features('to kill a mocking bird Jack London'))
-load_from_database()
+X, Y = preprocess_training_data()
+classifier = field_booster.FieldBooster(X, Y)
