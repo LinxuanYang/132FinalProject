@@ -1,5 +1,7 @@
 from collections import defaultdict
 import field_booster
+import nltk
+from data_base import *
 from elasticsearch_dsl import Search, function, Q
 from query_helper import fields_list, index_name, parse_result
 
@@ -31,7 +33,8 @@ def userdata_scores(query, behave_data):
     :param query: query
     :return: [T, A, SS, S, C, M, Q, P]
     """
-    scores = []
+    scores = [0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 1]
+    return scores
 
 
 
@@ -42,7 +45,7 @@ def balance_scores(fieldsearch, userdata):
     :param userdata: [T', A', SS', S', C', M', Q', P']
     :return:[T, A, SS, S, C, M, Q, P]
     """
-    pass
+    return 2 * fieldsearch * userdata / (fieldsearch + userdata)
 
 
 def extract_features(query):
@@ -51,8 +54,26 @@ def extract_features(query):
     :param query: query
     :return:[F1, F2, F3, ..., FN]
     """
-    pass
-
+    feature_set = []
+    query_list = nltk.word_tokenize(query)
+    feature_set.append(len(query_list))
+    feature_set.append(len(query) / float(len(query_list)))
+    verb_num, none_num, stop_num, name_num = 0, 0, 0, 0
+    tagged = nltk.pos_tag(query_list)
+    for word in tagged:
+        if word[1] in {'VB', 'VBD', 'VBG', 'VBN', 'VBP'}:
+            verb_num += 1
+        if word[1] == 'NN':
+            none_num += 1
+        if word[1] == 'NNP':
+            name_num += 1
+        if word[1] == 'DT':
+            stop_num += 1
+    feature_set.append(verb_num)
+    feature_set.append(stop_num)
+    feature_set.append(name_num)
+    feature_set.append(none_num)
+    return feature_set
 
 def load_from_database():
     """
@@ -60,7 +81,6 @@ def load_from_database():
     :return: {query: {behave: behave_data}}
     """
     return defaultdict(lambda: defaultdict(float))
-
 
 def preprocess_training_data():
     """
@@ -92,7 +112,5 @@ def preprocess_training_data():
 
 
 # X, Y = preprocess_training_data()
-# X = [[0., 0.], [1., 1.], [1., 2.]]
-# Y = [[0, 1], [1, 1], [1, 0]]
 # classifier = field_booster.FieldBooster(X, Y)
-print(fieldsearch_scores('mocking bird'))
+print(extract_features('to kill a mocking bird Jack London'))
