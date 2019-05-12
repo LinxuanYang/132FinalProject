@@ -10,14 +10,14 @@ with open('./goodreads/shelve/reformed_goodread.json') as file:
             cate_list.append(item)
             dict_by_type[cate] = cate_list
         rate = item['rate'][11:14]
-        rate_num=item['rate']
+        rate_num = item['rate']
         item['rate'] = float(rate)
-        left=rate_num.rindex('(')+1
-        right=rate_num.rindex('ratings')-1
-        item['rate_num']=rate_num[left:right]
+        left = rate_num.rindex('(') + 1
+        right = rate_num.rindex('ratings') - 1
+        item['rate_num'] = rate_num[left:right]
     for key in dict_by_type:
         dict_by_type[key].sort(key=lambda x: -x['rate'])
 
 
-def find_recommendation(category):
-    return dict_by_type[category][0:20]
+def find_recommendation(category, page_num=1):
+    return dict_by_type[category]

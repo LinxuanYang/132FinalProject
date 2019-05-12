@@ -1,13 +1,21 @@
 ;$(function () {
     let hoverTimeCalculate = {};
-
+    let cate = ''
     $('body').on('click', '[data-cate]', function () {
         let $this = $(this)
-        let cate = $this.data('cate')
-        console.log(cate)
+        cate = $this.data('cate')
         $.ajax(`/good_reads/${cate}`, {
             success(data) {
                 let modal = $('#recommendation_modal').modal('show')
+                modal.find('.modal-body').html(data)
+                modal.find('.modal-title').html(`Recommendation for category ${cate}`)
+            }
+        })
+    }).on('click', '[data-jump]', function () {
+        $.ajax(`/good_reads/${cate}`, {
+            data: {pageNumber: $(this).data('jump')},
+            success(data) {
+                let modal = $('#recommendation_modal')
                 modal.find('.modal-body').html(data)
                 modal.find('.modal-title').html(`Recommendation for category ${cate}`)
             }
