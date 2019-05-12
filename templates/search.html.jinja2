@@ -6,7 +6,7 @@
             <div class="form-group">
                 <input type="text" class="form-control basicAutoComplete" id="text" aria-describedby="textSearch"
                        autocomplete="off"
-                       placeholder="Search the book, pass the exam" name="query" value="{{ show["query"] |e }}"/>
+                       placeholder="Search the book, pass the exam" name="query" value="{{ show["query"] or '' |e }}"/>
                 <input type="hidden" name="page_number" id="page_number">
             </div>
             <button type="submit" class="btn btn-primary btn-block" id="search">search</button>

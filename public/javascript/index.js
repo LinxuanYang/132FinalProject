@@ -1,12 +1,24 @@
 ;$(function () {
     let hoverTimeCalculate = {};
 
+    $('[data-cate]').on('click', function () {
+        let $this = $(this)
+        let cate = $this.data('cate')
+        $.ajax(`/good_reads/${cate}`, {
+            success(data) {
+                let modal = $('#recommendation_modal').modal('show')
+                modal.find('.modal-body').html(data)
+                modal.find('.modal-title').html(`Recommendation for category ${cate}`)
+            }
+        })
+    })
+
     $('[data-click]').on('click', function () {
         let $this = $(this).parents('[data-id]');
         let id = $this.data('id');
         let queryId = $this.data('queryid');
         let type = 'clickThrough';
-        console.log(id,queryId)
+        console.log(id, queryId)
         sendClick(id, queryId, $(this).data('click'))
 
     });
@@ -97,4 +109,5 @@
             }
         })
     }
+
 });
