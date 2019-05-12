@@ -1,0 +1,14 @@
+<div class="container">
+    {% for book in data %}
+        <div class="card recommendationItem">
+            <div class="card-body">
+                <h5 class="card-title">{{ book['title'] }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <span class="badge badge-secondary"> {{ book['author'] }}</span>
+                    <span class="badge badge-primary"> Rate:{{ book['rate'] }}</span>
+                    <span class="badge badge-info"> {{ book['rate_num'] }} ratings</span>
+                </h6>
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -17,8 +17,7 @@ from flask import *
 from index import Book
 from elasticsearch_dsl.utils import AttrList
 from elasticsearch_dsl import Search, function, Q
-from elasticsearch_dsl.query import MoreLikeThis
-
+from elasticsearch_dsl import query as dsl_query
 import query_helper
 from query_helper import index_name, fields_list
 from booster_helper import get_classifier
@@ -26,6 +25,7 @@ from data_base import Query, Hover, Click, Stay, Drag
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from view_helper import *
 from index import SearchQuery
+from good_reads_helper import find_recommendation
 
 app = Flask(__name__, static_folder='public', static_url_path='')
 word_trie = query_helper.load_token_dict_as_trie()
@@ -193,11 +193,13 @@ def like_this(book_id):
     page_number = int(page.get('page_number')) if page.get('page_number', '') is not '' else 1
 
     search = Search(index=index_name)
-    s = search.query('more_like_this', fields=fields_list[:11],
-                     like=[{"_index": index_name, "_type": "doc", "_id": book_id}],
-                     min_term_freq=1, max_query_terms=5)
+    s = search.query('more_like_this',
+                     fields=fields_list[0:11],
+                     like=[{"_index": "book_index", "_type": "doc", "_id": book_id}],
+                     min_term_freq=1,
+                     max_query_terms=5)
 
-    start = 0 + (page_number - 1) * 10
+    start = (page_number - 1) * 10
     end = 10 + (page_number - 1) * 10
     response = s[start:end].execute()
     # insert data into response
@@ -207,6 +209,11 @@ def like_this(book_id):
     result_num = response.hits.total
     return render_result(
         {'result_list': result_list, 'result_num': result_num, "book_id": book_id, "page_number": page_number})
+
+
+@app.route('/good_reads/<category>', methods=['GET'])
+def good_reads(category):
+    return render_template('goodreads_recommendation.html.jinja2', data=find_recommendation(category), cate=category)
 
 
 if __name__ == "__main__":
