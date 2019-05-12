@@ -44,7 +44,7 @@ def results():
     query = page.get('query') or ""
     search = Search(index=index_name)
 
-    # BOOST FIELD WEIGHTS
+    # boost field weights
     boost_weight = [i + 1 for i in get_classifier().predict([extract_features(query)])[0]]
     fields_list = query_helper.boost_fields(boost_weight)
 
@@ -76,6 +76,7 @@ def results():
         qs = None
     if result_list:
         if not qs:
+            print("This query does not exist in the database")
             q1 = Query(query=query, result=json.dumps(result_list))
             q1.save()
             query_id = q1.id
@@ -83,6 +84,7 @@ def results():
             q.save()
         else:
             query_id = Query.get(Query.query == query).id
+            print("This query exists in the database")
 
     result_num = response.hits.total
     return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query,
