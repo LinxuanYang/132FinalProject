@@ -124,7 +124,8 @@ def click_through():
     form = request.form
     query_id = form.get('queryId', '')
     document_id = form.get('id', '')
-    click = Click(query_id=query_id, document_id=document_id)
+    field_id = form.get('field_id', '')
+    click = Click(query_id=query_id, document_id=document_id, field_id=field_id)
     click.save()
     return jsonify(model_to_dict(click))
 

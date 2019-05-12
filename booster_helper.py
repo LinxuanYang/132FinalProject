@@ -1,8 +1,9 @@
 from collections import defaultdict
+import field_booster
+import nltk
+from data_base import *
 from elasticsearch_dsl import Search, function, Q
 from query_helper import fields_list, index_name, parse_result
-import field_booster
-from data_base import *
 
 
 def fieldsearch_scores(query):
@@ -26,15 +27,15 @@ def fieldsearch_scores(query):
         scores.append(sum / float(total) if total != 0 else 0)
     return scores
 
-
 def userdata_scores(query, behave_data):
     """
     analyze user behaviour data
     :param query: query
     :return: [T, A, SS, S, C, M, Q, P]
     """
+    scores = [0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 1]
+    return scores
 
-    scores = []
 
 
 def balance_scores(fieldsearch, userdata):
@@ -44,7 +45,7 @@ def balance_scores(fieldsearch, userdata):
     :param userdata: [T', A', SS', S', C', M', Q', P']
     :return:[T, A, SS, S, C, M, Q, P]
     """
-    pass
+    return 2 * fieldsearch * userdata / (fieldsearch + userdata)
 
 
 def extract_features(query):
@@ -53,21 +54,41 @@ def extract_features(query):
     :param query: query
     :return:[F1, F2, F3, ..., FN]
     """
-    pass
-
+    feature_set = []
+    query_list = nltk.word_tokenize(query)
+    feature_set.append(len(query_list))
+    feature_set.append(len(query) / float(len(query_list)))
+    verb_num, none_num, stop_num, name_num = 0, 0, 0, 0
+    tagged = nltk.pos_tag(query_list)
+    for word in tagged:
+        if word[1] in {'VB', 'VBD', 'VBG', 'VBN', 'VBP'}:
+            verb_num += 1
+        if word[1] == 'NN':
+            none_num += 1
+        if word[1] == 'NNP':
+            name_num += 1
+        if word[1] == 'DT':
+            stop_num += 1
+    feature_set.append(verb_num)
+    feature_set.append(stop_num)
+    feature_set.append(name_num)
+    feature_set.append(none_num)
+    return feature_set
 
 def load_from_database():
     """
     load data from database
     :return: {query: {behave: behave_data}}
     """
+
     result = defaultdict(lambda: defaultdict(float))
     queries = Query.select()
+    print(queries)
     for query in queries:
         behave1 = 0
         behave2 = 0
-        a = query.id
         clicks = Click.select().where(Click.query_id == query.id)
+        print(clicks)
         for click in clicks:
             a = click.id
             pass
@@ -80,7 +101,7 @@ def load_from_database():
 def preprocess_training_data():
     """
     preprocess_training_data
-    :return:Î
+    :return:
         X = [
           [F11, F12, F13, ..., F1N],
           [F21, F22, F23, ..., F2N],
@@ -102,13 +123,11 @@ def preprocess_training_data():
         Y.append(balance_scores(fieldsearch_scores(query), userdata_scores(query, data[query])))
     return X, Y
 
-
 # def get_classifier():
 #     return classifier
 
 
-X, Y = preprocess_training_data()
-# X = [[0., 0.], [1., 1.], [1., 2.]]
-# Y = [[0, 1], [1, 1], [1, 0]]
+# X, Y = preprocess_training_data()
 # classifier = field_booster.FieldBooster(X, Y)
-print(fieldsearch_scores('mocking bird'))
+# print(extract_features('to kill a mocking bird Jack London'))
+load_from_database()

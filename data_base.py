@@ -52,4 +52,5 @@ class Drag(Model):
 db.connect()
 # perform migrate
 # http://docs.peewee-orm.com/en/latest/peewee/playhouse.html#migrate
+db.drop_tables([Query, Hover, Click, Drag, Stay])
 db.create_tables([Query, Hover, Click, Drag, Stay])
