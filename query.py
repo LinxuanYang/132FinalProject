@@ -17,7 +17,8 @@ from flask import *
 from index import Book
 from elasticsearch_dsl.utils import AttrList
 from elasticsearch_dsl import Search, function, Q
-from elasticsearch_dsl import query as dsl_query
+from elasticsearch_dsl.query import MoreLikeThis
+
 import query_helper
 from query_helper import index_name, fields_list
 from booster_helper import get_classifier
@@ -28,6 +29,7 @@ from index import SearchQuery
 
 app = Flask(__name__, static_folder='public', static_url_path='')
 word_trie = query_helper.load_token_dict_as_trie()
+
 
 # display query page
 @app.route("/")
@@ -40,7 +42,7 @@ def search():
 def results():
     page = request.args
 
-    page_number = int(page.get('page_number')) if page.get('page_number','') is not "" else 1
+    page_number = int(page.get('page_number')) if page.get('page_number', '') is not "" else 1
     query = page.get('query') or ""
     search = Search(index=index_name)
 
@@ -85,7 +87,8 @@ def results():
             query_id = Query.get(Query.query == query).id
 
     result_num = response.hits.total
-    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query, 'page_number': page_number, 'message': message, 'page_size': 10})
+    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query,
+                          'page_number': page_number, 'message': message, 'page_size': 10})
 
 
 # display a particular document given a result number
@@ -182,19 +185,17 @@ def hint():
 
 @app.route('/like_this/<book_id>')
 def like_this(book_id):
-    #_id book id
+    # _id book id
     # index book_index
-    #_type: Document
+    # _type: Document
     page = request.args
 
-    page_number = int(page.get('page_number')) if page.get('page_number','') is not '' else 1
+    page_number = int(page.get('page_number')) if page.get('page_number', '') is not '' else 1
 
     search = Search(index=index_name)
-    s = search.query('more_like_this',
-                     fields=fields_list,
-                     like=[{"_index": "book_index", "_type": "doc", "_id": book_id}],
-                     min_term_freq=1,
-                     max_query_terms=5)
+    s = search.query('more_like_this', fields=fields_list[:11],
+                     like=[{"_index": index_name, "_type": "doc", "_id": book_id}],
+                     min_term_freq=1, max_query_terms=5)
 
     start = 0 + (page_number - 1) * 10
     end = 10 + (page_number - 1) * 10
@@ -204,7 +205,8 @@ def like_this(book_id):
     # if there are results, insert it to query_index
 
     result_num = response.hits.total
-    return render_result({'result_list': result_list, 'result_num': result_num,"book_id":book_id,"page_number":page_number})
+    return render_result(
+        {'result_list': result_list, 'result_num': result_num, "book_id": book_id, "page_number": page_number})
 
 
 if __name__ == "__main__":
