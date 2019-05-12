@@ -4,11 +4,9 @@ import time
 
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
-from elasticsearch_dsl import Index, Document, Text, Keyword, Integer, Float, Completion
+from elasticsearch_dsl import Index, Document, Text, Float, Completion
 from elasticsearch_dsl.connections import connections
-from elasticsearch_dsl.analysis import tokenizer, analyzer, char_filter, token_filter
-from elasticsearch_dsl.query import MultiMatch, Match
-from analyzer import short_term_analyzer, text_analyzer, name_analyzer
+from elasticsearch_dsl.analysis import analyzer
 
 # Connect to local host server
 connections.create_connection(hosts=['127.0.0.1'])

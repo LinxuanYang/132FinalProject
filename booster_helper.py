@@ -3,15 +3,15 @@ import field_booster
 import math
 import nltk
 from data_base import *
-from elasticsearch_dsl import Search, function, Q
+from elasticsearch_dsl import Search
 from query_helper import fields_list, index_name, parse_result
-from playhouse.shortcuts import model_to_dict, dict_to_model
 
 def fieldsearch_scores(query):
     """
     average of top ten(or less) scores of each field_index
+    goal: which field the query is more likely to appear in
     :param query: query
-    :return: [T, A, SS, S, C, M, Q, P]
+    :return: [T, A, SS, S, C, M, Q, P, ]
     """
     scores = []
     search = Search(index=index_name)
@@ -26,7 +26,6 @@ def fieldsearch_scores(query):
             total += 1
         scores.append(sum / float(total) if total != 0 else 0)
     return length_normalization(scores)
-
 
 def userdata_scores(query, behave_data):
     """
@@ -67,7 +66,6 @@ def balance_scores(fieldsearch, userdata, co, threshold):
     result = list(map(lambda x, y: round(co * x + (1 - co) * y + 0.5 - threshold), fieldsearch, userdata))
     return result
 
-
 def extract_features(query):
     """
     extract query features
@@ -95,7 +93,6 @@ def extract_features(query):
     feature_set.append(none_num)
     return feature_set
 
-
 def load_from_database():
     """
     load data from database
@@ -117,7 +114,6 @@ def load_from_database():
         results[q.query] = result
 
     return results
-
 
 def preprocess_training_data():
     """
@@ -144,10 +140,8 @@ def preprocess_training_data():
         Y.append(balance_scores(fieldsearch_scores(query), userdata_scores(query, data[query]), 0.4, 0.2))
     return X, Y
 
-
 def get_classifier():
     return classifier
-
 
 X, Y = preprocess_training_data()
 classifier = field_booster.FieldBooster(X, Y)

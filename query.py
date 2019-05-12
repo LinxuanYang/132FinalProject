@@ -13,14 +13,12 @@ https://elasticsearch-dsl.readthedocs.io/en/latest/search_dsl.html
 """
 
 from flask import *
-from index import Book
-from elasticsearch_dsl.utils import AttrList
 from elasticsearch_dsl import Search
 import query_helper
 from query_helper import index_name, fields_list
 from booster_helper import get_classifier, extract_features
 from data_base import Query, Hover, Click, Stay, Drag
-from playhouse.shortcuts import model_to_dict, dict_to_model
+from playhouse.shortcuts import model_to_dict
 from view_helper import *
 from index import SearchQuery
 from good_reads_helper import find_recommendation
@@ -34,14 +32,13 @@ word_trie = query_helper.load_token_dict_as_trie()
 def search():
     return render_template('index.html.jinja2', show={})
 
-
 # display results page for first set of results and "next" sets.
 @app.route("/results", methods=['GET'])
 def results():
     page = request.args
 
     page_number = int(page.get('page_number')) if page.get('page_number', '') is not "" else 1
-    query = page.get('query') or ""
+    query = page.get('query', '')
     search = Search(index=index_name)
 
     # boost field weights
@@ -76,7 +73,6 @@ def results():
         qs = None
     if result_list:
         if not qs:
-            print("This query does not exist in the database")
             q1 = Query(query=query, result=json.dumps(result_list))
             q1.save()
             query_id = q1.id
@@ -84,12 +80,10 @@ def results():
             q.save()
         else:
             query_id = Query.get(Query.query == query).id
-            print("This query exists in the database")
 
     result_num = response.hits.total
     return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query,
                           'page_number': page_number, 'message': message, 'page_size': 10})
-
 
 # this api should return json
 @app.route('/hover', methods=['POST'])
@@ -102,7 +96,6 @@ def hover_data_collect():
     hover.save()
     return jsonify(model_to_dict(hover))
 
-
 # this api should return json
 @app.route('/click', methods=['POST'])
 def click_through():
@@ -113,7 +106,6 @@ def click_through():
     click = Click(query_id=query_id, document_id=document_id, field=field)
     click.save()
     return jsonify(model_to_dict(click))
-
 
 # this api should return json
 @app.route('/page_stay', methods=['POST'])
@@ -126,7 +118,6 @@ def page_stay():
     stay.save()
     return jsonify(model_to_dict(stay))
 
-
 # this api should return json
 @app.route('/drag', methods=['POST'])
 def drag_over_item():
@@ -136,7 +127,6 @@ def drag_over_item():
     drag = Drag(query_id=query_id, document_id=document_id)
     drag.save()
     return jsonify(model_to_dict(drag))
-
 
 # this api should return json
 # return something like this
@@ -168,7 +158,6 @@ def hint():
             return jsonify(list(map(lambda x: prefix_word + x, word_trie.keys(prefix=last_word)))[0:10])
         except Exception:
             return jsonify([])
-
 
 @app.route('/like_this/<book_id>')
 def like_this(book_id):
