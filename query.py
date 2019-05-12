@@ -45,7 +45,7 @@ def results():
     search = Search(index=index_name)
 
     # BOOST FIELD WEIGHTS
-    boost_weight = [i + 1for i in get_classifier().predict([extract_features(query)])[0]]
+    boost_weight = [i + 1 for i in get_classifier().predict([extract_features(query)])[0]]
     fields_list = query_helper.boost_fields(boost_weight)
 
     # supports '|', '+', '-', "" phrase search， '*'， etc.
@@ -89,19 +89,6 @@ def results():
                           'page_number': page_number, 'message': message, 'page_size': 10})
 
 
-# display a particular document given a result number
-# <res> must be b1, b2, ..., bMAXID
-@app.route("/movie/<res>", methods=['GET'])
-def documents(res):
-    book = Book.get(id=res, index=index_name).to_dict()
-    for term in book:
-        if type(book[term]) is AttrList:
-            s = "\n"
-            for item in book[term]:
-                s += item + ",\n "
-            book[term] = s
-    return json.dumps(book)
-
 # this api should return json
 @app.route('/hover', methods=['POST'])
 def hover_data_collect():
@@ -113,6 +100,7 @@ def hover_data_collect():
     hover.save()
     return jsonify(model_to_dict(hover))
 
+
 # this api should return json
 @app.route('/click', methods=['POST'])
 def click_through():
@@ -123,6 +111,7 @@ def click_through():
     click = Click(query_id=query_id, document_id=document_id, field=field)
     click.save()
     return jsonify(model_to_dict(click))
+
 
 # this api should return json
 @app.route('/page_stay', methods=['POST'])

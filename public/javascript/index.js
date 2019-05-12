@@ -1,5 +1,6 @@
 ;$(function () {
     let hoverTimeCalculate = {};
+    let hoverTimeFlag = {}
     let cate = ''
     $('body').on('click', '[data-cate]', function () {
         let $this = $(this)
@@ -39,17 +40,20 @@
         setTimeout(() => {
             if (hoverTimeCalculate[id] === time) {
                 sendHoverTime(id, queryId, new Date().getTime() - hoverTimeCalculate[id])
+                hoverTimeCalculate[id] = new Date().getTime()
+                hoverTimeFlag = true
             }
-        }, 1500)
+        }, 15000)
     }).on('mouseleave', '[data-hover-monitor]', function () {
         let $this = $(this);
         let id = $this.data('id');
         let queryId = $this.data('queryid');
         let time = new Date().getTime();
-        if (hoverTimeCalculate[id] && time - hoverTimeCalculate[id] > 1500) {
+        if (hoverTimeFlag[id]) {
             sendHoverTime(id, queryId, time - hoverTimeCalculate[id]);
         }
         hoverTimeCalculate[id] = ''
+        hoverTimeFlag[id] = false
     });
     let dragStatus = false;
     $('body').mousedown(function () {
