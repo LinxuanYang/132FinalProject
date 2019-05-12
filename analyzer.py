@@ -1,6 +1,6 @@
 from elasticsearch_dsl.analysis import tokenizer, analyzer, char_filter, token_filter
 
-short_term_analyzer = analyzer('custom',
+short_term_analyzer = analyzer('short_term_analyzer',
                        tokenizer='standard',
                        filter=['lowercase', 'stop','asciifolding','snowball'])
 
@@ -10,7 +10,7 @@ my_char_filter=char_filter(name_or_instance="my_char_filter",type='mapping',
 
 
 text_analyzer = analyzer('text_analyzer', tokenizer='pattern',char_filter=my_char_filter,filter=['lowercase','snowball','asciifolding'])
-name_analyzer=analyzer('custom', tokenizer='standard', filter=['lowercase','stop','asciifolding'])
+name_analyzer=analyzer('name_analyzer', tokenizer='standard', filter=['lowercase','stop','asciifolding'])
 
 
 

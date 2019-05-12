@@ -1,5 +1,6 @@
 from collections import defaultdict
 import field_booster
+from query_helper import fields_list
 
 
 def fieldsearch_scores(query):
@@ -8,6 +9,7 @@ def fieldsearch_scores(query):
     :param query: query
     :return: [T, A, SS, S, C, M, Q, P]
     """
+
     pass
 
 
