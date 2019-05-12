@@ -198,9 +198,9 @@ def like_this(book_id):
     search = Search(index=index_name)
     s = search.query('more_like_this',
                      fields=fields_list,
-                     like=[{"_index": "book_index", "_type": "doc", "_id":book_id}],
+                     like=[{"_index": "book_index", "_type": "doc", "_id": book_id}],
                      min_term_freq=1,
-                     max_query_terms=12)
+                     max_query_terms=5)
 
     start = 0 + (page_number - 1) * 10
     end = 10 + (page_number - 1) * 10

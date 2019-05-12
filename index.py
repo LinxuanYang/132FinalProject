@@ -43,8 +43,6 @@ class Book(Document):
     background = Text(analyzer=text_analyzer)
     category = Text(analyzer=text_analyzer)
     rate = Float()
-
-
     # override the Document save method to include subclass field definitions
     def save(self, *args, **kwargs):
         return super(Book, self).save(*args, **kwargs)
