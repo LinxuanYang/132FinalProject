@@ -66,10 +66,10 @@ def load_from_database():
     for query in queries:
         behave1 = 0
         behave2 = 0
-
+        a = query.id
         clicks = Click.select().where(Click.query_id == query.id)
         for click in clicks:
-            a = 1
+            a = click.id
             pass
 
         result[query]['behave1'] = behave1
