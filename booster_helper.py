@@ -27,6 +27,7 @@ def fieldsearch_scores(query):
         scores.append(sum / float(total) if total != 0 else 0)
     return scores
 
+
 def userdata_scores(query, behave_data):
     """
     analyze user behaviour data
@@ -35,7 +36,6 @@ def userdata_scores(query, behave_data):
     """
     scores = [0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 1]
     return scores
-
 
 
 def balance_scores(fieldsearch, userdata):
@@ -75,6 +75,7 @@ def extract_features(query):
     feature_set.append(none_num)
     return feature_set
 
+
 def load_from_database():
     """
     load data from database
@@ -87,6 +88,9 @@ def load_from_database():
     for query in queries:
         behave1 = 0
         behave2 = 0
+        for click in query.clicks:
+            a = click.id
+
         clicks = Click.select().where(Click.query_id == query.id)
         print(clicks)
         for click in clicks:
@@ -122,6 +126,7 @@ def preprocess_training_data():
         X.append(extract_features(query))
         Y.append(balance_scores(fieldsearch_scores(query), userdata_scores(query, data[query])))
     return X, Y
+
 
 # def get_classifier():
 #     return classifier
