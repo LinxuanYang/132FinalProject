@@ -8,7 +8,7 @@ from elasticsearch_dsl import Index, Document, Text, Keyword, Integer, Float, Co
 from elasticsearch_dsl.connections import connections
 from elasticsearch_dsl.analysis import tokenizer, analyzer, char_filter, token_filter
 from elasticsearch_dsl.query import MultiMatch, Match
-from analyzer import short_term_analyzer,text_analyzer,name_analyzer
+from analyzer import short_term_analyzer, text_analyzer, name_analyzer
 
 # Connect to local host server
 connections.create_connection(hosts=['127.0.0.1'])
@@ -43,6 +43,7 @@ class Book(Document):
     background = Text(analyzer=my_analyzer)
     category = Text(analyzer=my_analyzer)
     rate = Float()
+
     # override the Document save method to include subclass field definitions
     def save(self, *args, **kwargs):
         return super(Book, self).save(*args, **kwargs)
@@ -315,6 +316,7 @@ def build_index():
             }
 
     helpers.bulk(es, actions())
+
 
 # def build_summary_index():
 #     summary_index = Index("summary_index")
