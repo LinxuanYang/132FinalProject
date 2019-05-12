@@ -16,8 +16,7 @@ import re
 from flask import *
 from index import Book
 from elasticsearch_dsl.utils import AttrList
-from elasticsearch_dsl import Search, function, Q
-from elasticsearch_dsl import query as dsl_query
+from elasticsearch_dsl import Search
 import query_helper
 from query_helper import index_name, fields_list
 from booster_helper import get_classifier
@@ -25,9 +24,11 @@ from data_base import Query, Hover, Click, Stay, Drag
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from view_helper import *
 from index import SearchQuery
+from good_reads_helper import find_recommendation
 
 app = Flask(__name__, static_folder='public', static_url_path='')
 word_trie = query_helper.load_token_dict_as_trie()
+
 
 # display query page
 @app.route("/")
@@ -40,18 +41,17 @@ def search():
 def results():
     page = request.args
 
-    page_number = int(page.get('page_number')) if page.get('page_number','') is not "" else 1
+    page_number = int(page.get('page_number')) if page.get('page_number', '') is not "" else 1
     query = page.get('query') or ""
     search = Search(index=index_name)
 
     # BOOST FIELD WEIGHTS
     # boost_weight = get_classifier().predict(query)
     # fields_list = query_helper.boost_fields(boost_weight)
-    fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98, 1, 1.1, 1, 1.1]
+    fake_weight = [1, 1.02, 1.23, 1.1, 1.2, 1, 0.9, 0.98, 1, 1, 1]
     fields_list = query_helper.boost_fields(fake_weight)
-    score_script = "_score + doc['rate'].value / 5"
 
-    # '|', '+', '-', "" phrase search， '*'， etc.
+    # supports '|', '+', '-', "" phrase search， '*'， etc.
     s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='and')
 
     # highlight
@@ -61,16 +61,17 @@ def results():
     end = 10 + (page_number - 1) * 10
     message = []
     response = s[start:end].execute()
+
+    # if there are no results, switch to disjunction search
     if response.hits.total == 0 and len(query) > 0:
         message.append(f'Unknown search term: {query},switch to disjunction.')
-        s = s.query('multi_match', query=query, type='cross_fields', fields=fields_list, operator='or')
+        s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='or')
         response = s[start:end].execute()
 
     # insert data into response
     result_list = query_helper.parse_result(response)
     # if there are results, insert it to query_index
     query_id = 0
-
     qs = ""
     try:
         qs = Query.select().where(Query.query == query)
@@ -87,7 +88,8 @@ def results():
             query_id = Query.get(Query.query == query).id
 
     result_num = response.hits.total
-    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query, 'page_number': page_number, 'message': message, 'page_size': 10})
+    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query,
+                          'page_number': page_number, 'message': message, 'page_size': 10})
 
 
 # display a particular document given a result number
@@ -184,21 +186,21 @@ def hint():
 
 @app.route('/like_this/<book_id>')
 def like_this(book_id):
-    #_id book id
+    # _id book id
     # index book_index
-    #_type: Document
+    # _type: Document
     page = request.args
 
-    page_number = int(page.get('page_number')) if page.get('page_number','') is not '' else 1
+    page_number = int(page.get('page_number')) if page.get('page_number', '') is not '' else 1
 
     search = Search(index=index_name)
     s = search.query('more_like_this',
-                     fields=fields_list,
+                     fields=fields_list[0:11],
                      like=[{"_index": "book_index", "_type": "doc", "_id": book_id}],
                      min_term_freq=1,
-                     max_query_terms=10)
+                     max_query_terms=5)
 
-    start = 0 + (page_number - 1) * 10
+    start = (page_number - 1) * 10
     end = 10 + (page_number - 1) * 10
     response = s[start:end].execute()
     # insert data into response
@@ -206,7 +208,13 @@ def like_this(book_id):
     # if there are results, insert it to query_index
 
     result_num = response.hits.total
-    return render_result({'result_list': result_list, 'result_num': result_num,"book_id":book_id,"page_number":page_number})
+    return render_result(
+        {'result_list': result_list, 'result_num': result_num, "book_id": book_id, "page_number": page_number})
+
+
+@app.route('/good_reads/<category>', methods=['GET'])
+def good_reads(category):
+    return render_template('goodreads_recommendation.html.jinja2', data=find_recommendation(category), cate=category)
 
 
 if __name__ == "__main__":

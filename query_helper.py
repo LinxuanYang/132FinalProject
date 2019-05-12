@@ -9,7 +9,6 @@ from nltk.stem.snowball import SnowballStemmer
 import ast
 import pygtrie as trie
 from index import makeup_fields
-from elasticsearch_dsl.utils import AttrList
 
 index_name = 'book_index'
 fields_list = ['title',
@@ -24,6 +23,8 @@ fields_list = ['title',
                'background',
                'category',
                'rate']
+
+from elasticsearch_dsl.utils import AttrList
 
 def highlight(search_object, field_list):
     search_object = search_object.highlight_options(pre_tags='<mark>', post_tags='</mark>')

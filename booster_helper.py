@@ -1,6 +1,7 @@
 from collections import defaultdict
 import field_booster
-from query_helper import fields_list
+from elasticsearch_dsl import Search, function, Q
+from query_helper import fields_list, index_name, parse_result
 
 
 def fieldsearch_scores(query):
@@ -9,9 +10,20 @@ def fieldsearch_scores(query):
     :param query: query
     :return: [T, A, SS, S, C, M, Q, P]
     """
-
-    pass
-
+    scores = []
+    search = Search(index=index_name)
+    for field in fields_list[0:11]:
+        print([field])
+        s = search.query('simple_query_string', fields=[field], query=query, default_operator='and')
+        response = s[0:10].execute()
+        result_list = parse_result(response)
+        sum = 0
+        total = 0
+        for result in result_list:
+            sum += result['score']
+            total += 1
+        scores.append(sum / float(total) if total != 0 else 0)
+    return scores
 
 def userdata_scores(query, behave_data):
     """
@@ -19,7 +31,8 @@ def userdata_scores(query, behave_data):
     :param query: query
     :return: [T, A, SS, S, C, M, Q, P]
     """
-    pass
+    scores = []
+
 
 
 def balance_scores(fieldsearch, userdata):
@@ -74,11 +87,12 @@ def preprocess_training_data():
         Y.append(balance_scores(fieldsearch_scores(query), userdata_scores(query, data[query])))
     return X, Y
 
-def get_classifier():
-    return classifier
+# def get_classifier():
+#     return classifier
 
 
 # X, Y = preprocess_training_data()
-X = [[0., 0.], [1., 1.], [1., 2.]]
-Y = [[0, 1], [1, 1], [1, 0]]
-classifier = field_booster.FieldBooster(X, Y)
+# X = [[0., 0.], [1., 1.], [1., 2.]]
+# Y = [[0, 1], [1, 1], [1, 0]]
+# classifier = field_booster.FieldBooster(X, Y)
+print(fieldsearch_scores('mocking bird'))
