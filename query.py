@@ -16,8 +16,7 @@ import re
 from flask import *
 from index import Book
 from elasticsearch_dsl.utils import AttrList
-from elasticsearch_dsl import Search, function, Q
-from elasticsearch_dsl import query as dsl_query
+from elasticsearch_dsl import Search
 import query_helper
 from query_helper import index_name, fields_list
 from booster_helper import get_classifier
@@ -60,9 +59,11 @@ def results():
     end = 10 + (page_number - 1) * 10
     message = []
     response = s[start:end].execute()
+
+    # if there are no results, switch to disjunction search
     if response.hits.total == 0 and len(query) > 0:
         message.append(f'Unknown search term: {query},switch to disjunction.')
-        s = s.query('multi_match', query=query, type='cross_fields', fields=fields_list, operator='or')
+        s = search.query('simple_query_string', fields=fields_list, query=query, default_operator='or')
         response = s[start:end].execute()
 
     # insert data into response
