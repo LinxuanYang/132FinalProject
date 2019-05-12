@@ -40,8 +40,8 @@
         let time = new Date().getTime();
         if (hoverTimeCalculate[id] && time - hoverTimeCalculate[id] > 15000) {
             sendHoverTime(id, queryId, time - hoverTimeCalculate[id]);
-            hoverTimeCalculate[id] = ''
         }
+        hoverTimeCalculate[id] = ''
     });
     let dragStatus = false;
     $(document.body).mousedown(function () {
@@ -60,7 +60,7 @@
                     id, queryId
                 }
             })
-        }, 3000
+        }, 1000
     )
     $(document.body).on('mousemove', '[data-drag-monitor]', function () {
         if (!dragStatus) {
