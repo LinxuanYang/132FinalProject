@@ -294,7 +294,6 @@ def build_index():
 
     # Action series for bulk loading with helpers.bulk function.
     def actions():
-
         for mid in range(1, size + 1):
             yield {
                 "_index": "book_index",
@@ -654,6 +653,7 @@ def build_query_Index():
         query_index.delete()
     query_index.create()
     SearchQuery.init()
+
 
 # command line invocation builds index and prints the running time.
 def main():
