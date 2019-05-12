@@ -26,6 +26,7 @@ fields_list = ['title',
 
 from elasticsearch_dsl.utils import AttrList
 
+
 def highlight(search_object, field_list):
     search_object = search_object.highlight_options(pre_tags='<mark>', post_tags='</mark>')
     for field in field_list:
