@@ -30,18 +30,18 @@ def test_analyzer(text, analyzer):
 
 # Define document mapping (schema) by defining a class as a subclass of Document.
 class Book(Document):
-    book_id = Text(analyzer=short_term_analyzer)
-    title = Text(analyzer=short_term_analyzer)  # stop words
-    author = Text(analyzer=name_analyzer)
-    summary_sentence = Text(analyzer=text_analyzer)
-    summary = Text(analyzer=text_analyzer)
-    character_list = Text(analyzer=text_analyzer)
-    main_ideas = Text(analyzer=text_analyzer)
-    quotes = Text(analyzer=text_analyzer)
-    picture = Text(analyzer=text_analyzer)
-    quiz = Text(analyzer=text_analyzer)
-    background = Text(analyzer=text_analyzer)
-    category = Text(analyzer=text_analyzer)
+    book_id = Text(analyzer=my_analyzer)
+    title = Text(analyzer=my_analyzer)  # stop words
+    author = Text(analyzer=my_analyzer)
+    summary_sentence = Text(analyzer=my_analyzer)
+    summary = Text(analyzer=my_analyzer)
+    character_list = Text(analyzer=my_analyzer)
+    main_ideas = Text(analyzer=my_analyzer)
+    quotes = Text(analyzer=my_analyzer)
+    picture = Text(analyzer=my_analyzer)
+    quiz = Text(analyzer=my_analyzer)
+    background = Text(analyzer=my_analyzer)
+    category = Text(analyzer=my_analyzer)
     rate = Float()
     # override the Document save method to include subclass field definitions
     def save(self, *args, **kwargs):
