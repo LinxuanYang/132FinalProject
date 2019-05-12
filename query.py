@@ -25,9 +25,11 @@ from data_base import Query, Hover, Click, Stay, Drag
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from view_helper import *
 from index import SearchQuery
+from good_reads_helper import find_recommendation
 
 app = Flask(__name__, static_folder='public', static_url_path='')
 word_trie = query_helper.load_token_dict_as_trie()
+
 
 # display query page
 @app.route("/")
@@ -40,7 +42,7 @@ def search():
 def results():
     page = request.args
 
-    page_number = int(page.get('page_number')) if page.get('page_number','') is not "" else 1
+    page_number = int(page.get('page_number')) if page.get('page_number', '') is not "" else 1
     query = page.get('query') or ""
     search = Search(index=index_name)
 
@@ -85,7 +87,8 @@ def results():
             query_id = Query.get(Query.query == query).id
 
     result_num = response.hits.total
-    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query, 'page_number': page_number, 'message': message, 'page_size': 10})
+    return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query,
+                          'page_number': page_number, 'message': message, 'page_size': 10})
 
 
 # display a particular document given a result number
@@ -182,12 +185,12 @@ def hint():
 
 @app.route('/like_this/<book_id>')
 def like_this(book_id):
-    #_id book id
+    # _id book id
     # index book_index
-    #_type: Document
+    # _type: Document
     page = request.args
 
-    page_number = int(page.get('page_number')) if page.get('page_number','') is not '' else 1
+    page_number = int(page.get('page_number')) if page.get('page_number', '') is not '' else 1
 
     search = Search(index=index_name)
     s = search.query('more_like_this',
@@ -204,7 +207,13 @@ def like_this(book_id):
     # if there are results, insert it to query_index
 
     result_num = response.hits.total
-    return render_result({'result_list': result_list, 'result_num': result_num,"book_id":book_id,"page_number":page_number})
+    return render_result(
+        {'result_list': result_list, 'result_num': result_num, "book_id": book_id, "page_number": page_number})
+
+
+@app.route('/good_reads/<category>', methods=['GET'])
+def good_reads(category):
+    return render_template('goodreads_recommendation.html.jinja2', data=find_recommendation(category), cate=category)
 
 
 if __name__ == "__main__":

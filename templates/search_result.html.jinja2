@@ -19,7 +19,7 @@
                 <span class="badge badge-secondary"> {{ result['author'] }}</span>
                 <span class="badge badge-primary"> Rate:{{ result['rate'] }}</span>
                 {% for category in result.category %}
-                    <span class="badge badge-danger"> {{ category }}</span>
+                    <span class="badge badge-danger" data-cate="{{ category }}" style="cursor:pointer;"> {{ category }}</span>
                 {% endfor %}
                 <p class="lead">{{ result['summary_sentence'] |e }}</p>
                 <a data-toggle="collapse" data-target="#collapse{{ result['id'] |e }}"
