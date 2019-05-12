@@ -1,7 +1,8 @@
 from collections import defaultdict
-import field_booster
 from elasticsearch_dsl import Search, function, Q
 from query_helper import fields_list, index_name, parse_result
+import field_booster
+from data_base import *
 
 
 def fieldsearch_scores(query):
@@ -25,14 +26,15 @@ def fieldsearch_scores(query):
         scores.append(sum / float(total) if total != 0 else 0)
     return scores
 
+
 def userdata_scores(query, behave_data):
     """
     analyze user behaviour data
     :param query: query
     :return: [T, A, SS, S, C, M, Q, P]
     """
-    scores = []
 
+    scores = []
 
 
 def balance_scores(fieldsearch, userdata):
@@ -59,13 +61,26 @@ def load_from_database():
     load data from database
     :return: {query: {behave: behave_data}}
     """
-    return defaultdict(lambda: defaultdict(float))
+    result = defaultdict(lambda: defaultdict(float))
+    queries = Query.select()
+    for query in queries:
+        behave1 = 0
+        behave2 = 0
+
+        clicks = Click.select().where(Click.query_id == query.id)
+        for click in clicks:
+            a = 1
+            pass
+
+        result[query]['behave1'] = behave1
+        result[query]['behave2'] = behave2
+    return result
 
 
 def preprocess_training_data():
     """
     preprocess_training_data
-    :return:
+    :return:Î
         X = [
           [F11, F12, F13, ..., F1N],
           [F21, F22, F23, ..., F2N],
@@ -87,11 +102,12 @@ def preprocess_training_data():
         Y.append(balance_scores(fieldsearch_scores(query), userdata_scores(query, data[query])))
     return X, Y
 
+
 # def get_classifier():
 #     return classifier
 
 
-# X, Y = preprocess_training_data()
+X, Y = preprocess_training_data()
 # X = [[0., 0.], [1., 1.], [1., 2.]]
 # Y = [[0, 1], [1, 1], [1, 0]]
 # classifier = field_booster.FieldBooster(X, Y)
