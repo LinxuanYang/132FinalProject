@@ -220,7 +220,12 @@ def like_this(book_id):
 
 @app.route('/good_reads/<category>', methods=['GET'])
 def good_reads(category):
-    return render_template('goodreads_recommendation.html.jinja2', data=find_recommendation(category), cate=category)
+    page_num = int(request.args.get('pageNumber', 1))
+    page_size = 3
+    result = find_recommendation(category, page_num)
+    return render_template('goodreads_recommendation.html.jinja2',
+                           data=result[(page_num - 1) * page_size: page_num * page_size],
+                           cate=category, page_number=page_num, res_num=len(result), page_size=page_size)
 
 
 if __name__ == "__main__":
