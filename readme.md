@@ -77,15 +77,19 @@ All purpose search on books
 
 ## Query
 - what we achieve
-- methods\
+- methods
     1. Words in ```""```: phrase search
     2. ```-word```: difference search only
     3. ```+word```: conjunctive search only
-    4. "Highest Rated Book" button
-    5. Synonym search
-
+    4. "More like this" button
+    5. input auto completion function
+- running instruction
+```python3 query.py```
+## Databse
+- you need a proper SQLite command working on your computer to have
+access to our databse
 ## UI
-- what we achieve
+- we use Bootstrap to build a progressive single page web application
 - methods
 
 
