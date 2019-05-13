@@ -205,6 +205,7 @@ def build_index():
 
     helpers.bulk(es, actions())
 
+
 def build_query_Index():
     query_index = Index('query_index')
     query_index.document(SearchQuery)

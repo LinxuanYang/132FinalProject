@@ -7,6 +7,7 @@ from elasticsearch_dsl import Search, function, Q
 from query_helper import fields_list, index_name, parse_result
 from playhouse.shortcuts import model_to_dict, dict_to_model
 
+
 def fieldsearch_scores(query):
     """
     average of top ten(or less) scores of each field_index
@@ -41,13 +42,15 @@ def userdata_scores(query, behave_data):
         dict[key_set[0]] = behave_data[key] if key_set[1] == 'click' else dict[key_set[0]]
     for key in behave_data:
         key_set = key.split(" ")
-        dict[key_set[0]] = (0.5 * dict[key_set[0]] * behave_data[key])/float(1500) if key_set[1] == 'hover' else dict[key_set[0]]
+        dict[key_set[0]] = (0.5 * dict[key_set[0]] * behave_data[key]) / float(1500) if key_set[1] == 'hover' else dict[
+            key_set[0]]
     for field in fields_list[0:11]:
         if field in dict:
             scores.append(dict[field])
         else:
             scores.append(0)
     return length_normalization(scores)
+
 
 def length_normalization(scores):
     total = 0
@@ -57,6 +60,7 @@ def length_normalization(scores):
         scores[i] = scores[i] / math.sqrt(total) if total != 0 else 0
     return scores
 
+
 def balance_scores(fieldsearch, userdata):
     """
     self invented formula for balancing the two score lists
@@ -64,7 +68,7 @@ def balance_scores(fieldsearch, userdata):
     :param userdata: [T', A', SS', S', C', M', Q', P']
     :return:[T, A, SS, S, C, M, Q, P]
     """
-    result = list(map(lambda x, y: round((x + y)/2), fieldsearch, userdata))
+    result = list(map(lambda x, y: round((x + y) / 2), fieldsearch, userdata))
     return result
 
 
@@ -108,8 +112,10 @@ def load_from_database():
     for q in queries:
         result = defaultdict(int)
         id = q.id
-        clicks = Click.select(fn.Count('*').alias('count'), Click.field.alias('field')).where(Click.query_id==id).group_by(Click.field)
-        hovers = Click.select(Click.field.alias('field'), fn.Sum(Hover.duration).alias('duration')).join(Query).join(Hover).where((Click.query_id==id) & (Hover.query_id==id)).group_by(Click.field)
+        clicks = Click.select(fn.Count('*').alias('count'), Click.field.alias('field')).where(
+            Click.query_id == id).group_by(Click.field)
+        hovers = Click.select(Click.field.alias('field'), fn.Sum(Hover.duration).alias('duration')).join(Query).join(
+            Hover).where((Click.query_id == id) & (Hover.query_id == id)).group_by(Click.field)
         for c in clicks:
             result[c.field + ' click'] = c.count
         for h in hovers:
