@@ -1,10 +1,19 @@
+#author: Lixuan Yang, Chenfeng Fan, Ye Hong, Limian Guo
 from collections import defaultdict
+
+from elasticsearch import Elasticsearch
+
 import field_booster
 import math
 import nltk
 from data_base import *
-from elasticsearch_dsl import Search
+from elasticsearch_dsl import Search, connections
 from query_helper import fields_list, index_name, parse_result
+
+connections.create_connection(hosts=['127.0.0.1'])
+
+# Create elasticsearch object
+es = Elasticsearch()
 
 
 def fieldsearch_scores(query):

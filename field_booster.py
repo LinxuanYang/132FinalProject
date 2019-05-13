@@ -1,3 +1,4 @@
+#author: Lixuan Yang, Chenfeng Fan, Ye Hong, Limian Guo
 from sklearn.neural_network import MLPClassifier
 
 # X = [

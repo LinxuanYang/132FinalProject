@@ -1,3 +1,4 @@
+#author: Lixuan Yang, Chenfeng Fan, Ye Hong, Limian Guo
 import json
 
 dict_by_type = {}
