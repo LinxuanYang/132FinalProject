@@ -2,13 +2,13 @@ import re
 import json
 import time
 
-
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
 from elasticsearch_dsl import Index, Document, Text, Float, Completion
 from elasticsearch_dsl.connections import connections
 from elasticsearch_dsl.analysis import analyzer
-from analyzer import short_term_analyzer,name_analyzer,text_analyzer
+from analyzer import short_term_analyzer, name_analyzer, text_analyzer
+
 # Connect to local host server
 connections.create_connection(hosts=['127.0.0.1'])
 
@@ -203,6 +203,7 @@ def build_index():
             }
 
     helpers.bulk(es, actions())
+
 
 def build_query_Index():
     query_index = Index('query_index')

@@ -32,6 +32,7 @@ word_trie = query_helper.load_token_dict_as_trie()
 def search():
     return render_template('index.html.jinja2', show={})
 
+
 # display results page for first set of results and "next" sets.
 @app.route("/results", methods=['GET'])
 def results():
@@ -87,6 +88,7 @@ def results():
     return render_result({'result_list': result_list, 'result_num': result_num, 'query_id': query_id, 'query': query,
                           'page_number': page_number, 'message': message, 'page_size': 10})
 
+
 # this api should return json
 @app.route('/hover', methods=['POST'])
 def hover_data_collect():
@@ -97,6 +99,7 @@ def hover_data_collect():
     hover = Hover(query_id=query_id, document_id=document_id, duration=time)
     hover.save()
     return jsonify(model_to_dict(hover))
+
 
 # this api should return json
 @app.route('/click', methods=['POST'])
@@ -109,6 +112,7 @@ def click_through():
     click.save()
     return jsonify(model_to_dict(click))
 
+
 # this api should return json
 @app.route('/page_stay', methods=['POST'])
 def page_stay():
@@ -120,6 +124,7 @@ def page_stay():
     stay.save()
     return jsonify(model_to_dict(stay))
 
+
 # this api should return json
 @app.route('/drag', methods=['POST'])
 def drag_over_item():
@@ -129,6 +134,7 @@ def drag_over_item():
     drag = Drag(query_id=query_id, document_id=document_id)
     drag.save()
     return jsonify(model_to_dict(drag))
+
 
 # this api should return json
 # return something like this
@@ -160,6 +166,7 @@ def hint():
             return jsonify(list(map(lambda x: prefix_word + x, word_trie.keys(prefix=last_word)))[0:10])
         except Exception:
             return jsonify([])
+
 
 @app.route('/like_this/<book_id>')
 def like_this(book_id):
