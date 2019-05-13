@@ -86,7 +86,7 @@
 
     let startTime = new Date().getTime()
     setInterval(() => {
-        window.queryId && sendPageStayTime()
+        window.queryId && sendPageStayTime(queryId,)
     }, 100000)
 
     function sendHoverTime(id, queryId, time) {
@@ -112,7 +112,7 @@
             }
         })
     }
-
+    let time =new Date().getTime()
     function sendPageStayTime() {
         $.ajax('/page_stay', {
             method: 'post',
