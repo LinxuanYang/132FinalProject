@@ -1,3 +1,4 @@
+#author: Lixuan Yang, Chenfeng Fan, Ye Hong, Limian Guo
 from elasticsearch_dsl.analysis import tokenizer, analyzer, char_filter, token_filter
 
 short_term_analyzer = analyzer('short_term_analyzer',

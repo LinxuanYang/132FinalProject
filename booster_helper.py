@@ -1,3 +1,4 @@
+#author: Lixuan Yang, Chenfeng Fan, Ye Hong, Limian Guo
 from collections import defaultdict
 
 from elasticsearch import Elasticsearch

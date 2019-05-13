@@ -1,3 +1,4 @@
+#author: Lixuan Yang, Chenfeng Fan, Ye Hong, Limian Guo
 import ast
 import pygtrie as trie
 from elasticsearch_dsl.utils import AttrList

@@ -1,7 +1,7 @@
+#author: Lixuan Yang, Chenfeng Fan, Ye Hong, Limian Guo
 from peewee import *
 from playhouse.sqlite_ext import SqliteExtDatabase, JSONField
 from playhouse.migrate import *
-
 db = SqliteExtDatabase('user_statistic.db')
 
 

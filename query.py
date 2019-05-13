@@ -10,7 +10,10 @@ https://elasticsearch-dsl.readthedocs.io/en/latest/
 
 Search DSL:
 https://elasticsearch-dsl.readthedocs.io/en/latest/search_dsl.html
+
+author: Lixuan Yang, Chenfeng Fan, Ye Hong, Limian Guo
 """
+
 
 from flask import *
 from elasticsearch_dsl import Search
