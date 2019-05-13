@@ -39,6 +39,8 @@ def results():
 
     page_number = int(page.get('page_number')) if page.get('page_number', '') is not "" else 1
     query = page.get('query', '')
+    if len(query) == 0:
+        return redirect('/')
     search = Search(index=index_name)
 
     # boost field weights
