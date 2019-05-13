@@ -1,6 +1,7 @@
 import ast
 import pygtrie as trie
 from elasticsearch_dsl.utils import AttrList
+import index
 
 index_name = 'book_index'
 fields_list = ['title',

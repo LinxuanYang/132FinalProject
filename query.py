@@ -13,14 +13,12 @@ https://elasticsearch-dsl.readthedocs.io/en/latest/search_dsl.html
 """
 
 from flask import *
-from index import Book
-from elasticsearch_dsl.utils import AttrList
 from elasticsearch_dsl import Search
 import query_helper
 from query_helper import index_name, fields_list
 from booster_helper import get_classifier, extract_features
 from data_base import Query, Hover, Click, Stay, Drag
-from playhouse.shortcuts import model_to_dict, dict_to_model
+from playhouse.shortcuts import model_to_dict
 from view_helper import *
 from index import SearchQuery
 from good_reads_helper import find_recommendation
@@ -41,10 +39,12 @@ def results():
     page = request.args
 
     page_number = int(page.get('page_number')) if page.get('page_number', '') is not "" else 1
-    query = page.get('query') or ""
+    query = page.get('query', '')
+    if len(query) == 0:
+        return redirect('/')
     search = Search(index=index_name)
 
-    # BOOST FIELD WEIGHTS
+    # boost field weights
     boost_weight = [i + 1 for i in get_classifier().predict([extract_features(query)])[0]]
     fields_list = query_helper.boost_fields(boost_weight)
 

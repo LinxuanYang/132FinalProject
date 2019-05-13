@@ -65,18 +65,33 @@ All purpose search on books
          'start_time': datetime.datetime(2019, 5, 9, 5, 29, 9, 874055)}
         2019-05-09 16:52:48 [scrapy.core.engine] INFO: Spider closed (finished)
     ```
+## Data
+- what we achieve
+- methods
 
 ## Index
-- Clean and organize raw data from @sparknotes
-```$ index.py```
-- For each book, each key/field associate with a string of related text
+- what we achieve
+- methods\
+  1. Clean and organize raw data from @sparknotes ```$ index.py```\
+  2. For each book, each key/field associate with a string of related text
 
 ## Query
-- Words in ```""```: phrase search
-- ```-word```: difference search only
-- ```+word```: conjunctive search only
-- "Highest Rated Book" button
-- Synonym search
+- what we achieve
+- methods
+    1. Words in ```""```: phrase search
+    2. ```-word```: difference search only
+    3. ```+word```: conjunctive search only
+    4. "More like this" button
+    5. input auto completion function
+- running instruction
+```python3 query.py```
+## Databse
+- you need a proper SQLite command working on your computer to have
+access to our databse
+## UI
+- we use Bootstrap to build a progressive single page web application
+- methods
+
 
 ## References
 - https://doc.scrapy.org/en/xpath-tutorial/intro/tutorial.html
