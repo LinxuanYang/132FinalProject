@@ -1,0 +1,831 @@
+{
+  "kindergarten": {
+    "Chicka Chicka Boom Boom": {
+      "title": "Chicka Chicka Boom Boom",
+      "author": "Bill Martin Jr.",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "131,637 ratings  \u2014",
+        "published 1989"
+      ]
+    },
+    "The Very Hungry Caterpillar": {
+      "title": "The Very Hungry Caterpillar",
+      "author": "Eric Carle",
+      "rate": [
+        "avg rating 4.48 \u2014",
+        "4,765 ratings  \u2014",
+        "published"
+      ]
+    },
+    "Where the Wild Things Are": {
+      "title": "Where the Wild Things Are",
+      "author": "Maurice Sendak",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "726,350 ratings  \u2014",
+        "published 1963"
+      ]
+    },
+    "Brown Bear, Brown Bear, What Do You See?": {
+      "title": "Brown Bear, Brown Bear, What Do You See?",
+      "author": "Bill Martin Jr.",
+      "rate": [
+        "avg rating 4.20 \u2014",
+        "136,115 ratings  \u2014",
+        "published 1967"
+      ]
+    },
+    "The Kissing Hand": {
+      "title": "The Kissing Hand",
+      "author": "Audrey Penn",
+      "rate": [
+        "avg rating 4.42 \u2014",
+        "56,468 ratings  \u2014",
+        "published 1993"
+      ]
+    },
+    "Green Eggs and Ham": {
+      "title": "Green Eggs and Ham",
+      "author": "Dr. Seuss",
+      "rate": [
+        "avg rating 4.30 \u2014",
+        "540,285 ratings  \u2014",
+        "published 1960"
+      ]
+    },
+    "Corduroy": {
+      "title": "Corduroy",
+      "author": "Don Freeman",
+      "rate": [
+        "avg rating 4.29 \u2014",
+        "173,328 ratings  \u2014",
+        "published 1968"
+      ]
+    },
+    "If You Give a Mouse a Cookie": {
+      "title": "If You Give a Mouse a Cookie",
+      "author": "Laura Joffe Numeroff",
+      "rate": [
+        "avg rating 4.25 \u2014",
+        "229,039 ratings  \u2014",
+        "published 1985"
+      ]
+    },
+    "Miss Bindergarten Gets Ready for Kindergarten": {
+      "title": "Miss Bindergarten Gets Ready for Kindergarten",
+      "author": "Joseph Slate",
+      "rate": [
+        "avg rating 4.12 \u2014",
+        "1,962 ratings  \u2014",
+        "published 1996"
+      ]
+    },
+    "Madeline": {
+      "title": "Madeline",
+      "author": "Ludwig Bemelmans",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "179,600 ratings  \u2014",
+        "published 1939"
+      ]
+    }
+  },
+  "elementary-school": {
+    "Charlotte's Web": {
+      "title": "Charlotte's Web",
+      "author": "E.B. White",
+      "rate": [
+        "avg rating 4.16 \u2014",
+        "1,246,273 ratings  \u2014",
+        "published 1952"
+      ]
+    },
+    "Harry Potter and the Sorcerer's Stone": {
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.47 \u2014",
+        "5,893,920 ratings  \u2014",
+        "published 1997"
+      ]
+    },
+    "Where the Sidewalk Ends": {
+      "title": "Where the Sidewalk Ends",
+      "author": "Shel Silverstein",
+      "rate": [
+        "avg rating 4.30 \u2014",
+        "1,099,437 ratings  \u2014",
+        "published 1974"
+      ]
+    },
+    "Holes": {
+      "title": "Holes",
+      "author": "Louis Sachar",
+      "rate": [
+        "avg rating 3.95 \u2014",
+        "862,297 ratings  \u2014",
+        "published 1998"
+      ]
+    },
+    "The Lion, the Witch and the Wardrobe": {
+      "title": "The Lion, the Witch and the Wardrobe",
+      "author": "C.S. Lewis",
+      "rate": [
+        "avg rating 4.21 \u2014",
+        "1,874,806 ratings  \u2014",
+        "published 1950"
+      ]
+    },
+    "Matilda": {
+      "title": "Matilda",
+      "author": "Roald Dahl",
+      "rate": [
+        "avg rating 4.30 \u2014",
+        "520,795 ratings  \u2014",
+        "published 1988"
+      ]
+    },
+    "Number the Stars": {
+      "title": "Number the Stars",
+      "author": "Lois Lowry",
+      "rate": [
+        "avg rating 4.13 \u2014",
+        "389,239 ratings  \u2014",
+        "published 1989"
+      ]
+    },
+    "Charlie and the Chocolate Factory": {
+      "title": "Charlie and the Chocolate Factory",
+      "author": "Roald Dahl",
+      "rate": [
+        "avg rating 4.12 \u2014",
+        "572,284 ratings  \u2014",
+        "published 1964"
+      ]
+    },
+    "Bridge to Terabithia": {
+      "title": "Bridge to Terabithia",
+      "author": "Katherine Paterson",
+      "rate": [
+        "avg rating 3.99 \u2014",
+        "394,102 ratings  \u2014",
+        "published 1977"
+      ]
+    },
+    "The Giving Tree": {
+      "title": "The Giving Tree",
+      "author": "Shel Silverstein",
+      "rate": [
+        "avg rating 4.37 \u2014",
+        "813,319 ratings  \u2014",
+        "published 1964"
+      ]
+    },
+    "Harry Potter and the Chamber of Secrets": {
+      "title": "Harry Potter and the Chamber of Secrets",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.41 \u2014",
+        "2,283,344 ratings  \u2014",
+        "published 1998"
+      ]
+    },
+    "The BFG": {
+      "title": "The BFG",
+      "author": "Roald Dahl",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "313,110 ratings  \u2014",
+        "published 1982"
+      ]
+    },
+    "A Wrinkle in Time": {
+      "title": "A Wrinkle in Time",
+      "author": "Madeleine L&#39;Engle",
+      "rate": [
+        "avg rating 4.01 \u2014",
+        "884,359 ratings  \u2014",
+        "published 1962"
+      ]
+    },
+    "Harry Potter and the Prisoner of Azkaban": {
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.55 \u2014",
+        "2,330,777 ratings  \u2014",
+        "published 1999"
+      ]
+    },
+    "The Giver": {
+      "title": "The Giver",
+      "author": "Lois Lowry",
+      "rate": [
+        "avg rating 4.12 \u2014",
+        "1,521,291 ratings  \u2014",
+        "published 1993"
+      ]
+    }
+  },
+  "middle-school": {
+    "The Giver": {
+      "title": "The Giver",
+      "author": "Lois Lowry",
+      "rate": [
+        "avg rating 4.12 \u2014",
+        "1,521,291 ratings  \u2014",
+        "published 1993"
+      ]
+    },
+    "Wonder": {
+      "title": "Wonder",
+      "author": "R.J. Palacio",
+      "rate": [
+        "avg rating 4.45 \u2014",
+        "582,959 ratings  \u2014",
+        "published 2012"
+      ]
+    },
+    "The Lightning Thief": {
+      "title": "The Lightning Thief",
+      "author": "Rick Riordan",
+      "rate": [
+        "avg rating 4.24 \u2014",
+        "1,691,929 ratings  \u2014",
+        "published 2005"
+      ]
+    },
+    "The Outsiders": {
+      "title": "The Outsiders",
+      "author": "S.E. Hinton",
+      "rate": [
+        "avg rating 4.08 \u2014",
+        "801,503 ratings  \u2014",
+        "published 1967"
+      ]
+    },
+    "Harry Potter and the Sorcerer's Stone": {
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.47 \u2014",
+        "5,893,920 ratings  \u2014",
+        "published 1997"
+      ]
+    },
+    "Holes": {
+      "title": "Holes",
+      "author": "Louis Sachar",
+      "rate": [
+        "avg rating 3.95 \u2014",
+        "862,297 ratings  \u2014",
+        "published 1998"
+      ]
+    },
+    "The Hunger Games": {
+      "title": "The Hunger Games",
+      "author": "Suzanne Collins",
+      "rate": [
+        "avg rating 4.33 \u2014",
+        "5,704,540 ratings  \u2014",
+        "published 2008"
+      ]
+    },
+    "A Wrinkle in Time": {
+      "title": "A Wrinkle in Time",
+      "author": "Madeleine L&#39;Engle",
+      "rate": [
+        "avg rating 4.01 \u2014",
+        "884,359 ratings  \u2014",
+        "published 1962"
+      ]
+    },
+    "Harry Potter and the Goblet of Fire": {
+      "title": "Harry Potter and the Goblet of Fire",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.55 \u2014",
+        "2,182,111 ratings  \u2014",
+        "published 2000"
+      ]
+    },
+    "The Diary of a Young Girl": {
+      "title": "The Diary of a Young Girl",
+      "author": "Anne Frank",
+      "rate": [
+        "avg rating 4.13 \u2014",
+        "2,380,397 ratings  \u2014",
+        "published 1947"
+      ]
+    },
+    "Harry Potter and the Prisoner of Azkaban": {
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.55 \u2014",
+        "2,330,777 ratings  \u2014",
+        "published 1999"
+      ]
+    },
+    "Harry Potter and the Chamber of Secrets": {
+      "title": "Harry Potter and the Chamber of Secrets",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.41 \u2014",
+        "2,283,344 ratings  \u2014",
+        "published 1998"
+      ]
+    },
+    "Number the Stars": {
+      "title": "Number the Stars",
+      "author": "Lois Lowry",
+      "rate": [
+        "avg rating 4.13 \u2014",
+        "389,239 ratings  \u2014",
+        "published 1989"
+      ]
+    },
+    "Stargirl": {
+      "title": "Stargirl",
+      "author": "Jerry Spinelli",
+      "rate": [
+        "avg rating 3.75 \u2014",
+        "269,274 ratings  \u2014",
+        "published 2000"
+      ]
+    },
+    "Harry Potter and the Order of the Phoenix": {
+      "title": "Harry Potter and the Order of the Phoenix",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.49 \u2014",
+        "2,135,122 ratings  \u2014",
+        "published 2003"
+      ]
+    },
+    "Harry Potter and the Half-Blood Prince": {
+      "title": "Harry Potter and the Half-Blood Prince",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.56 \u2014",
+        "2,083,057 ratings  \u2014",
+        "published 2005"
+      ]
+    },
+    "Harry Potter and the Deathly Hallows": {
+      "title": "Harry Potter and the Deathly Hallows",
+      "author": "J.K. Rowling",
+      "rate": [
+        "avg rating 4.62 \u2014",
+        "2,243,744 ratings  \u2014",
+        "published 2007"
+      ]
+    },
+    "Catching Fire": {
+      "title": "Catching Fire",
+      "author": "Suzanne Collins",
+      "rate": [
+        "avg rating 4.29 \u2014",
+        "2,188,435 ratings  \u2014",
+        "published 2009"
+      ]
+    },
+    "To Kill a Mockingbird": {
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "rate": [
+        "avg rating 4.27 \u2014",
+        "3,901,730 ratings  \u2014",
+        "published 1960"
+      ]
+    },
+    "Bridge to Terabithia": {
+      "title": "Bridge to Terabithia",
+      "author": "Katherine Paterson",
+      "rate": [
+        "avg rating 3.99 \u2014",
+        "394,102 ratings  \u2014",
+        "published 1977"
+      ]
+    },
+    "Counting by 7s": {
+      "title": "Counting by 7s",
+      "author": "Holly Goldberg Sloan",
+      "rate": [
+        "avg rating 4.16 \u2014",
+        "50,490 ratings  \u2014",
+        "published 2013"
+      ]
+    },
+    "Hatchet": {
+      "title": "Hatchet",
+      "author": "Gary Paulsen",
+      "rate": [
+        "avg rating 3.70 \u2014",
+        "267,291 ratings  \u2014",
+        "published 1986"
+      ]
+    }
+  },
+  "high-school": {
+    "The Great Gatsby": {
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "rate": [
+        "avg rating 3.91 \u2014",
+        "3,265,160 ratings  \u2014",
+        "published 1925"
+      ]
+    },
+    "To Kill a Mockingbird": {
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "rate": [
+        "avg rating 4.27 \u2014",
+        "3,901,730 ratings  \u2014",
+        "published 1960"
+      ]
+    },
+    "Romeo and Juliet": {
+      "title": "Romeo and Juliet",
+      "author": "William Shakespeare",
+      "rate": [
+        "avg rating 3.74 \u2014",
+        "1,858,535 ratings  \u2014",
+        "published 1595"
+      ]
+    },
+    "The Catcher in the Rye": {
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "rate": [
+        "avg rating 3.80 \u2014",
+        "2,416,369 ratings  \u2014",
+        "published 1951"
+      ]
+    },
+    "Lord of the Flies": {
+      "title": "Lord of the Flies",
+      "author": "William Golding",
+      "rate": [
+        "avg rating 3.67 \u2014",
+        "1,938,602 ratings  \u2014",
+        "published 1954"
+      ]
+    },
+    "Of Mice and Men": {
+      "title": "Of Mice and Men",
+      "author": "John Steinbeck",
+      "rate": [
+        "avg rating 3.86 \u2014",
+        "1,718,250 ratings  \u2014",
+        "published 1937"
+      ]
+    },
+    "The Scarlet Letter": {
+      "title": "The Scarlet Letter",
+      "author": "Nathaniel Hawthorne",
+      "rate": [
+        "avg rating 3.39 \u2014",
+        "633,254 ratings  \u2014",
+        "published 1850"
+      ]
+    },
+    "Hamlet": {
+      "title": "Hamlet",
+      "author": "William Shakespeare",
+      "rate": [
+        "avg rating 4.01 \u2014",
+        "648,044 ratings  \u2014",
+        "published 1600"
+      ]
+    },
+    "Animal Farm": {
+      "title": "Animal Farm",
+      "author": "George Orwell",
+      "rate": [
+        "avg rating 3.91 \u2014",
+        "2,331,535 ratings  \u2014",
+        "published 1945"
+      ]
+    },
+    "Macbeth": {
+      "title": "Macbeth",
+      "author": "William Shakespeare",
+      "rate": [
+        "avg rating 3.89 \u2014",
+        "596,520 ratings  \u2014",
+        "published 1606"
+      ]
+    },
+    "1984": {
+      "title": "1984",
+      "author": "George Orwell",
+      "rate": [
+        "avg rating 4.17 \u2014",
+        "2,570,331 ratings  \u2014",
+        "published 1949"
+      ]
+    },
+    "The Adventures of Huckleberry Finn": {
+      "title": "The Adventures of Huckleberry Finn",
+      "author": "Mark Twain",
+      "rate": [
+        "avg rating 3.81 \u2014",
+        "1,076,062 ratings  \u2014",
+        "published 1884"
+      ]
+    },
+    "The Crucible": {
+      "title": "The Crucible",
+      "author": "Arthur  Miller",
+      "rate": [
+        "avg rating 3.57 \u2014",
+        "286,273 ratings  \u2014",
+        "published 1953"
+      ]
+    },
+    "The Perks of Being a Wallflower": {
+      "title": "The Perks of Being a Wallflower",
+      "author": "Stephen Chbosky",
+      "rate": [
+        "avg rating 4.20 \u2014",
+        "1,098,047 ratings  \u2014",
+        "published 1999"
+      ]
+    },
+    "Fahrenheit 451": {
+      "title": "Fahrenheit 451",
+      "author": "Ray Bradbury",
+      "rate": [
+        "avg rating 3.98 \u2014",
+        "1,401,106 ratings  \u2014",
+        "published 1953"
+      ]
+    },
+    "Brave New World": {
+      "title": "Brave New World",
+      "author": "Aldous Huxley",
+      "rate": [
+        "avg rating 3.98 \u2014",
+        "1,253,495 ratings  \u2014",
+        "published 1932"
+      ]
+    },
+    "Frankenstein": {
+      "title": "Frankenstein",
+      "author": "Mary Wollstonecraft Shelley",
+      "rate": [
+        "avg rating 3.78 \u2014",
+        "1,015,093 ratings  \u2014",
+        "published 1818"
+      ]
+    },
+    "Night": {
+      "title": "Night",
+      "author": "Elie Wiesel",
+      "rate": [
+        "avg rating 4.32 \u2014",
+        "854,039 ratings  \u2014",
+        "published 1958"
+      ]
+    },
+    "The Odyssey": {
+      "title": "The Odyssey",
+      "author": "Homer",
+      "rate": [
+        "avg rating 3.75 \u2014",
+        "782,836 ratings  \u2014",
+        "published -720"
+      ]
+    },
+    "Speak": {
+      "title": "Speak",
+      "author": "Laurie Halse Anderson",
+      "rate": [
+        "avg rating 4.01 \u2014",
+        "429,227 ratings  \u2014",
+        "published 1999"
+      ]
+    },
+    "Twilight": {
+      "title": "Twilight",
+      "author": "Meg Cabot",
+      "rate": [
+        "avg rating 4.25 \u2014",
+        "36,276 ratings  \u2014",
+        "published 2005"
+      ]
+    }
+  },
+  "college": {
+    "The Deal": {
+      "title": "The Deal",
+      "author": "Elle Kennedy",
+      "rate": [
+        "avg rating 4.28 \u2014",
+        "105,172 ratings  \u2014",
+        "published 2015"
+      ]
+    },
+    "Beautiful Disaster": {
+      "title": "Beautiful Disaster",
+      "author": "Jamie McGuire",
+      "rate": [
+        "avg rating 4.12 \u2014",
+        "494,379 ratings  \u2014",
+        "published 2011"
+      ]
+    },
+    "Wait for You": {
+      "title": "Wait for You",
+      "author": "J. Lynn",
+      "rate": [
+        "avg rating 4.18 \u2014",
+        "125,337 ratings  \u2014",
+        "published 2013"
+      ]
+    },
+    "Easy": {
+      "title": "Easy",
+      "author": "Tammara Webber",
+      "rate": [
+        "avg rating 4.10 \u2014",
+        "204,204 ratings  \u2014",
+        "published 2012"
+      ]
+    },
+    "The Mistake": {
+      "title": "The Mistake",
+      "author": "Elle Kennedy",
+      "rate": [
+        "avg rating 4.13 \u2014",
+        "54,661 ratings  \u2014",
+        "published 2015"
+      ]
+    },
+    "The Score": {
+      "title": "The Score",
+      "author": "Elle Kennedy",
+      "rate": [
+        "avg rating 4.26 \u2014",
+        "46,395 ratings  \u2014",
+        "published 2016"
+      ]
+    },
+    "Fangirl": {
+      "title": "Fangirl",
+      "author": "Rainbow Rowell",
+      "rate": [
+        "avg rating 4.09 \u2014",
+        "478,024 ratings  \u2014",
+        "published 2013"
+      ]
+    },
+    "The Hook Up": {
+      "title": "The Hook Up",
+      "author": "Kristen Callihan",
+      "rate": [
+        "avg rating 4.02 \u2014",
+        "38,200 ratings  \u2014",
+        "published 2014"
+      ]
+    },
+    "Losing It": {
+      "title": "Losing It",
+      "author": "Cora Carmack",
+      "rate": [
+        "avg rating 3.75 \u2014",
+        "95,890 ratings  \u2014",
+        "published 2012"
+      ]
+    },
+    "Sweet Home": {
+      "title": "Sweet Home",
+      "author": "Tillie Cole",
+      "rate": [
+        "avg rating 4.02 \u2014",
+        "32,189 ratings  \u2014",
+        "published 2013"
+      ]
+    },
+    "Walking Disaster": {
+      "title": "Walking Disaster",
+      "author": "Jamie McGuire",
+      "rate": [
+        "avg rating 4.22 \u2014",
+        "155,114 ratings  \u2014",
+        "published 2013"
+      ]
+    },
+    "My Favorite Mistake": {
+      "title": "My Favorite Mistake",
+      "author": "Chelsea M. Cameron",
+      "rate": [
+        "avg rating 4.00 \u2014",
+        "54,002 ratings  \u2014",
+        "published 2012"
+      ]
+    },
+    "The Coincidence of Callie &amp; Kayden": {
+      "title": "The Coincidence of Callie &amp; Kayden",
+      "author": "Jessica Sorensen",
+      "rate": [
+        "avg rating 4.19 \u2014",
+        "105,975 ratings  \u2014",
+        "published 2012"
+      ]
+    },
+    "The Goal": {
+      "title": "The Goal",
+      "author": "Elle Kennedy",
+      "rate": [
+        "avg rating 4.05 \u2014",
+        "26,889 ratings  \u2014",
+        "published 2016"
+      ]
+    },
+    "Beautiful Broken Rules": {
+      "title": "Beautiful Broken Rules",
+      "author": "Kimberly Lauren",
+      "rate": [
+        "avg rating 4.13 \u2014",
+        "31,091 ratings  \u2014",
+        "published 2013"
+      ]
+    },
+    "Price of a Kiss": {
+      "title": "Price of a Kiss",
+      "author": "Linda Kage",
+      "rate": [
+        "avg rating 4.09 \u2014",
+        "29,244 ratings  \u2014",
+        "published 2013"
+      ]
+    },
+    "The Year We Fell Down": {
+      "title": "The Year We Fell Down",
+      "author": "Sarina Bowen",
+      "rate": [
+        "avg rating 3.99 \u2014",
+        "20,463 ratings  \u2014",
+        "published 2014"
+      ]
+    },
+    "#Nerd": {
+      "title": "#Nerd",
+      "author": "Cambria Hebert",
+      "rate": [
+        "avg rating 4.01 \u2014",
+        "15,877 ratings  \u2014",
+        "published 2014"
+      ]
+    },
+    "The Studying Hours": {
+      "title": "The Studying Hours",
+      "author": "Sara Ney",
+      "rate": [
+        "avg rating 3.86 \u2014",
+        "14,587 ratings  \u2014",
+        "published 2016"
+      ]
+    },
+    "Ruin": {
+      "title": "Ruin",
+      "author": "Rachel Van Dyken",
+      "rate": [
+        "avg rating 4.18 \u2014",
+        "38,516 ratings  \u2014",
+        "published 2013"
+      ]
+    },
+    "Frankenstein": {
+      "title": "Frankenstein",
+      "author": "Mary Wollstonecraft Shelley",
+      "rate": [
+        "avg rating 3.78 \u2014",
+        "1,015,093 ratings  \u2014",
+        "published 1818"
+      ]
+    },
+    "Rule": {
+      "title": "Rule",
+      "author": "Jay Crownover",
+      "rate": [
+        "avg rating 4.15 \u2014",
+        "88,774 ratings  \u2014",
+        "published 2012"
+      ]
+    },
+    "The Perfect Game": {
+      "title": "The Perfect Game",
+      "author": "J. Sterling",
+      "rate": [
+        "avg rating 3.96 \u2014",
+        "54,689 ratings  \u2014",
+        "published 2012"
+      ]
+    }
+  }
+}
